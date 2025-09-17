@@ -7,6 +7,14 @@ const Talks = () => {
   
   const talks = [
     {
+      title: "Long-time behavior of singular SDEs and SPDEs",
+      event: "Moroccan - Swedish Conference on Stochastic Analysis 2025, Marrakech",
+      year: "2025",
+      type: "talk",
+      hasFile: true,
+      fileUrl: "https://drive.google.com/file/d/1VR9bqzPdcNj7KCw5Z_JmIpl7xmTuwBk1/view?usp=sharing"
+    },
+    {
       title: "Long-time behavior of SPDEs/SDEs",
       event: "Regbynoise2025, Vienna",
       year: "2025",
@@ -101,6 +109,7 @@ const Talks = () => {
   ];
 
   const attendedConferences = [
+    { event: "Moroccan - Swedish Conference on Stochastic Analysis 2025, Marrakech", year: "2025", url: "https://moscsa2025.com" },
     { event: "Regbynoise2025, Vienna", year: "2025", url: "https://regbynoise2025.conf.tuwien.ac.at" },
     { event: "The SPDevent, Bielefeld", year: "2024", url: "https://www.uni-bielefeld.de/fakultaeten/mathematik/ag/hofmanova/conferences-and-workshops/spdevent-2024/" },
     { event: "Les probabilités de demain, Paris", year: "2024", url: "https://indico.math.cnrs.fr/event/11805/" },

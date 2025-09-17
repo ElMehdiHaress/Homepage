@@ -149,9 +149,9 @@ const Homepage = () => {
           minWidth: 0 // Allow text to shrink
         }}>
           <p style={{ marginBottom: 'clamp(16px, 3vw, 24px)', fontSize: 'clamp(16px, 3vw, 20px)' }}>
-            I am a Research fellow in Stochastic Analysis at University of Leeds
+            I am a Research fellow in Stochastic Analysis at University of Leeds supervised by
             <br />
-             supervised by{' '}
+             {' '}
             <a 
               href="https://eps.leeds.ac.uk/maths/staff/6172/dr-konstantinos-dareiotis"
               target="_blank"
@@ -184,7 +184,7 @@ const Homepage = () => {
           </p>
           
           <p style={{ marginBottom: 'clamp(16px, 3vw, 24px)' }}>
-            PhD at Paris-Saclay University: supervised by{' '}
+            I did my PhD at Paris-Saclay University, supervised by{' '}
             <a 
               href="https://w3.ens-rennes.fr/math/people/ludovic.goudenege/"
               target="_blank"
@@ -213,6 +213,24 @@ const Homepage = () => {
               onMouseOut={(e) => (e.target as HTMLElement).style.color = '#60a5fa'}
             >
               Alexandre Richard
+            </a>
+          </p>
+          
+          <p style={{ marginBottom: 'clamp(16px, 3vw, 24px)' }}>
+            Check my full resume{' '}
+            <a 
+              href="https://drive.google.com/file/d/1S-9iUwd9qYVEQgWXVjoGys72d4Qe4eak/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                color: '#60a5fa',
+                textDecoration: 'underline',
+                transition: 'color 0.3s ease'
+              }}
+              onMouseOver={(e) => (e.target as HTMLElement).style.color = '#93c5fd'}
+              onMouseOut={(e) => (e.target as HTMLElement).style.color = '#60a5fa'}
+            >
+              here
             </a>
           </p>
           

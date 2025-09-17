@@ -77,11 +77,11 @@ const Publications = () => {
     <div style={{
       width: '100vw',
       minHeight: '100vh',
-      backgroundColor: '#000000',
+      backgroundColor: '#ffffff',
       position: 'relative',
       margin: 0,
       padding: '40px 20px',
-      color: 'white'
+      color: '#1f2937'
     }}>
       {/* Back to Home Button */}
       <button
@@ -92,22 +92,22 @@ const Publications = () => {
           top: '30px',
           left: '30px',
           zIndex: 1000,
-          backgroundColor: 'rgba(255, 255, 255, 0.1)',
-          border: '1px solid rgba(255, 255, 255, 0.3)',
+          backgroundColor: 'rgba(0, 0, 0, 0.1)',
+          border: '1px solid rgba(0, 0, 0, 0.3)',
           borderRadius: '12px',
           padding: '10px 20px',
-          color: 'white',
+          color: '#1f2937',
           fontSize: '14px',
           cursor: 'pointer',
           backdropFilter: 'blur(10px)',
           transition: 'all 0.3s ease'
         }}
         onMouseOver={(e) => {
-          e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
+          e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
           e.currentTarget.style.transform = 'scale(1.05)';
         }}
         onMouseOut={(e) => {
-          e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+          e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
           e.currentTarget.style.transform = 'scale(1)';
         }}
       >
@@ -129,7 +129,7 @@ const Publications = () => {
           fontWeight: 'bold',
           textAlign: 'center',
           marginBottom: '40px',
-          color: 'white'
+          color: '#1f2937'
         }}>
           Publications
         </h1>
@@ -155,21 +155,21 @@ const Publications = () => {
                 padding: '15px 20px',
                 paddingLeft: '50px',
                 fontSize: 'clamp(14px, 2vw, 16px)',
-                backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                border: '1px solid rgba(255, 255, 255, 0.3)',
+                backgroundColor: 'rgba(0, 0, 0, 0.05)',
+                border: '1px solid rgba(0, 0, 0, 0.2)',
                 borderRadius: '25px',
-                color: 'white',
+                color: '#1f2937',
                 outline: 'none',
                 backdropFilter: 'blur(10px)',
                 transition: 'all 0.3s ease'
               }}
               onFocus={(e) => {
-                e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.15)';
+                e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.08)';
                 e.currentTarget.style.borderColor = 'rgba(96, 165, 250, 0.5)';
               }}
               onBlur={(e) => {
-                e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
-                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+                e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.05)';
+                e.currentTarget.style.borderColor = 'rgba(0, 0, 0, 0.2)';
               }}
             />
             {/* Search Icon */}
@@ -178,7 +178,7 @@ const Publications = () => {
               left: '18px',
               top: '50%',
               transform: 'translateY(-50%)',
-              color: 'rgba(255, 255, 255, 0.6)',
+              color: 'rgba(0, 0, 0, 0.6)',
               fontSize: '18px'
             }}>
               🔍
@@ -214,7 +214,7 @@ const Publications = () => {
                 fontSize: 'clamp(1.1rem, 2.5vw, 1.3rem)',
                 fontWeight: '600',
                 marginBottom: '12px',
-                color: '#e5e7eb',
+                color: '#1f2937',
                 lineHeight: '1.4'
               }}>
                 {pub.title}
@@ -261,7 +261,7 @@ const Publications = () => {
             fontSize: 'clamp(2rem, 4vw, 2.5rem)',
             fontWeight: 'bold',
             marginBottom: '40px',
-            color: 'white'
+            color: '#1f2937'
           }}>
             Preprints
           </h2>
@@ -292,7 +292,7 @@ const Publications = () => {
                 fontSize: 'clamp(1.1rem, 2.5vw, 1.3rem)',
                 fontWeight: '600',
                 marginBottom: '12px',
-                color: '#e5e7eb',
+                color: '#1f2937',
                 lineHeight: '1.4'
               }}>
                 {preprint.title}

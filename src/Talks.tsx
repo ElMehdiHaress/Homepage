@@ -140,11 +140,11 @@ const Talks = () => {
     <div style={{
       width: '100vw',
       minHeight: '100vh',
-      backgroundColor: '#000000',
+      backgroundColor: '#ffffff',
       position: 'relative',
       margin: 0,
       padding: '40px 20px',
-      color: 'white'
+      color: '#1f2937'
     }}>
       {/* Back to Home Button */}
       <button
@@ -155,11 +155,11 @@ const Talks = () => {
           top: '30px',
           left: '30px',
           zIndex: 1000,
-          backgroundColor: 'rgba(255, 255, 255, 0.1)',
-          border: '1px solid rgba(255, 255, 255, 0.3)',
+          backgroundColor: 'rgba(0, 0, 0, 0.1)',
+          border: '1px solid rgba(0, 0, 0, 0.3)',
           borderRadius: '12px',
           padding: '10px 20px',
-          color: 'white',
+          color: '#1f2937',
           fontSize: '14px',
           cursor: 'pointer',
           backdropFilter: 'blur(10px)',
@@ -192,7 +192,7 @@ const Talks = () => {
           fontWeight: 'bold',
           textAlign: 'center',
           marginBottom: '40px',
-          color: 'white'
+          color: '#1f2937'
         }}>
           Talks and Conferences
         </h1>
@@ -218,10 +218,10 @@ const Talks = () => {
                 padding: '15px 20px',
                 paddingLeft: '50px',
                 fontSize: 'clamp(14px, 2vw, 16px)',
-                backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                border: '1px solid rgba(255, 255, 255, 0.3)',
+                backgroundColor: 'rgba(0, 0, 0, 0.05)',
+                border: '1px solid rgba(0, 0, 0, 0.2)',
                 borderRadius: '25px',
-                color: 'white',
+                color: '#1f2937',
                 outline: 'none',
                 backdropFilter: 'blur(10px)',
                 transition: 'all 0.3s ease'
@@ -241,7 +241,7 @@ const Talks = () => {
               left: '18px',
               top: '50%',
               transform: 'translateY(-50%)',
-              color: 'rgba(255, 255, 255, 0.6)',
+              color: 'rgba(0, 0, 0, 0.6)',
               fontSize: '18px'
             }}>
               🔍
@@ -262,7 +262,7 @@ const Talks = () => {
               fontSize: 'clamp(1.8rem, 3.5vw, 2.2rem)',
               fontWeight: 'bold',
               marginBottom: '30px',
-              color: 'white',
+              color: '#1f2937',
               textAlign: 'center'
             }}>
               Selected talks and posters
@@ -294,7 +294,7 @@ const Talks = () => {
                   fontSize: 'clamp(1rem, 2.2vw, 1.15rem)',
                   fontWeight: '600',
                   marginBottom: '10px',
-                  color: '#e5e7eb',
+                  color: '#1f2937',
                   lineHeight: '1.3'
                 }}>
                   {talk.title}
@@ -363,7 +363,7 @@ const Talks = () => {
               fontSize: 'clamp(1.8rem, 3.5vw, 2.2rem)',
               fontWeight: 'bold',
               marginBottom: '30px',
-              color: 'white',
+              color: '#1f2937',
               textAlign: 'center'
             }}>
               Attended conferences
@@ -406,7 +406,7 @@ const Talks = () => {
                 >
                   <p style={{
                     fontSize: 'clamp(0.95rem, 2vw, 1.1rem)',
-                    color: '#e5e7eb',
+                    color: '#1f2937',
                     marginBottom: '6px',
                     fontWeight: '500',
                     lineHeight: '1.3'

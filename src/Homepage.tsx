@@ -104,7 +104,7 @@ const Homepage = () => {
     <div style={{
       width: '100vw',
       height: '100vh',
-      backgroundColor: '#000000',
+      backgroundColor: '#ffffff',
       position: 'relative',
       margin: 0,
       padding: 0,
@@ -143,7 +143,7 @@ const Homepage = () => {
 
         {/* Bio Text */}
         <div style={{ 
-          color: 'white', 
+          color: '#1f2937', 
           fontSize: 'clamp(14px, 2.5vw, 18px)', 
           lineHeight: '1.8',
           minWidth: 0 // Allow text to shrink
@@ -216,7 +216,7 @@ const Homepage = () => {
             </a>
           </p>
           
-          <p style={{ marginBottom: 'clamp(16px, 3vw, 24px)', fontSize: 'clamp(14px, 2.2vw, 16px)', color: '#e5e7eb' }}>
+          <p style={{ marginBottom: 'clamp(16px, 3vw, 24px)', fontSize: 'clamp(14px, 2.2vw, 16px)', color: '#1f2937' }}>
             <strong>Research interests:</strong> fractional Brownian motion, SDEs and SPDEs with distributional drift, long-time regularity of SDEs, parametric estimation for SDEs, spectral-risk gradient descents
           </p>
           
@@ -262,7 +262,7 @@ const Homepage = () => {
             justifyContent: 'center',
             width: '50px',
             height: '50px',
-            backgroundColor: 'white',
+            backgroundColor: '#f8fafc',
             borderRadius: '12px',
             boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
             transition: 'all 0.3s ease',
@@ -292,7 +292,7 @@ const Homepage = () => {
             justifyContent: 'center',
             width: '50px',
             height: '50px',
-            backgroundColor: 'white',
+            backgroundColor: '#f8fafc',
             borderRadius: '12px',
             boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
             transition: 'all 0.3s ease',
@@ -341,7 +341,7 @@ const Homepage = () => {
               width: `${size}px`,
               height: `${size}px`,
               borderRadius: '50%',
-              background: `radial-gradient(circle, rgba(255,255,255,${opacity}) 0%, rgba(255,255,255,${opacity * 0.6}) 40%, rgba(255,255,255,${opacity * 0.3}) 70%, transparent 100%)`,
+              background: `radial-gradient(circle, rgba(100,100,100,${opacity * 0.6}) 0%, rgba(120,120,120,${opacity * 0.4}) 40%, rgba(140,140,140,${opacity * 0.2}) 70%, transparent 100%)`,
               pointerEvents: 'none',
               zIndex: 10 + (30 - point.age), // Newer points on top
               filter: `blur(${progress * 1}px)` // Slight blur as it ages
@@ -362,10 +362,10 @@ const Homepage = () => {
           alignItems: 'center',
           gap: '20px',
           padding: '12px 20px',
-          backgroundColor: 'white',
+          backgroundColor: '#f8fafc',
           borderRadius: '20px',
-          border: '1px solid #e0e0e0',
-          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
+          border: '1px solid #e2e8f0',
+          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.15)',
           zIndex: 1000
         }}
         onMouseLeave={() => setHoveredItem(null)}

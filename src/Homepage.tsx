@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import profileImage from './assets/recent-me.jpeg';
 
 interface TrailPoint {
@@ -23,9 +24,29 @@ const menuItems: MenuItem[] = [
 ];
 
 const Homepage = () => {
+  const navigate = useNavigate();
   const [mousePos, setMousePos] = useState({ x: 400, y: 300 });
   const [trail, setTrail] = useState<TrailPoint[]>([]);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
+
+  const handleMenuClick = (itemId: string) => {
+    switch (itemId) {
+      case 'publications':
+        navigate('/publications');
+        break;
+      case 'talks':
+        navigate('/talks');
+        break;
+      case 'teachings':
+        navigate('/teaching');
+        break;
+      case 'projects':
+        navigate('/projects');
+        break;
+      default:
+        break;
+    }
+  };
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -130,7 +151,7 @@ const Homepage = () => {
           <p style={{ marginBottom: 'clamp(16px, 3vw, 24px)', fontSize: 'clamp(16px, 3vw, 20px)' }}>
             I am a Research fellow in Stochastic Analysis at University of Leeds
             <br />
-            supervised by{' '}
+             supervised by{' '}
             <a 
               href="https://eps.leeds.ac.uk/maths/staff/6172/dr-konstantinos-dareiotis"
               target="_blank"
@@ -366,6 +387,7 @@ const Homepage = () => {
               }}
               onMouseEnter={() => setHoveredItem(item.id)}
               onMouseLeave={() => setHoveredItem(null)}
+              onClick={() => handleMenuClick(item.id)}
             >
               {/* Hover Label */}
               {hoveredItem === item.id && (

@@ -138,3 +138,29 @@ html, body {
     height: 35px !important;
   }
 }
+
+/* Publications page mobile styles */
+@media (max-width: 768px) {
+  .publications-container {
+    padding: 20px 15px !important;
+    padding-top: 100px !important;
+  }
+  
+  .back-button {
+    top: 20px !important;
+    left: 20px !important;
+    padding: 8px 16px !important;
+    font-size: 13px !important;
+  }
+  
+  .publication-item {
+    padding: 20px !important;
+    margin-bottom: 30px !important;
+  }
+  
+  /* Stack talks columns on mobile */
+  .talks-grid {
+    flex-direction: column !important;
+    gap: 30px !important;
+  }
+}

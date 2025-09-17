@@ -219,6 +219,7 @@ const Homepage = () => {
 
       {/* Social/Academic Links - Bottom Center */}
       <div 
+        className="social-links"
         style={{
           position: 'fixed',
           left: '50%',

@@ -175,4 +175,9 @@ html, body {
     grid-template-columns: 1fr !important;
     gap: 25px !important;
   }
+  
+  /* Hide table of contents on mobile */
+  .toc-sidebar {
+    display: none !important;
+  }
 }

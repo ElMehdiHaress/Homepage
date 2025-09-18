@@ -20,7 +20,8 @@ const menuItems: MenuItem[] = [
   { id: 'publications', label: 'Publications', icon: '📄' },
   { id: 'talks', label: 'Talks and conferences', icon: '🗣️' },
   { id: 'teachings', label: 'Teachings', icon: '👨‍🏫' },
-  { id: 'projects', label: 'Projects', icon: '👨🏻‍💻' }
+  { id: 'projects', label: 'Projects', icon: '👨🏻‍💻' },
+  { id: 'research-intro', label: 'Introduction to my research', icon: '📚' }
 ];
 
 const Homepage = () => {
@@ -31,6 +32,9 @@ const Homepage = () => {
 
   const handleMenuClick = (itemId: string) => {
     switch (itemId) {
+      case 'research-intro':
+        navigate('/research-intro');
+        break;
       case 'publications':
         navigate('/publications');
         break;

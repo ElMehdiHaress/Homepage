@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 const Projects = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
+  const [activeTab, setActiveTab] = useState('work');
   
   const researchProjects = [
     {
@@ -153,6 +154,56 @@ const Projects = () => {
           Projects
         </h1>
 
+        {/* Tab Navigation */}
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          marginBottom: '40px'
+        }}>
+          <div style={{
+            display: 'flex',
+            backgroundColor: 'rgba(0, 0, 0, 0.05)',
+            borderRadius: '12px',
+            padding: '4px',
+            border: '1px solid rgba(0, 0, 0, 0.1)'
+          }}>
+            <button
+              onClick={() => setActiveTab('work')}
+              style={{
+                padding: '12px 24px',
+                fontSize: 'clamp(14px, 2vw, 16px)',
+                fontWeight: '600',
+                borderRadius: '8px',
+                border: 'none',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+                backgroundColor: activeTab === 'work' ? '#ffffff' : 'transparent',
+                color: activeTab === 'work' ? '#1f2937' : '#6b7280',
+                boxShadow: activeTab === 'work' ? '0 2px 8px rgba(0, 0, 0, 0.1)' : 'none'
+              }}
+            >
+              Work
+            </button>
+            <button
+              onClick={() => setActiveTab('personal')}
+              style={{
+                padding: '12px 24px',
+                fontSize: 'clamp(14px, 2vw, 16px)',
+                fontWeight: '600',
+                borderRadius: '8px',
+                border: 'none',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+                backgroundColor: activeTab === 'personal' ? '#ffffff' : 'transparent',
+                color: activeTab === 'personal' ? '#1f2937' : '#6b7280',
+                boxShadow: activeTab === 'personal' ? '0 2px 8px rgba(0, 0, 0, 0.1)' : 'none'
+              }}
+            >
+              Personal
+            </button>
+          </div>
+        </div>
+
         {/* Search Bar */}
         <div style={{
           display: 'flex',
@@ -166,7 +217,7 @@ const Projects = () => {
           }}>
             <input
               type="text"
-              placeholder="Search projects..."
+              placeholder={`Search ${activeTab} projects...`}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               style={{
@@ -205,336 +256,346 @@ const Projects = () => {
           </div>
         </div>
 
-        {/* Three Column Layout */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-          gap: '30px',
-          alignItems: 'flex-start'
-        }} className="projects-grid">
-          
-          {/* Left Column - Research Projects */}
-          <div style={{ flex: '1', minWidth: '0' }}>
-            <h2 style={{
-              fontSize: 'clamp(1.8rem, 3.5vw, 2.2rem)',
-              fontWeight: 'bold',
-              marginBottom: '30px',
-              color: '#1f2937',
-              textAlign: 'center'
-            }}>
-              Research projects
-            </h2>
+        {/* Conditional Content Based on Active Tab */}
+        {activeTab === 'work' ? (
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '30px',
+            alignItems: 'flex-start'
+          }} className="projects-grid">
             
-            {filteredResearchProjects.length > 0 ? (
-              filteredResearchProjects.map((project, index) => {
-                const ProjectWrapper = project.url ? 'a' : 'div';
-                const wrapperProps = project.url ? {
-                  href: project.url,
-                  target: "_blank",
-                  rel: "noopener noreferrer",
-                  style: { textDecoration: 'none', color: 'inherit', display: 'block' }
-                } : {};
-
-                return (
-                  <ProjectWrapper key={index} {...wrapperProps}>
-                    <div
-                      className="publication-item"
-                      style={{
-                        marginBottom: '25px',
-                        padding: '25px',
-                        backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                        borderRadius: '12px',
-                        border: '1px solid rgba(255, 255, 255, 0.1)',
-                        transition: 'all 0.3s ease',
-                        cursor: project.url ? 'pointer' : 'default'
-                      }}
-                      onMouseOver={(e) => {
-                        e.currentTarget.style.backgroundColor = project.url ? 'rgba(255, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0.08)';
-                        e.currentTarget.style.transform = 'translateY(-2px)';
-                        if (project.url) {
-                          e.currentTarget.style.borderColor = 'rgba(96, 165, 250, 0.3)';
-                        }
-                      }}
-                      onMouseOut={(e) => {
-                        e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
-                        e.currentTarget.style.transform = 'translateY(0px)';
-                        e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-                      }}
-                    >
-                <h3 style={{
-                  fontSize: 'clamp(1rem, 2.2vw, 1.15rem)',
-                  fontWeight: '600',
-                  marginBottom: '12px',
-                  color: '#1f2937',
-                  lineHeight: '1.3'
-                }}>
-                  {project.title} {project.url && '🔗'}
-                </h3>
-                {project.institution && (
-                  <p style={{
-                    fontSize: 'clamp(0.9rem, 1.9vw, 1rem)',
-                    color: '#60a5fa',
-                    marginBottom: '8px',
-                    fontStyle: 'italic'
-                  }}>
-                    {project.institution}
-                  </p>
-                )}
-                <div style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  flexWrap: 'wrap',
-                  gap: '10px'
-                }}>
-                  <p style={{
-                    fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)',
-                    color: '#6b7280',
-                    fontWeight: '500',
-                    margin: 0
-                  }}>
-                    {project.period}
-                  </p>
-                  <span style={{
-                    fontSize: 'clamp(0.75rem, 1.4vw, 0.85rem)',
-                    color: '#34d399',
-                    backgroundColor: 'rgba(52, 211, 153, 0.1)',
-                    padding: '4px 12px',
-                    borderRadius: '20px',
-                    fontWeight: '500'
-                  }}>
-                    {project.type}
-                  </span>
-                </div>
-              </div>
-                  </ProjectWrapper>
-                );
-              })
-            ) : (
-              <div style={{
-                textAlign: 'center',
-                padding: '30px',
-                color: '#9ca3af',
-                fontSize: 'clamp(13px, 1.8vw, 15px)'
+            {/* Research Projects Column */}
+            <div style={{ flex: '1', minWidth: '0' }}>
+              <h2 style={{
+                fontSize: 'clamp(1.8rem, 3.5vw, 2.2rem)',
+                fontWeight: 'bold',
+                marginBottom: '30px',
+                color: '#1f2937',
+                textAlign: 'center'
               }}>
-                No research projects found matching "{searchTerm}"
-              </div>
-            )}
-          </div>
+                Academic
+              </h2>
+              
+              {filteredResearchProjects.length > 0 ? (
+                filteredResearchProjects.map((project, index) => {
+                  const ProjectWrapper = project.url ? 'a' : 'div';
+                  const wrapperProps = project.url ? {
+                    href: project.url,
+                    target: "_blank",
+                    rel: "noopener noreferrer",
+                    style: { textDecoration: 'none', color: 'inherit', display: 'block' }
+                  } : {};
 
-          {/* Middle Column - Git Projects */}
-          <div style={{ flex: '1', minWidth: '0' }}>
-            <h2 style={{
-              fontSize: 'clamp(1.8rem, 3.5vw, 2.2rem)',
-              fontWeight: 'bold',
-              marginBottom: '30px',
-              color: '#1f2937',
-              textAlign: 'center'
-            }}>
-              Git projects
-            </h2>
-            
-            {filteredGitProjects.length > 0 ? (
-              filteredGitProjects.map((project, index) => (
-              <a
-                key={index}
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  textDecoration: 'none',
-                  color: 'inherit',
-                  display: 'block'
-                }}
-              >
-                <div
-                  className="publication-item"
+                  return (
+                    <ProjectWrapper key={index} {...wrapperProps}>
+                      <div
+                        className="publication-item"
+                        style={{
+                          marginBottom: '25px',
+                          padding: '25px',
+                          backgroundColor: 'rgba(0, 0, 0, 0.02)',
+                          borderRadius: '12px',
+                          border: '1px solid rgba(0, 0, 0, 0.1)',
+                          transition: 'all 0.3s ease',
+                          cursor: project.url ? 'pointer' : 'default'
+                        }}
+                        onMouseOver={(e) => {
+                          e.currentTarget.style.backgroundColor = project.url ? 'rgba(0, 0, 0, 0.05)' : 'rgba(0, 0, 0, 0.03)';
+                          e.currentTarget.style.transform = 'translateY(-2px)';
+                          if (project.url) {
+                            e.currentTarget.style.borderColor = 'rgba(96, 165, 250, 0.3)';
+                          }
+                        }}
+                        onMouseOut={(e) => {
+                          e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.02)';
+                          e.currentTarget.style.transform = 'translateY(0px)';
+                          e.currentTarget.style.borderColor = 'rgba(0, 0, 0, 0.1)';
+                        }}
+                      >
+                        <h3 style={{
+                          fontSize: 'clamp(1rem, 2.2vw, 1.15rem)',
+                          fontWeight: '600',
+                          marginBottom: '12px',
+                          color: '#1f2937',
+                          lineHeight: '1.3'
+                        }}>
+                          {project.title} {project.url && '🔗'}
+                        </h3>
+                        {project.institution && (
+                          <p style={{
+                            fontSize: 'clamp(0.9rem, 1.9vw, 1rem)',
+                            color: '#60a5fa',
+                            marginBottom: '8px',
+                            fontStyle: 'italic'
+                          }}>
+                            {project.institution}
+                          </p>
+                        )}
+                        <div style={{
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          alignItems: 'center',
+                          flexWrap: 'wrap',
+                          gap: '10px'
+                        }}>
+                          <p style={{
+                            fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)',
+                            color: '#6b7280',
+                            fontWeight: '500',
+                            margin: 0
+                          }}>
+                            {project.period}
+                          </p>
+                          <span style={{
+                            fontSize: 'clamp(0.75rem, 1.4vw, 0.85rem)',
+                            color: '#34d399',
+                            backgroundColor: 'rgba(52, 211, 153, 0.1)',
+                            padding: '4px 12px',
+                            borderRadius: '20px',
+                            fontWeight: '500'
+                          }}>
+                            {project.type}
+                          </span>
+                        </div>
+                      </div>
+                    </ProjectWrapper>
+                  );
+                })
+              ) : (
+                <div style={{
+                  textAlign: 'center',
+                  padding: '30px',
+                  color: '#9ca3af',
+                  fontSize: 'clamp(13px, 1.8vw, 15px)'
+                }}>
+                  No research projects found matching "{searchTerm}"
+                </div>
+              )}
+            </div>
+
+            {/* Git Projects Column */}
+            <div style={{ flex: '1', minWidth: '0' }}>
+              <h2 style={{
+                fontSize: 'clamp(1.8rem, 3.5vw, 2.2rem)',
+                fontWeight: 'bold',
+                marginBottom: '30px',
+                color: '#1f2937',
+                textAlign: 'center'
+              }}>
+                Git
+              </h2>
+              
+              {filteredGitProjects.length > 0 ? (
+                filteredGitProjects.map((project, index) => (
+                <a
+                  key={index}
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   style={{
-                    marginBottom: '25px',
-                    padding: '20px',
-                    backgroundColor: 'rgba(0, 0, 0, 0.02)',
-                    borderRadius: '12px',
-                    border: '1px solid rgba(0, 0, 0, 0.1)',
-                    transition: 'all 0.3s ease',
-                    cursor: 'pointer'
-                  }}
-                  onMouseOver={(e) => {
-                    e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.05)';
-                    e.currentTarget.style.transform = 'translateY(-2px)';
-                    e.currentTarget.style.borderColor = 'rgba(96, 165, 250, 0.3)';
-                  }}
-                  onMouseOut={(e) => {
-                    e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.02)';
-                    e.currentTarget.style.transform = 'translateY(0px)';
-                    e.currentTarget.style.borderColor = 'rgba(0, 0, 0, 0.1)';
+                    textDecoration: 'none',
+                    color: 'inherit',
+                    display: 'block'
                   }}
                 >
-                  <h3 style={{
-                    fontSize: 'clamp(1rem, 2.2vw, 1.15rem)',
-                    fontWeight: '600',
-                    marginBottom: '10px',
-                    color: '#1f2937',
-                    lineHeight: '1.3'
-                  }}>
-                    {project.title} 🔗
-                    {project.secondUrl && (
-                      <a
-                        href={project.secondUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{
-                          marginLeft: '8px',
-                          color: '#34d399',
-                          textDecoration: 'none'
-                        }}
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        🔗
-                      </a>
-                    )}
-                  </h3>
-                  <p style={{
-                    fontSize: 'clamp(0.9rem, 1.9vw, 1rem)',
-                    color: '#9ca3af',
-                    marginBottom: '12px'
-                  }}>
-                    {project.description}
-                  </p>
-                  <span style={{
-                    fontSize: 'clamp(0.75rem, 1.4vw, 0.85rem)',
-                    color: '#8b5cf6',
-                    backgroundColor: 'rgba(139, 92, 246, 0.1)',
-                    padding: '4px 12px',
-                    borderRadius: '20px',
-                    fontWeight: '500'
-                  }}>
-                    {project.type}
-                  </span>
-                </div>
-              </a>
-            ))
-            ) : searchTerm && (
-              <div style={{
-                textAlign: 'center',
-                padding: '30px',
-                color: '#9ca3af',
-                fontSize: 'clamp(13px, 1.8vw, 15px)'
-              }}>
-                No git projects found matching "{searchTerm}"
-              </div>
-            )}
-          </div>
-
-          {/* Right Column - Personal Projects */}
-          <div style={{ flex: '1', minWidth: '0' }}>
-            <h2 style={{
-              fontSize: 'clamp(1.8rem, 3.5vw, 2.2rem)',
-              fontWeight: 'bold',
-              marginBottom: '30px',
-              color: '#1f2937',
-              textAlign: 'center'
-            }}>
-              Personal projects
-            </h2>
-            
-            {filteredPersonalProjects.length > 0 ? (
-              filteredPersonalProjects.map((project, index) => {
-                const ProjectWrapper = project.url ? 'a' : 'div';
-                const wrapperProps = project.url ? {
-                  href: project.url,
-                  target: "_blank",
-                  rel: "noopener noreferrer",
-                  style: { textDecoration: 'none', color: 'inherit', display: 'block' }
-                } : {};
-
-                return (
-                  <ProjectWrapper key={index} {...wrapperProps}>
-                    <div
-                      className="publication-item"
-                      style={{
-                        marginBottom: '25px',
-                        padding: '25px',
-                        backgroundColor: 'rgba(255, 255, 255, 0.03)',
-                        borderRadius: '12px',
-                        border: '1px solid rgba(255, 255, 255, 0.08)',
-                        transition: 'all 0.3s ease',
-                        cursor: project.url ? 'pointer' : 'default'
-                      }}
-                      onMouseOver={(e) => {
-                        e.currentTarget.style.backgroundColor = project.url ? 'rgba(255, 255, 255, 0.08)' : 'rgba(255, 255, 255, 0.06)';
-                        e.currentTarget.style.transform = 'translateY(-2px)';
-                        if (project.url) {
-                          e.currentTarget.style.borderColor = 'rgba(96, 165, 250, 0.3)';
-                        }
-                      }}
-                      onMouseOut={(e) => {
-                        e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.03)';
-                        e.currentTarget.style.transform = 'translateY(0px)';
-                        e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
-                      }}
-                    >
-                <h3 style={{
-                  fontSize: 'clamp(1rem, 2.2vw, 1.15rem)',
-                  fontWeight: '600',
-                  marginBottom: '10px',
-                  color: '#1f2937',
-                  lineHeight: '1.3'
-                }}>
-                  {project.title} {project.url && '🔗'}
-                </h3>
-                <p style={{
-                  fontSize: 'clamp(0.9rem, 1.9vw, 1rem)',
-                  color: '#9ca3af',
-                  marginBottom: '12px'
-                }}>
-                  {project.description}
-                </p>
-                <div style={{
-                  display: 'flex',
-                  justifyContent: project.status ? 'space-between' : 'flex-end',
-                  alignItems: 'center',
-                  flexWrap: 'wrap',
-                  gap: '10px'
-                }}>
-                  {project.status && (
+                  <div
+                    className="publication-item"
+                    style={{
+                      marginBottom: '25px',
+                      padding: '20px',
+                      backgroundColor: 'rgba(0, 0, 0, 0.02)',
+                      borderRadius: '12px',
+                      border: '1px solid rgba(0, 0, 0, 0.1)',
+                      transition: 'all 0.3s ease',
+                      cursor: 'pointer'
+                    }}
+                    onMouseOver={(e) => {
+                      e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.05)';
+                      e.currentTarget.style.transform = 'translateY(-2px)';
+                      e.currentTarget.style.borderColor = 'rgba(96, 165, 250, 0.3)';
+                    }}
+                    onMouseOut={(e) => {
+                      e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.02)';
+                      e.currentTarget.style.transform = 'translateY(0px)';
+                      e.currentTarget.style.borderColor = 'rgba(0, 0, 0, 0.1)';
+                    }}
+                  >
+                    <h3 style={{
+                      fontSize: 'clamp(1rem, 2.2vw, 1.15rem)',
+                      fontWeight: '600',
+                      marginBottom: '10px',
+                      color: '#1f2937',
+                      lineHeight: '1.3'
+                    }}>
+                      {project.title} 🔗
+                      {project.secondUrl && (
+                        <a
+                          href={project.secondUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{
+                            marginLeft: '8px',
+                            color: '#34d399',
+                            textDecoration: 'none'
+                          }}
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          🔗
+                        </a>
+                      )}
+                    </h3>
+                    <p style={{
+                      fontSize: 'clamp(0.9rem, 1.9vw, 1rem)',
+                      color: '#9ca3af',
+                      marginBottom: '12px'
+                    }}>
+                      {project.description}
+                    </p>
                     <span style={{
                       fontSize: 'clamp(0.75rem, 1.4vw, 0.85rem)',
-                      color: project.status === 'In Progress' ? '#f59e0b' : '#34d399',
-                      backgroundColor: project.status === 'In Progress' ? 'rgba(245, 158, 11, 0.1)' : 'rgba(52, 211, 153, 0.1)',
+                      color: '#8b5cf6',
+                      backgroundColor: 'rgba(139, 92, 246, 0.1)',
                       padding: '4px 12px',
                       borderRadius: '20px',
                       fontWeight: '500'
                     }}>
-                      {project.status}
+                      {project.type}
                     </span>
-                  )}
-                  <span style={{
-                    fontSize: 'clamp(0.75rem, 1.4vw, 0.85rem)',
-                    color: '#60a5fa',
-                    backgroundColor: 'rgba(96, 165, 250, 0.1)',
-                    padding: '4px 12px',
-                    borderRadius: '20px',
-                    fontWeight: '500'
-                  }}>
-                    {project.type}
-                  </span>
+                  </div>
+                </a>
+              ))
+              ) : searchTerm && (
+                <div style={{
+                  textAlign: 'center',
+                  padding: '30px',
+                  color: '#9ca3af',
+                  fontSize: 'clamp(13px, 1.8vw, 15px)'
+                }}>
+                  No git projects found matching "{searchTerm}"
                 </div>
-              </div>
-                  </ProjectWrapper>
-                );
-              })
-            ) : searchTerm && (
-              <div style={{
-                textAlign: 'center',
-                padding: '30px',
-                color: '#9ca3af',
-                fontSize: 'clamp(13px, 1.8vw, 15px)'
-              }}>
-                No personal projects found matching "{searchTerm}"
-              </div>
-            )}
+              )}
+            </div>
           </div>
-        </div>
+        ) : (
+          /* Personal Projects Tab */
+          <div style={{
+            display: 'flex',
+            justifyContent: 'center'
+          }}>
+            <div style={{
+              maxWidth: '600px',
+              width: '100%'
+            }}>
+              <h2 style={{
+                fontSize: 'clamp(1.8rem, 3.5vw, 2.2rem)',
+                fontWeight: 'bold',
+                marginBottom: '30px',
+                color: '#1f2937',
+                textAlign: 'center'
+              }}>
+                
+              </h2>
+              
+              {filteredPersonalProjects.length > 0 ? (
+                filteredPersonalProjects.map((project, index) => {
+                  const ProjectWrapper = project.url ? 'a' : 'div';
+                  const wrapperProps = project.url ? {
+                    href: project.url,
+                    target: "_blank",
+                    rel: "noopener noreferrer",
+                    style: { textDecoration: 'none', color: 'inherit', display: 'block' }
+                  } : {};
+
+                  return (
+                    <ProjectWrapper key={index} {...wrapperProps}>
+                      <div
+                        className="publication-item"
+                        style={{
+                          marginBottom: '25px',
+                          padding: '25px',
+                          backgroundColor: 'rgba(0, 0, 0, 0.02)',
+                          borderRadius: '12px',
+                          border: '1px solid rgba(0, 0, 0, 0.1)',
+                          transition: 'all 0.3s ease',
+                          cursor: project.url ? 'pointer' : 'default'
+                        }}
+                        onMouseOver={(e) => {
+                          e.currentTarget.style.backgroundColor = project.url ? 'rgba(0, 0, 0, 0.05)' : 'rgba(0, 0, 0, 0.03)';
+                          e.currentTarget.style.transform = 'translateY(-2px)';
+                          if (project.url) {
+                            e.currentTarget.style.borderColor = 'rgba(96, 165, 250, 0.3)';
+                          }
+                        }}
+                        onMouseOut={(e) => {
+                          e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.02)';
+                          e.currentTarget.style.transform = 'translateY(0px)';
+                          e.currentTarget.style.borderColor = 'rgba(0, 0, 0, 0.1)';
+                        }}
+                      >
+                        <h3 style={{
+                          fontSize: 'clamp(1rem, 2.2vw, 1.15rem)',
+                          fontWeight: '600',
+                          marginBottom: '10px',
+                          color: '#1f2937',
+                          lineHeight: '1.3'
+                        }}>
+                          {project.title} {project.url && '🔗'}
+                        </h3>
+                        <p style={{
+                          fontSize: 'clamp(0.9rem, 1.9vw, 1rem)',
+                          color: '#9ca3af',
+                          marginBottom: '12px'
+                        }}>
+                          {project.description}
+                        </p>
+                        <div style={{
+                          display: 'flex',
+                          justifyContent: project.status ? 'space-between' : 'flex-end',
+                          alignItems: 'center',
+                          flexWrap: 'wrap',
+                          gap: '10px'
+                        }}>
+                          {project.status && (
+                            <span style={{
+                              fontSize: 'clamp(0.75rem, 1.4vw, 0.85rem)',
+                              color: project.status === 'In Progress' ? '#f59e0b' : '#34d399',
+                              backgroundColor: project.status === 'In Progress' ? 'rgba(245, 158, 11, 0.1)' : 'rgba(52, 211, 153, 0.1)',
+                              padding: '4px 12px',
+                              borderRadius: '20px',
+                              fontWeight: '500'
+                            }}>
+                              {project.status}
+                            </span>
+                          )}
+                          <span style={{
+                            fontSize: 'clamp(0.75rem, 1.4vw, 0.85rem)',
+                            color: '#60a5fa',
+                            backgroundColor: 'rgba(96, 165, 250, 0.1)',
+                            padding: '4px 12px',
+                            borderRadius: '20px',
+                            fontWeight: '500'
+                          }}>
+                            {project.type}
+                          </span>
+                        </div>
+                      </div>
+                    </ProjectWrapper>
+                  );
+                })
+              ) : searchTerm && (
+                <div style={{
+                  textAlign: 'center',
+                  padding: '30px',
+                  color: '#9ca3af',
+                  fontSize: 'clamp(13px, 1.8vw, 15px)'
+                }}>
+                  No personal projects found matching "{searchTerm}"
+                </div>
+              )}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

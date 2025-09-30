@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import profileImage from './assets/recent-me.jpeg';
+import MenuBar from './MenuBar';
 
 interface TrailPoint {
   x: number;
@@ -10,47 +10,10 @@ interface TrailPoint {
   wiggleY: number;
 }
 
-interface MenuItem {
-  id: string;
-  label: string;
-  icon: string;
-}
-
-const menuItems: MenuItem[] = [
-  { id: 'publications', label: 'Publications', icon: '📄' },
-  { id: 'talks', label: 'Talks and conferences', icon: '🗣️' },
-  { id: 'teachings', label: 'Teachings', icon: '👨‍🏫' },
-  { id: 'projects', label: 'Projects', icon: '👨🏻‍💻' },
-  { id: 'research-intro', label: 'Introduction to my research', icon: '📚' }
-];
 
 const Homepage = () => {
-  const navigate = useNavigate();
   const [mousePos, setMousePos] = useState({ x: 400, y: 300 });
   const [trail, setTrail] = useState<TrailPoint[]>([]);
-  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
-
-  const handleMenuClick = (itemId: string) => {
-    switch (itemId) {
-      case 'research-intro':
-        navigate('/research-intro');
-        break;
-      case 'publications':
-        navigate('/publications');
-        break;
-      case 'talks':
-        navigate('/talks');
-        break;
-      case 'teachings':
-        navigate('/teaching');
-        break;
-      case 'projects':
-        navigate('/projects');
-        break;
-      default:
-        break;
-    }
-  };
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -114,6 +77,8 @@ const Homepage = () => {
       padding: 0,
       cursor: 'default'
     }}>
+      {/* Persistent Menu Bar */}
+      <MenuBar />
       {/* Profile Section - Center with Image and Text */}
       <div 
         className="profile-section"
@@ -372,105 +337,6 @@ const Homepage = () => {
         );
       })}
       
-      {/* Dock Menu Bar */}
-      <div 
-        className="dock-menu"
-        style={{
-          position: 'fixed',
-          top: '30px',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '20px',
-          padding: '12px 20px',
-          backgroundColor: '#f8fafc',
-          borderRadius: '20px',
-          border: '1px solid #e2e8f0',
-          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.15)',
-          zIndex: 1000
-        }}
-        onMouseLeave={() => setHoveredItem(null)}
-      >
-        {menuItems.map((item) => {
-          const isHovered = hoveredItem === item.id;
-          const scale = isHovered ? 1.3 : 1; // Scale to 1.3 when hovered, 1 when not
-          const translateY = isHovered ? 10 : 0; // Move down 10px when hovered
-          
-          return (
-            <div
-              key={item.id}
-              style={{
-                position: 'relative',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                cursor: 'pointer'
-              }}
-              onMouseEnter={() => setHoveredItem(item.id)}
-              onMouseLeave={() => setHoveredItem(null)}
-              onClick={() => handleMenuClick(item.id)}
-            >
-              {/* Hover Label */}
-              {hoveredItem === item.id && (
-                <div
-                  style={{
-                    position: 'absolute',
-                    top: '80px',
-                    left: '50%',
-                    transform: 'translateX(-50%)',
-                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                    color: 'white',
-                    padding: '6px 12px',
-                    borderRadius: '8px',
-                    fontSize: '14px',
-                    fontWeight: '500',
-                    whiteSpace: 'nowrap',
-                    zIndex: 1001,
-                    animation: 'fadeIn 0.2s ease-out'
-                  }}
-                >
-                  {item.label}
-                  <div
-                    style={{
-                      position: 'absolute',
-                      bottom: '100%',
-                      left: '50%',
-                      transform: 'translateX(-50%)',
-                      width: 0,
-                      height: 0,
-                      borderLeft: '6px solid transparent',
-                      borderRight: '6px solid transparent',
-                      borderBottom: '6px solid rgba(0, 0, 0, 0.8)'
-                    }}
-                  />
-                </div>
-              )}
-              
-              {/* Menu Icon */}
-              <div
-                className="dock-item"
-                style={{
-                  width: '60px',
-                  height: '60px',
-                  borderRadius: '16px',
-                  backgroundColor: '#4a4a4a',
-                  border: '1px solid #666666',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '28px',
-                  transform: `scale(${scale}) translateY(${translateY}px)`,
-                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)'
-                }}
-              >
-                {item.icon}
-              </div>
-            </div>
-          );
-        })}
-      </div>
     </div>
   );
 };

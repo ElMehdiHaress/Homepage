@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import MenuBar from './MenuBar';
 
 const Projects = () => {
   const navigate = useNavigate();
@@ -103,6 +104,8 @@ const Projects = () => {
       padding: '40px 20px',
       color: '#1f2937'
     }}>
+      {/* Persistent Menu Bar */}
+      <MenuBar />
       {/* Back to Home Button */}
       <button
         className="back-button"

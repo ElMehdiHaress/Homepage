@@ -64,6 +64,12 @@ const Projects = () => {
       description: "Web design and management",
       type: "Web Development",
       url: "https://hanabellaspa.pro"
+    },
+    {
+      title: "Art and music",
+      description: "Lo-fi music + sketches",
+      type: "Creative",
+      url: "https://www.youtube.com/@sonosketchy"
     }
   ];
 

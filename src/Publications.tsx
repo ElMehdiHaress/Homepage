@@ -189,77 +189,8 @@ const Publications = () => {
           </div>
         </div>
 
-        {/* Publications Section */}
-        <div style={{ marginBottom: '60px' }}>
-          {filteredPublications.length > 0 ? (
-            filteredPublications.map((pub, index) => (
-            <div
-              key={index}
-              className="publication-item"
-              style={{
-                marginBottom: '40px',
-                padding: '25px',
-                backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                borderRadius: '12px',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
-                transition: 'all 0.3s ease'
-              }}
-              onMouseOver={(e) => {
-                e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.08)';
-                e.currentTarget.style.transform = 'translateY(-2px)';
-              }}
-              onMouseOut={(e) => {
-                e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
-                e.currentTarget.style.transform = 'translateY(0px)';
-              }}
-            >
-              <h3 style={{
-                fontSize: 'clamp(1.1rem, 2.5vw, 1.3rem)',
-                fontWeight: '600',
-                marginBottom: '12px',
-                color: '#1f2937',
-                lineHeight: '1.4'
-              }}>
-                {pub.title}
-              </h3>
-              <p style={{
-                fontSize: 'clamp(0.95rem, 2vw, 1.1rem)',
-                color: '#60a5fa',
-                marginBottom: '8px',
-                fontStyle: 'italic'
-              }}>
-                {pub.journal}
-              </p>
-              <p style={{
-                fontSize: 'clamp(0.9rem, 1.8vw, 1rem)',
-                color: '#9ca3af',
-                marginBottom: '4px'
-              }}>
-                {pub.authors}
-              </p>
-              <p style={{
-                fontSize: 'clamp(0.85rem, 1.6vw, 0.95rem)',
-                color: '#6b7280',
-                fontWeight: '500'
-              }}>
-                {pub.year}
-              </p>
-            </div>
-          ))
-          ) : (
-            <div style={{
-              textAlign: 'center',
-              padding: '40px',
-              color: '#9ca3af',
-              fontSize: 'clamp(14px, 2vw, 16px)'
-            }}>
-              No publications found matching "{searchTerm}"
-            </div>
-          )}
-        </div>
-
         {/* Preprints Section */}
-        <div>
+        <div style={{ marginBottom: '60px' }}>
           <h2 style={{
             fontSize: 'clamp(2rem, 4vw, 2.5rem)',
             fontWeight: 'bold',
@@ -332,6 +263,84 @@ const Publications = () => {
               fontSize: 'clamp(14px, 2vw, 16px)'
             }}>
               No preprints found matching "{searchTerm}"
+            </div>
+          )}
+        </div>
+
+        {/* Publications Section */}
+        <div>
+          <h2 style={{
+            fontSize: 'clamp(2rem, 4vw, 2.5rem)',
+            fontWeight: 'bold',
+            marginBottom: '40px',
+            color: '#1f2937'
+          }}>
+            Publications
+          </h2>
+          
+          {filteredPublications.length > 0 ? (
+            filteredPublications.map((pub, index) => (
+            <div
+              key={index}
+              className="publication-item"
+              style={{
+                marginBottom: '40px',
+                padding: '25px',
+                backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                borderRadius: '12px',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                transition: 'all 0.3s ease'
+              }}
+              onMouseOver={(e) => {
+                e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.08)';
+                e.currentTarget.style.transform = 'translateY(-2px)';
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
+                e.currentTarget.style.transform = 'translateY(0px)';
+              }}
+            >
+              <h3 style={{
+                fontSize: 'clamp(1.1rem, 2.5vw, 1.3rem)',
+                fontWeight: '600',
+                marginBottom: '12px',
+                color: '#1f2937',
+                lineHeight: '1.4'
+              }}>
+                {pub.title}
+              </h3>
+              <p style={{
+                fontSize: 'clamp(0.95rem, 2vw, 1.1rem)',
+                color: '#60a5fa',
+                marginBottom: '8px',
+                fontStyle: 'italic'
+              }}>
+                {pub.journal}
+              </p>
+              <p style={{
+                fontSize: 'clamp(0.9rem, 1.8vw, 1rem)',
+                color: '#9ca3af',
+                marginBottom: '4px'
+              }}>
+                {pub.authors}
+              </p>
+              <p style={{
+                fontSize: 'clamp(0.85rem, 1.6vw, 0.95rem)',
+                color: '#6b7280',
+                fontWeight: '500'
+              }}>
+                {pub.year}
+              </p>
+            </div>
+          ))
+          ) : (
+            <div style={{
+              textAlign: 'center',
+              padding: '40px',
+              color: '#9ca3af',
+              fontSize: 'clamp(14px, 2vw, 16px)'
+            }}>
+              No publications found matching "{searchTerm}"
             </div>
           )}
         </div>

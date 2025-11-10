@@ -47,6 +47,12 @@ const Publications = () => {
 
   const preprints = [
     {
+      title: "Uniform pathwise stability of singular additive SDEs driven by fractional Brownian motion",
+      journal: "arXiv:2511.05262",
+      authors: "joint work with Konstantinos Dareiotis and Khoa Lê",
+      year: "2025"
+    },
+    {
       title: "Numerical approximation of the stochastic heat equation with a distributional reaction term",
       journal: "arXiv:2405.08201 (Submitted)",
       authors: "joint work with Ludovic Goudenège and Alexandre Richard",

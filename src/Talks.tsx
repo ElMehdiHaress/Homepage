@@ -8,40 +8,64 @@ const Talks = () => {
   
   const talks = [
     {
+      title: "Singular and dissipative stochastic differential equations",
+      event: "Séminaire d'analyse numérique (IRMAR), Rennes",
+      year: "2025",
+      type: "Talk",
+      hasFile: true,
+      fileUrl: "https://drive.google.com/drive/folders/163cXtYFTNoGqRiKSQYpnL68oSywI6IW4?usp=share_link"
+    },
+    {
+      title: "Singular and dissipative SDEs",
+      event: "Probability Seminar, Leeds",
+      year: "2025",
+      type: "Talk",
+      hasFile: true,
+      fileUrl: "https://drive.google.com/drive/folders/163cXtYFTNoGqRiKSQYpnL68oSywI6IW4?usp=share_link"
+    },
+    {
+      title: "Singular and Dissipative S(P)DEs",
+      event: "Les journées PASTA (INRIA), Nancy",
+      year: "2025",
+      type: "Talk",
+      hasFile: true,
+      fileUrl: "https://drive.google.com/drive/folders/163cXtYFTNoGqRiKSQYpnL68oSywI6IW4?usp=share_link"
+    },
+    {
       title: "Long-time behavior of singular SDEs and SPDEs",
       event: "Moroccan - Swedish Conference on Stochastic Analysis 2025, Marrakech",
       year: "2025",
-      type: "talk",
+      type: "Talk",
       hasFile: true,
-      fileUrl: "https://drive.google.com/file/d/1VR9bqzPdcNj7KCw5Z_JmIpl7xmTuwBk1/view?usp=sharing"
+      fileUrl: "https://drive.google.com/drive/folders/163cXtYFTNoGqRiKSQYpnL68oSywI6IW4?usp=share_link"
     },
     {
       title: "Long-time behavior of SPDEs/SDEs",
       event: "Regbynoise2025, Vienna",
       year: "2025",
-      type: "talk",
+      type: "Talk",
       hasFile: true,
-      fileUrl: "https://drive.google.com/file/d/1sxM93DfpvFG_YLZVZneRPUYwZNrXu1Ox/view?usp=sharing"
+      fileUrl: "https://drive.google.com/drive/folders/163cXtYFTNoGqRiKSQYpnL68oSywI6IW4?usp=share_link"
     },
     {
       title: "Long-time behavior of the stochastic heat equation with dissipative and singular drifts",
-      event: "Seminar, Leeds",
+      event: "Probability Seminar, Leeds",
       year: "2025",
-      type: "talk"
+      type: "Talk"
     },
     {
       title: "Numerical approximations of the stochastic heat equation with distributional drift: towards an invariant measure",
       event: "SPDevent, Bielefeld",
       year: "2024",
-      type: "talk",
+      type: "Talk",
       hasFile: true,
-      fileUrl: "https://drive.google.com/file/d/1bf2pohk9X_1JlUg-OFz-Jx7rlBk0Q-a5/view"
+      fileUrl: "https://drive.google.com/drive/folders/163cXtYFTNoGqRiKSQYpnL68oSywI6IW4?usp=share_link"
     },
     {
       title: "Numerical approximations of the stochastic heat equation with distributional drift: towards an invariant measure",
       event: "Les probabilités de demain, Paris",
       year: "2024",
-      type: "talk"
+      type: "Talk"
     },
     {
       title: "Numerical approximations of SDEs with distributional drift",
@@ -53,15 +77,15 @@ const Talks = () => {
       title: "Numerical approximations of SDEs and SPDEs with distributional drift",
       event: "Colloque Jeunes Probabilistes et Statisticiens, Ile d'Oléron",
       year: "2023",
-      type: "talk",
+      type: "Talk",
       hasFile: true,
-      fileUrl: "https://drive.google.com/file/d/17LbBinMfZz7_pE6pr_mOUvrjUQJfhJeD/view"
+      fileUrl: "https://drive.google.com/drive/folders/163cXtYFTNoGqRiKSQYpnL68oSywI6IW4?usp=share_link"
     },
     {
       title: "Tamed-Euler scheme for SDEs and SPDEs with distributional drift",
       event: "GDR TRAjectoires ruGueuses, Paris Dauphine",
       year: "2023",
-      type: "talk"
+      type: "Talk"
     },
     {
       title: "Tamed-Euler scheme for SDEs with distributional drift",
@@ -69,7 +93,7 @@ const Talks = () => {
       year: "2023",
       type: "poster",
       hasFile: true,
-      fileUrl: "https://drive.google.com/file/d/1QWDXPHhSo3lT0jt3tWRcjCK3ggf_N_0A/view"
+      fileUrl: "https://drive.google.com/drive/folders/163cXtYFTNoGqRiKSQYpnL68oSywI6IW4?usp=share_link"
     },
     {
       title: "Tamed-Euler scheme for SDEs with distributional drift",
@@ -81,13 +105,13 @@ const Talks = () => {
       title: "Numerical approximations of SDEs with distributional drift",
       event: "Congrès Jeunes Chercheurs en Mathématiques et leurs Applications, Calais",
       year: "2022",
-      type: "talk"
+      type: "Talk"
     },
     {
       title: "Numerical approximations of SDEs with distributional drift",
       event: "SPDevent, Bielefeld",
       year: "2022",
-      type: "talk"
+      type: "Talk"
     },
     {
       title: "Spectral risk-based learning using unbounded losses",

@@ -14,14 +14,17 @@ function PageViewTracker() {
   const location = useLocation()
 
   useEffect(() => {
+    // Only run in browser environment
+    if (typeof window === 'undefined') return
+
     // Initialize GA on first load
     const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID
-    if (measurementId && !window.gtag) {
+    if (measurementId && typeof window.gtag !== 'function') {
       initGA(measurementId)
     }
     
     // Track page view on route change
-    if (window.gtag && measurementId) {
+    if (measurementId && typeof window.gtag === 'function') {
       trackPageView(location.pathname + location.search, measurementId)
     }
   }, [location])

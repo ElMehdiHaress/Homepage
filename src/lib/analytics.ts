@@ -15,23 +15,49 @@ declare global {
 export const initGA = (measurementId: string) => {
   if (typeof window === 'undefined') return
 
-  // Create script tag for Google Analytics
-  const script1 = document.createElement('script')
-  script1.async = true
-  script1.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`
-  document.head.appendChild(script1)
-
-  // Initialize dataLayer
+  // Initialize dataLayer and gtag function BEFORE loading the script
+  // This ensures commands are queued properly and processed when script loads
   window.dataLayer = window.dataLayer || []
   window.gtag = function () {
     window.dataLayer.push(arguments)
   }
 
-  // Configure GA
+  // Queue the js initialization command (will be processed when script loads)
   window.gtag('js', new Date())
+  
+  // Queue the config command (will be processed when script loads)
+  // This ensures proper initialization even if script.onload fires late
   window.gtag('config', measurementId, {
     page_path: window.location.pathname,
   })
+
+  // Create script tag for Google Analytics
+  const script = document.createElement('script')
+  script.async = true
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`
+  
+  // Handle script load completion
+  script.onload = () => {
+    // Script has loaded and processed dataLayer commands
+    // If window.gtag was replaced by GA library, ensure config is sent
+    if (typeof window.gtag === 'function') {
+      // Re-send config to ensure it's registered (in case dataLayer wasn't processed)
+      try {
+        window.gtag('config', measurementId, {
+          page_path: window.location.pathname,
+        })
+      } catch (error) {
+        console.warn('Google Analytics initialization error:', error)
+      }
+    }
+  }
+  
+  // Handle script load errors
+  script.onerror = () => {
+    console.warn('Failed to load Google Analytics script')
+  }
+  
+  document.head.appendChild(script)
 }
 
 // Track page views (call this on route changes)

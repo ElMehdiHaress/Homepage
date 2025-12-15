@@ -1,6 +1,8 @@
 import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MenuBar from './MenuBar';
+import mapImage from './assets/map.jpeg';
+import profileImage from './assets/recent-me.jpeg';
 
 interface Talk {
   title: string;
@@ -24,19 +26,19 @@ interface City {
 // City coordinates (normalized positions for European region)
 // x: 0 (west) to 100 (east), y: 0 (north) to 100 (south)
 const cityCoordinates: Record<string, { x: number; y: number }> = {
-  "Rennes": { x: 29, y: 35 },
-  "Leeds": { x: 37, y: 18 }, // Further north than Calais
-  "Nancy": { x: 73, y: 38 }, // Slightly east to create space
-  "Marrakech": { x: 35, y: 85 },
-  "Vienna": { x: 83, y: 45 },
-  "Bielefeld": { x: 69, y: 22 }, // More north and east to reduce crowding
-  "Paris": { x: 57, y: 39 },
-  "Lausanne": { x: 69, y: 48 }, // Slightly east
-  "Ile d'Oléron": { x: 21, y: 44 }, // West/south-west of Rennes
-  "Luxembourg": { x: 65, y: 34 }, // Above Nancy
-  "Eindhoven": { x: 61, y: 20 }, // More north
-  "Calais": { x: 51, y: 30 },
-  "Marseille": { x: 65, y: 62 } // Further south than Lausanne
+  "Rennes": { x: 49, y: 27 },
+  "Leeds": { x: 50, y: 2 }, // Further north than Calais
+  "Nancy": { x: 59, y: 32 }, // Slightly east to create space
+  "Marrakech": { x: 36, y: 98 }, // Morocco - southern part of the map
+  "Vienna": { x: 68, y: 40 },
+  "Bielefeld": { x: 64, y: 18 }, // More north and east to reduce crowding
+  "Paris": { x: 54, y: 35 },
+  "Lausanne": { x: 60, y: 40 }, // Slightly east
+  "Ile d'Oléron": { x: 45, y: 39 }, // West/south-west of Rennes
+  "Luxembourg": { x: 58, y: 25 }, // Above Nancy
+  "Eindhoven": { x: 61, y: 10 }, // More north
+  "Calais": { x: 53, y: 17 },
+  "Marseille": { x: 57, y: 62 } // Further south than Lausanne
 };
 
 const talks: Talk[] = [
@@ -296,8 +298,29 @@ const Talks = () => {
     return filtered;
   }, [selectedCity, searchTerm]);
 
-  // Get all city positions for connecting lines
-  const cityPositions = cities.map(city => ({ x: city.x, y: city.y }));
+  // Get all city positions for connecting lines with city names
+  const cityPositionsWithNames = cities.map(city => ({ name: city.name, x: city.x, y: city.y }));
+  
+  // Helper function to check if two cities should be connected
+  const shouldConnect = (city1: string, city2: string): boolean => {
+    // Paris connected to everything EXCEPT Rennes, Nancy, Vienna, Marrakech
+    if (city1 === 'Paris') {
+      return city2 !== 'Rennes' && city2 !== 'Nancy' && city2 !== 'Vienna' && city2 !== 'Marrakech';
+    }
+    if (city2 === 'Paris') {
+      return city1 !== 'Rennes' && city1 !== 'Nancy' && city1 !== 'Vienna' && city1 !== 'Marrakech';
+    }
+    
+    // Leeds connected to Rennes, Nancy, Vienna, Paris, and Marrakech
+    if (city1 === 'Leeds') {
+      return city2 === 'Paris' || city2 === 'Rennes' || city2 === 'Nancy' || city2 === 'Vienna' || city2 === 'Marrakech';
+    }
+    if (city2 === 'Leeds') {
+      return city1 === 'Paris' || city1 === 'Rennes' || city1 === 'Nancy' || city1 === 'Vienna' || city1 === 'Marrakech';
+    }
+    
+    return false;
+  };
 
   return (
     <div style={{
@@ -311,6 +334,67 @@ const Talks = () => {
     }}>
       {/* Persistent Menu Bar */}
       <MenuBar />
+      
+      {/* Banner Section */}
+      <div 
+        className="page-banner"
+        style={{
+          position: 'relative',
+          width: '100%',
+          backgroundColor: '#1e3a8a',
+          borderTop: '2px solid #3b82f6',
+          borderBottom: '2px solid #3b82f6',
+          display: 'flex',
+          alignItems: 'center',
+          padding: 'clamp(20px, 3vw, 40px) clamp(20px, 5vw, 80px)',
+          paddingTop: 'clamp(30px, 4vw, 50px)',
+          zIndex: 99,
+          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)'
+        }}
+      >
+        {/* Profile Image on the left */}
+        <img 
+          src={profileImage} 
+          alt="El Mehdi Haress" 
+          style={{
+            width: 'clamp(100px, 15vw, 150px)',
+            height: 'clamp(100px, 15vw, 150px)',
+            borderRadius: '50%',
+            objectFit: 'cover',
+            border: '3px solid #ffffff',
+            flexShrink: 0,
+            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)'
+          }}
+        />
+        
+        {/* Title in the middle - absolutely centered */}
+        <div style={{
+          position: 'absolute',
+          left: '50%',
+          top: 'calc(50% + 15px)',
+          transform: 'translate(-50%, -50%)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}>
+          <h1 
+            className="banner-name"
+            style={{
+              color: '#ffffff',
+              fontSize: 'clamp(24px, 5vw, 48px)',
+              fontWeight: 'bold',
+              fontFamily: 'sans-serif',
+              textTransform: 'uppercase',
+              letterSpacing: 'clamp(2px, 0.5vw, 4px)',
+              margin: 0,
+              textAlign: 'center',
+              whiteSpace: 'nowrap'
+            }}
+          >
+            Talks and Conferences
+          </h1>
+        </div>
+      </div>
       
       {/* Back to Home Button */}
       <button
@@ -349,19 +433,9 @@ const Talks = () => {
         style={{
           maxWidth: '1400px',
           margin: '0 auto',
-          paddingTop: '80px'
+          paddingTop: '40px'
         }}
       >
-        {/* Title */}
-        <h1 style={{
-          fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
-          fontWeight: 'bold',
-          textAlign: 'center',
-          marginBottom: '20px',
-          color: '#1f2937'
-        }}>
-          Talks and Conferences
-        </h1>
 
         <p style={{
           textAlign: 'center',
@@ -371,7 +445,7 @@ const Talks = () => {
           maxWidth: '700px',
           margin: '0 auto 50px auto'
         }}>
-          Click on a city to explore talks and conferences
+          
         </p>
 
         {/* Search Bar and Clear Selection */}
@@ -454,16 +528,22 @@ const Talks = () => {
         </div>
 
         {/* City Map */}
-        <div style={{
-          position: 'relative',
-          width: '100%',
-          height: '600px',
-          marginBottom: '60px',
-          backgroundColor: 'rgba(0, 0, 0, 0.02)',
-          borderRadius: '20px',
-          border: '2px solid rgba(0, 0, 0, 0.05)',
-          overflow: 'hidden'
-        }}>
+        <div 
+          className="talks-city-map"
+          style={{
+            position: 'relative',
+            width: '100%',
+            height: 'clamp(400px, 60vh, 600px)',
+            marginBottom: '60px',
+            backgroundImage: `url(${mapImage})`,
+            backgroundSize: '35%',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            borderRadius: '20px',
+            border: '0px solid rgba(0, 0, 0, 0.05)',
+            overflow: 'hidden'
+          }}
+        >
           {/* Connection lines between cities */}
           <svg style={{
             position: 'absolute',
@@ -474,18 +554,23 @@ const Talks = () => {
             pointerEvents: 'none',
             zIndex: 1
           }}>
-            {cityPositions.map((pos1, i) =>
-              cityPositions.slice(i + 1).map((pos2, j) => (
-                <line
-                  key={`${i}-${i + j + 1}`}
-                  x1={`${pos1.x}%`}
-                  y1={`${pos1.y}%`}
-                  x2={`${pos2.x}%`}
-                  y2={`${pos2.y}%`}
-                  stroke="rgba(96, 165, 250, 0.15)"
-                  strokeWidth="1"
-                />
-              ))
+            {cityPositionsWithNames.map((pos1, i) =>
+              cityPositionsWithNames.slice(i + 1).map((pos2, j) => {
+                if (shouldConnect(pos1.name, pos2.name)) {
+                  return (
+                    <line
+                      key={`${i}-${i + j + 1}`}
+                      x1={`${pos1.x}%`}
+                      y1={`${pos1.y}%`}
+                      x2={`${pos2.x}%`}
+                      y2={`${pos2.y}%`}
+                      stroke="rgba(96, 165, 250, 0.15)"
+                      strokeWidth="1"
+                    />
+                  );
+                }
+                return null;
+              })
             )}
           </svg>
 
@@ -493,9 +578,10 @@ const Talks = () => {
           {cities.map((city) => {
             const isSelected = selectedCity === city.name;
             const totalCount = city.talks.length + city.conferences.length;
-            // Size based on city name length and activity
+            // Size based on city name length and activity - even smaller sizing
             const nameLength = city.name.length;
-            const size = Math.max(80, Math.min(140, 70 + nameLength * 4 + totalCount * 2));
+            // Smaller base calculation for size
+            const calculatedSize = 30 + nameLength * 1.5 + totalCount * 0.8;
             
             return (
               <div
@@ -506,26 +592,26 @@ const Talks = () => {
                   left: `${city.x}%`,
                   top: `${city.y}%`,
                   transform: 'translate(-50%, -50%)',
-                  minWidth: `${size}px`,
+                  minWidth: `clamp(28px, ${calculatedSize}px, 65px)`,
                   width: 'auto',
-                  padding: '12px 16px',
-                  minHeight: `${size * 0.6}px`,
-                  borderRadius: '30px',
+                  padding: 'clamp(3px, 0.6vw, 6px) clamp(4px, 1vw, 10px)',
+                  minHeight: `clamp(16px, ${calculatedSize * 0.5}px, 35px)`,
+                  borderRadius: 'clamp(8px, 1.5vw, 16px)',
                   background: isSelected
                     ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
                     : 'linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%)',
                   cursor: 'pointer',
                   transition: 'all 0.3s ease',
                   boxShadow: isSelected
-                    ? '0 8px 25px rgba(102, 126, 234, 0.4), 0 0 0 4px rgba(102, 126, 234, 0.2)'
-                    : '0 4px 15px rgba(96, 165, 250, 0.3)',
-                  border: '3px solid #ffffff',
+                    ? '0 5px 15px rgba(102, 126, 234, 0.4), 0 0 0 2px rgba(102, 126, 234, 0.2)'
+                    : '0 2px 10px rgba(96, 165, 250, 0.3)',
+                  border: 'clamp(1px, 0.25vw, 2px) solid #ffffff',
                   zIndex: isSelected ? 10 : 2,
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   color: '#ffffff',
-                  fontSize: 'clamp(11px, 1.2vw, 14px)',
+                  fontSize: 'clamp(6px, 1.2vw, 9px)',
                   fontWeight: 'bold',
                   textAlign: 'center',
                   lineHeight: '1.2',
@@ -581,8 +667,8 @@ const Talks = () => {
         {/* Talks and Conferences List */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
-          gap: '40px',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 350px), 1fr))',
+          gap: 'clamp(20px, 4vw, 40px)',
           alignItems: 'flex-start'
         }}>
           {/* Talks Column */}

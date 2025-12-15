@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MenuBar from './MenuBar';
+import profileImage from './assets/recent-me.jpeg';
 
 type SectionKey = 'singular' | 'numerical' | 'inference' | 'all';
 
@@ -160,6 +161,67 @@ const Publications = () => {
       {/* Persistent Menu Bar */}
       <MenuBar />
       
+      {/* Banner Section */}
+      <div 
+        className="page-banner"
+        style={{
+          position: 'relative',
+          width: '100%',
+          backgroundColor: '#1e3a8a',
+          borderTop: '2px solid #3b82f6',
+          borderBottom: '2px solid #3b82f6',
+          display: 'flex',
+          alignItems: 'center',
+          padding: 'clamp(20px, 3vw, 40px) clamp(20px, 5vw, 80px)',
+          paddingTop: 'clamp(30px, 4vw, 50px)',
+          zIndex: 99,
+          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)'
+        }}
+      >
+        {/* Profile Image on the left */}
+        <img 
+          src={profileImage} 
+          alt="El Mehdi Haress" 
+          style={{
+            width: 'clamp(100px, 15vw, 150px)',
+            height: 'clamp(100px, 15vw, 150px)',
+            borderRadius: '50%',
+            objectFit: 'cover',
+            border: '3px solid #ffffff',
+            flexShrink: 0,
+            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)'
+          }}
+        />
+        
+        {/* Title in the middle - absolutely centered */}
+        <div style={{
+          position: 'absolute',
+          left: '50%',
+          top: 'calc(50% + 15px)',
+          transform: 'translate(-50%, -50%)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}>
+          <h1 
+            className="banner-name"
+            style={{
+              color: '#ffffff',
+              fontSize: 'clamp(24px, 5vw, 48px)',
+              fontWeight: 'bold',
+              fontFamily: 'sans-serif',
+              textTransform: 'uppercase',
+              letterSpacing: 'clamp(2px, 0.5vw, 4px)',
+              margin: 0,
+              textAlign: 'center',
+              whiteSpace: 'nowrap'
+            }}
+          >
+            Publications
+          </h1>
+        </div>
+      </div>
+      
       {/* Back to Home Button */}
       <button
         className="back-button"
@@ -197,19 +259,9 @@ const Publications = () => {
         style={{
           maxWidth: '1200px',
           margin: '0 auto',
-          paddingTop: '80px'
+          paddingTop: '40px'
         }}
       >
-        {/* Title */}
-        <h1 style={{
-          fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
-          fontWeight: 'bold',
-          textAlign: 'center',
-          marginBottom: '20px',
-          color: '#1f2937'
-        }}>
-          Publications
-        </h1>
 
         <p style={{
           textAlign: 'center',
@@ -219,7 +271,6 @@ const Publications = () => {
           maxWidth: '700px',
           margin: '0 auto 50px auto'
         }}>
-          Explore my research across three main research directions
         </p>
 
         {/* Research Sections */}

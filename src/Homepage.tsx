@@ -79,243 +79,338 @@ const Homepage = () => {
     }}>
       {/* Persistent Menu Bar */}
       <MenuBar />
-      {/* Profile Section - Center with Image and Text */}
+      
+      {/* Banner Section */}
+      <div 
+        className="homepage-banner"
+        style={{
+          position: 'relative',
+          width: '100%',
+          backgroundColor: '#1e3a8a', // Dark blue background
+          borderTop: '2px solid #3b82f6', // Lighter blue top border
+          borderBottom: '2px solid #3b82f6', // Lighter blue bottom border
+          display: 'flex',
+          alignItems: 'center',
+          padding: 'clamp(20px, 3vw, 40px) clamp(20px, 5vw, 80px)',
+          paddingTop: 'clamp(30px, 4vw, 50px)', // More padding on top to lower content
+          zIndex: 99,
+          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)'
+        }}
+      >
+        {/* Profile Image on the left */}
+        <img 
+          src={profileImage} 
+          alt="El Mehdi Haress" 
+          style={{
+            width: 'clamp(100px, 15vw, 150px)',
+            height: 'clamp(100px, 15vw, 150px)',
+            borderRadius: '50%',
+            objectFit: 'cover',
+            border: '3px solid #ffffff',
+            flexShrink: 0,
+            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)'
+          }}
+        />
+        
+        {/* Name in the middle - absolutely centered */}
+        <div style={{
+          position: 'absolute',
+          left: '50%',
+          top: 'calc(50% + 15px)', // Lower than center
+          transform: 'translate(-50%, -50%)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}>
+          <h1 
+            className="banner-name"
+            style={{
+              color: '#ffffff',
+              fontSize: 'clamp(24px, 5vw, 48px)',
+              fontWeight: 'bold',
+              fontFamily: 'sans-serif',
+              textTransform: 'uppercase',
+              letterSpacing: 'clamp(2px, 0.5vw, 4px)',
+              margin: 0,
+              textAlign: 'center',
+              whiteSpace: 'nowrap'
+            }}
+          >
+            El Mehdi <span style={{ fontWeight: '700' }}>Haress</span>
+          </h1>
+        </div>
+      </div>
+      
+      {/* Profile Section - Center with Text */}
       <div 
         className="profile-section"
         style={{
-          position: 'fixed',
-          left: '45%',
-          top: '50%',
-          transform: 'translate(-50%, -50%)',
+          position: 'relative',
+          left: 'auto',
+          top: 'auto',
+          transform: 'none',
+          margin: '0 auto',
           zIndex: 100,
           display: 'flex',
-          alignItems: 'center',
-          gap: 'clamp(20px, 5vw, 40px)',
-          maxWidth: '900px',
-          padding: '0 20px'
+          alignItems: 'flex-start',
+          justifyContent: 'center',
+          maxWidth: '1200px',
+          width: '90%',
+          padding: '40px 20px'
         }}
       >
-        {/* Profile Image */}
-        <img 
-          src={profileImage} 
-          alt="Profile" 
+        {/* Two Column Layout */}
+        <div 
+          className="homepage-content-grid"
           style={{
-            width: 'clamp(120px, 15vw, 160px)',
-            height: 'clamp(120px, 15vw, 160px)',
-            borderRadius: '50%',
-            objectFit: 'cover',
-            border: '4px solid white',
-            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4)',
-            flexShrink: 0
+            display: 'grid',
+            gridTemplateColumns: 'repeat(2, 1fr)',
+            gap: 'clamp(30px, 5vw, 60px)',
+            width: '100%',
+            color: '#1f2937', 
+            fontSize: 'clamp(14px, 2.5vw, 18px)', 
+            lineHeight: '1.8'
           }}
-        />
+        >
+          {/* Left Column: Positions and Contact */}
+          <div style={{ minWidth: 0 }}>
+            {/* Positions Section */}
+            <div style={{ marginBottom: 'clamp(24px, 4vw, 32px)' }}>
+            <h2 style={{ 
+              fontSize: 'clamp(18px, 3vw, 22px)', 
+              fontWeight: 'bold', 
+              marginBottom: 'clamp(12px, 2vw, 16px)',
+              color: '#1f2937'
+            }}>
+              Positions
+            </h2>
+            <p style={{ marginBottom: 'clamp(12px, 2vw, 16px)', fontSize: 'clamp(14px, 2.2vw, 16px)' }}>
+              2025+: Research fellow in Stochastic Analysis at University of Leeds supervised by{' '}
+              <a 
+                href="https://eps.leeds.ac.uk/maths/staff/6172/dr-konstantinos-dareiotis"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: '#60a5fa',
+                  textDecoration: 'underline',
+                  transition: 'color 0.3s ease'
+                }}
+                onMouseOver={(e) => (e.target as HTMLElement).style.color = '#93c5fd'}
+                onMouseOut={(e) => (e.target as HTMLElement).style.color = '#60a5fa'}
+              >
+                Konstantinos Dareiotis
+              </a>
+              {' '}and{' '}
+              <a 
+                href="https://eps.leeds.ac.uk/faculty-engineering-physical-sciences/staff/12207/khoa-l"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: '#60a5fa',
+                  textDecoration: 'underline',
+                  transition: 'color 0.3s ease'
+                }}
+                onMouseOver={(e) => (e.target as HTMLElement).style.color = '#93c5fd'}
+                onMouseOut={(e) => (e.target as HTMLElement).style.color = '#60a5fa'}
+              >
+                Khoa Lê
+              </a>
+            </p>
+            <p style={{ marginBottom: '0', fontSize: 'clamp(14px, 2.2vw, 16px)' }}>
+              2021-2024: PhD at Paris-Saclay University, supervised by{' '}
+              <a 
+                href="https://w3.ens-rennes.fr/math/people/ludovic.goudenege/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: '#60a5fa',
+                  textDecoration: 'underline',
+                  transition: 'color 0.3s ease'
+                }}
+                onMouseOver={(e) => (e.target as HTMLElement).style.color = '#93c5fd'}
+                onMouseOut={(e) => (e.target as HTMLElement).style.color = '#60a5fa'}
+              >
+                Ludovic Goudenège
+              </a>
+              {' '}and{' '}
+              <a 
+                href="https://arichard.perso.math.cnrs.fr"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: '#60a5fa',
+                  textDecoration: 'underline',
+                  transition: 'color 0.3s ease'
+                }}
+                onMouseOver={(e) => (e.target as HTMLElement).style.color = '#93c5fd'}
+                onMouseOut={(e) => (e.target as HTMLElement).style.color = '#60a5fa'}
+              >
+                Alexandre Richard
+              </a>
+            </p>
+          </div>
 
-        {/* Bio Text */}
-        <div style={{ 
-          color: '#1f2937', 
-          fontSize: 'clamp(14px, 2.5vw, 18px)', 
-          lineHeight: '1.8',
-          minWidth: 0 // Allow text to shrink
-        }}>
-          <p style={{ marginBottom: 'clamp(16px, 3vw, 24px)', fontSize: 'clamp(16px, 3vw, 20px)' }}>
-            I am a Research fellow in Stochastic Analysis at University of Leeds supervised by
-            <br />
-             {' '}
-            <a 
-              href="https://eps.leeds.ac.uk/maths/staff/6172/dr-konstantinos-dareiotis"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                color: '#60a5fa',
-                textDecoration: 'underline',
-                transition: 'color 0.3s ease'
-              }}
-              onMouseOver={(e) => (e.target as HTMLElement).style.color = '#93c5fd'}
-              onMouseOut={(e) => (e.target as HTMLElement).style.color = '#60a5fa'}
-            >
-              Konstantinos Dareiotis
-            </a>
-            {' '}and{' '}
-            <a 
-              href="https://eps.leeds.ac.uk/faculty-engineering-physical-sciences/staff/12207/khoa-l"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                color: '#60a5fa',
-                textDecoration: 'underline',
-                transition: 'color 0.3s ease'
-              }}
-              onMouseOver={(e) => (e.target as HTMLElement).style.color = '#93c5fd'}
-              onMouseOut={(e) => (e.target as HTMLElement).style.color = '#60a5fa'}
-            >
-              Khoa Lê
-            </a>
-          </p>
-          
-          <p style={{ marginBottom: 'clamp(16px, 3vw, 24px)' }}>
-            I did my PhD at Paris-Saclay University, supervised by{' '}
-            <a 
-              href="https://w3.ens-rennes.fr/math/people/ludovic.goudenege/"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                color: '#60a5fa',
-                textDecoration: 'underline',
-                transition: 'color 0.3s ease'
-              }}
-              onMouseOver={(e) => (e.target as HTMLElement).style.color = '#93c5fd'}
-              onMouseOut={(e) => (e.target as HTMLElement).style.color = '#60a5fa'}
-            >
-              Ludovic Goudenège
-            </a>
-            {' '}and{' '}
-            <a 
-              href="https://arichard.perso.math.cnrs.fr"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                color: '#60a5fa',
-                textDecoration: 'underline',
-                transition: 'color 0.3s ease'
-              }}
-              onMouseOver={(e) => (e.target as HTMLElement).style.color = '#93c5fd'}
-              onMouseOut={(e) => (e.target as HTMLElement).style.color = '#60a5fa'}
-            >
-              Alexandre Richard
-            </a>
-          </p>
-          
-          <p style={{ marginBottom: 'clamp(16px, 3vw, 24px)' }}>
-            Check my full resume{' '}
-            <a 
-              href="https://drive.google.com/file/d/1S-9iUwd9qYVEQgWXVjoGys72d4Qe4eak/view?usp=sharing"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                color: '#60a5fa',
-                textDecoration: 'underline',
-                transition: 'color 0.3s ease'
-              }}
-              onMouseOver={(e) => (e.target as HTMLElement).style.color = '#93c5fd'}
-              onMouseOut={(e) => (e.target as HTMLElement).style.color = '#60a5fa'}
-            >
-              here
-            </a>
-          </p>
-          
-          <p style={{ marginBottom: 'clamp(16px, 3vw, 24px)', fontSize: 'clamp(14px, 2.2vw, 16px)', color: '#1f2937' }}>
-            <strong>Research interests:</strong> fractional Brownian motion, SDEs and SPDEs with distributional drift, long-time regularity of SDEs, parametric estimation for SDEs, spectral-risk gradient descents
-          </p>
-          
-          <p style={{ marginBottom: 'clamp(16px, 3vw, 24px)', fontSize: 'clamp(14px, 2.2vw, 16px)', color: '#1f2937' }}>
-            <strong>Collaborators:</strong>{' '}
-            <a 
-              href="https://scholar.google.com/citations?user=fGuEdkYAAAAJ&hl=en"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                color: '#60a5fa',
-                textDecoration: 'underline',
-                transition: 'color 0.3s ease'
-              }}
-              onMouseOver={(e) => (e.target as HTMLElement).style.color = '#93c5fd'}
-              onMouseOut={(e) => (e.target as HTMLElement).style.color = '#60a5fa'}
-            >
-              Konstantinos Dareiotis
-            </a>
-            {', '}
-            <a 
-              href="https://goudenege.perso.math.cnrs.fr/output/"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                color: '#60a5fa',
-                textDecoration: 'underline',
-                transition: 'color 0.3s ease'
-              }}
-              onMouseOver={(e) => (e.target as HTMLElement).style.color = '#93c5fd'}
-              onMouseOut={(e) => (e.target as HTMLElement).style.color = '#60a5fa'}
-            >
-              Ludovic Goudenège
-            </a>
-            {', '}
-            <a 
-              href="https://feedbackward.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                color: '#60a5fa',
-                textDecoration: 'underline',
-                transition: 'color 0.3s ease'
-              }}
-              onMouseOver={(e) => (e.target as HTMLElement).style.color = '#93c5fd'}
-              onMouseOut={(e) => (e.target as HTMLElement).style.color = '#60a5fa'}
-            >
-              Matthew Holland
-            </a>
-            {', '}
-            <a 
-              href="https://sites.ualberta.ca/~yaozhong/"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                color: '#60a5fa',
-                textDecoration: 'underline',
-                transition: 'color 0.3s ease'
-              }}
-              onMouseOver={(e) => (e.target as HTMLElement).style.color = '#93c5fd'}
-              onMouseOut={(e) => (e.target as HTMLElement).style.color = '#60a5fa'}
-            >
-              Yaozhong Hu
-            </a>
-            {', '}
-            <a 
-              href="https://scholar.google.com/citations?user=q8MQahcAAAAJ&hl=en"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                color: '#60a5fa',
-                textDecoration: 'underline',
-                transition: 'color 0.3s ease'
-              }}
-              onMouseOver={(e) => (e.target as HTMLElement).style.color = '#93c5fd'}
-              onMouseOut={(e) => (e.target as HTMLElement).style.color = '#60a5fa'}
-            >
-              Khoa Lê
-            </a>
-            {', '}
-            <a 
-              href="https://arichard.perso.math.cnrs.fr"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                color: '#60a5fa',
-                textDecoration: 'underline',
-                transition: 'color 0.3s ease'
-              }}
-              onMouseOver={(e) => (e.target as HTMLElement).style.color = '#93c5fd'}
-              onMouseOut={(e) => (e.target as HTMLElement).style.color = '#60a5fa'}
-            >
-              Alexandre Richard
-            </a>
-          </p>
-          
-          <p style={{ marginBottom: '0', fontSize: 'clamp(14px, 2.2vw, 16px)' }}>
-            <strong>Contact:</strong>{' '}
-            <a 
-              href="mailto:e.haress@leeds.ac.uk"
-              style={{
-                color: '#60a5fa',
-                textDecoration: 'underline',
-                transition: 'color 0.3s ease'
-              }}
-              onMouseOver={(e) => (e.target as HTMLElement).style.color = '#93c5fd'}
-              onMouseOut={(e) => (e.target as HTMLElement).style.color = '#60a5fa'}
-            >
-              e.haress@leeds.ac.uk
-            </a>
-          </p>
+            {/* Contact Section */}
+            <div>
+              <h2 style={{ 
+                fontSize: 'clamp(18px, 3vw, 22px)', 
+                fontWeight: 'bold', 
+                marginBottom: 'clamp(12px, 2vw, 16px)',
+                color: '#1f2937'
+              }}>
+                Contact
+              </h2>
+              <p style={{ marginBottom: '0', fontSize: 'clamp(14px, 2.2vw, 16px)' }}>
+                <a 
+                  href="mailto:e.haress@leeds.ac.uk"
+                  style={{
+                    color: '#60a5fa',
+                    textDecoration: 'underline',
+                    transition: 'color 0.3s ease'
+                  }}
+                  onMouseOver={(e) => (e.target as HTMLElement).style.color = '#93c5fd'}
+                  onMouseOut={(e) => (e.target as HTMLElement).style.color = '#60a5fa'}
+                >
+                  e.haress@leeds.ac.uk
+                </a>
+              </p>
+            </div>
+          </div>
+
+          {/* Right Column: Research Interests and Collaborators */}
+          <div style={{ minWidth: 0 }}>
+            {/* Research Interests Section */}
+            <div style={{ marginBottom: 'clamp(24px, 4vw, 32px)' }}>
+              <h2 style={{ 
+                fontSize: 'clamp(18px, 3vw, 22px)', 
+                fontWeight: 'bold', 
+                marginBottom: 'clamp(12px, 2vw, 16px)',
+                color: '#1f2937'
+              }}>
+                Research Interests
+              </h2>
+              <p style={{ marginBottom: '0', fontSize: 'clamp(14px, 2.2vw, 16px)', color: '#1f2937' }}>
+                Singular and dissipative stochastic dynamics with memory: fractional Brownian motion, SDEs and SPDEs, long-time regularity, invariant measures, inverse and learning problems.
+              </p>
+            </div>
+
+            {/* Collaborators Section */}
+            <div style={{ marginBottom: 'clamp(24px, 4vw, 32px)' }}>
+            <h2 style={{ 
+              fontSize: 'clamp(18px, 3vw, 22px)', 
+              fontWeight: 'bold', 
+              marginBottom: 'clamp(12px, 2vw, 16px)',
+              color: '#1f2937'
+            }}>
+              Collaborators
+            </h2>
+            <div style={{ fontSize: 'clamp(14px, 2.2vw, 16px)', color: '#1f2937' }}>
+              <p style={{ marginBottom: 'clamp(8px, 1.5vw, 12px)' }}>
+                <a 
+                  href="https://scholar.google.com/citations?user=fGuEdkYAAAAJ&hl=en"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    color: '#60a5fa',
+                    textDecoration: 'underline',
+                    transition: 'color 0.3s ease'
+                  }}
+                  onMouseOver={(e) => (e.target as HTMLElement).style.color = '#93c5fd'}
+                  onMouseOut={(e) => (e.target as HTMLElement).style.color = '#60a5fa'}
+                >
+                  Konstantinos Dareiotis
+                </a>
+                {' '}(University of Leeds)
+              </p>
+              <p style={{ marginBottom: 'clamp(8px, 1.5vw, 12px)' }}>
+                <a 
+                  href="https://goudenege.perso.math.cnrs.fr/output/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    color: '#60a5fa',
+                    textDecoration: 'underline',
+                    transition: 'color 0.3s ease'
+                  }}
+                  onMouseOver={(e) => (e.target as HTMLElement).style.color = '#93c5fd'}
+                  onMouseOut={(e) => (e.target as HTMLElement).style.color = '#60a5fa'}
+                >
+                  Ludovic Goudenège
+                </a>
+                {' '}(Université Évry)
+              </p>
+              <p style={{ marginBottom: 'clamp(8px, 1.5vw, 12px)' }}>
+                <a 
+                  href="https://feedbackward.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    color: '#60a5fa',
+                    textDecoration: 'underline',
+                    transition: 'color 0.3s ease'
+                  }}
+                  onMouseOver={(e) => (e.target as HTMLElement).style.color = '#93c5fd'}
+                  onMouseOut={(e) => (e.target as HTMLElement).style.color = '#60a5fa'}
+                >
+                  Matthew Holland
+                </a>
+                {' '}(Osaka University)
+              </p>
+              <p style={{ marginBottom: 'clamp(8px, 1.5vw, 12px)' }}>
+                <a 
+                  href="https://sites.ualberta.ca/~yaozhong/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    color: '#60a5fa',
+                    textDecoration: 'underline',
+                    transition: 'color 0.3s ease'
+                  }}
+                  onMouseOver={(e) => (e.target as HTMLElement).style.color = '#93c5fd'}
+                  onMouseOut={(e) => (e.target as HTMLElement).style.color = '#60a5fa'}
+                >
+                  Yaozhong Hu
+                </a>
+                {' '}(University of Alberta)
+              </p>
+              <p style={{ marginBottom: 'clamp(8px, 1.5vw, 12px)' }}>
+                <a 
+                  href="https://scholar.google.com/citations?user=q8MQahcAAAAJ&hl=en"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    color: '#60a5fa',
+                    textDecoration: 'underline',
+                    transition: 'color 0.3s ease'
+                  }}
+                  onMouseOver={(e) => (e.target as HTMLElement).style.color = '#93c5fd'}
+                  onMouseOut={(e) => (e.target as HTMLElement).style.color = '#60a5fa'}
+                >
+                  Khoa Lê
+                </a>
+                {' '}(University of Leeds)
+              </p>
+              <p style={{ marginBottom: '0' }}>
+                <a 
+                  href="https://arichard.perso.math.cnrs.fr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    color: '#60a5fa',
+                    textDecoration: 'underline',
+                    transition: 'color 0.3s ease'
+                  }}
+                  onMouseOver={(e) => (e.target as HTMLElement).style.color = '#93c5fd'}
+                  onMouseOut={(e) => (e.target as HTMLElement).style.color = '#60a5fa'}
+                >
+                  Alexandre Richard
+                </a>
+                {' '}(CNRS, Paris-Saclay University)
+              </p>
+            </div>
+          </div>
         </div>
+      </div>
       </div>
 
       {/* Social/Academic Links - Bottom Center */}

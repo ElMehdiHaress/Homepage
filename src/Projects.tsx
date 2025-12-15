@@ -1,75 +1,125 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MenuBar from './MenuBar';
+
+interface ResearchProject {
+  title: string;
+  institution: string;
+  period: string;
+  type: string;
+  url?: string;
+}
+
+interface GitProject {
+  title: string;
+  description: string;
+  type: string;
+  url: string;
+  secondUrl?: string;
+}
+
+interface PersonalProject {
+  title: string;
+  description: string;
+  status?: string;
+  type: string;
+  url: string;
+}
+
+type SectionKey = 'academic' | 'research' | 'personal' | 'all';
+
+const researchProjects: ResearchProject[] = [
+  {
+    title: "Managing tutoring classes. Debriefing math tutors",
+    institution: "CentraleSupélec",
+    period: "2023-2024",
+    type: "Management"
+  },
+  {
+    title: "Member of the organising committee of the CJC-MA. Le Congrès des Jeunes Chercheurs en Mathématiques et Applications",
+    institution: "",
+    period: "2023",
+    type: "Organization",
+    url: "https://cjcma2023.sciencesconf.org"
+  }
+];
+
+const gitProjects: GitProject[] = [
+  {
+    title: "Fbm ergodic estimation: matching the density at final time to a target density",
+    description: "Fractional Brownian motion ergodic estimation",
+    type: "Research Code",
+    url: "https://github.com/ElMehdiHaress/ergodicfBm"
+  },
+  {
+    title: "A short guide to estimating the parameters (drift, hurst and diffusion parameter) in a fractional additive stochastic differential equation",
+    description: "Parameter estimation for fractional SDEs",
+    type: "Research Code", 
+    url: "https://github.com/ElMehdiHaress/estimation-for-SDEs"
+  },
+  {
+    title: "Beyond-CVaR and Risk-averse-feedback",
+    description: "Risk management and feedback algorithms",
+    type: "Research Code",
+    url: "https://github.com/ElMehdiHaress/Beyond-CVaR",
+    secondUrl: "https://github.com/ElMehdiHaress/Risk-averse-feedback"
+  },
+  {
+    title: "Gradient descents using Malliavin calculus",
+    description: "Mathematical optimization using Malliavin calculus",
+    type: "Research Code",
+    url: "https://github.com/ElMehdiHaress/MalliavinRegression"
+  }
+];
+
+const personalProjects: PersonalProject[] = [
+  {
+    title: "Board game in progress. Maze of might",
+    description: "Game development project",
+    status: "In Progress",
+    type: "Game Development",
+    url: "https://mazeofmight.com"
+  },
+  {
+    title: "Beauty salon website design and management. Hana Bella",
+    description: "Web design and management",
+    type: "Web Development",
+    url: "https://hanabellaspa.pro"
+  },
+  {
+    title: "Art and music",
+    description: "Lo-fi music + sketches",
+    type: "Creative",
+    url: "https://www.youtube.com/@sonosketchy"
+  }
+];
 
 const Projects = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
-  const [activeTab, setActiveTab] = useState('work');
+  const [selectedSection, setSelectedSection] = useState<SectionKey>('all');
   
-  const researchProjects = [
+  const sections = [
     {
-      title: "Managing tutoring classes. Debriefing math tutors",
-      institution: "CentraleSupélec",
-      period: "2023-2024",
-      type: "Management"
+      key: 'academic' as SectionKey,
+      title: 'Academic',
+      icon: '🎓',
+      gradient: 'linear-gradient(135deg, rgba(90, 103, 216, 0.75) 0%, rgba(85, 60, 154, 0.75) 100%)',
+      description: 'Management and organizational roles in academia'
     },
     {
-      title: "Member of the organising committee of the CJC-MA. Le Congrès des Jeunes Chercheurs en Mathématiques et Applications",
-      institution: "",
-      period: "2023",
-      type: "Organization",
-      url: "https://cjcma2023.sciencesconf.org"
-    }
-  ];
-
-  const gitProjects = [
-    {
-      title: "Fbm ergodic estimation: matching the density at final time to a target density",
-      description: "Fractional Brownian motion ergodic estimation",
-      type: "Research Code",
-      url: "https://github.com/ElMehdiHaress/ergodicfBm"
+      key: 'research' as SectionKey,
+      title: 'Research',
+      icon: '🔬',
+      gradient: 'linear-gradient(135deg, rgba(192, 38, 211, 0.75) 0%, rgba(162, 28, 175, 0.75) 100%)',
+      description: 'Research code repositories and computational projects'
     },
     {
-      title: "A short guide to estimating the parameters (drift, hurst and diffusion parameter) in a fractional additive stochastic differential equation",
-      description: "Parameter estimation for fractional SDEs",
-      type: "Research Code", 
-      url: "https://github.com/ElMehdiHaress/estimation-for-SDEs"
-    },
-    {
-      title: "Beyond-CVaR and Risk-averse-feedback",
-      description: "Risk management and feedback algorithms",
-      type: "Research Code",
-      url: "https://github.com/ElMehdiHaress/Beyond-CVaR",
-      secondUrl: "https://github.com/ElMehdiHaress/Risk-averse-feedback"
-    },
-    {
-      title: "Gradient descents using Malliavin calculus",
-      description: "Mathematical optimization using Malliavin calculus",
-      type: "Research Code",
-      url: "https://github.com/ElMehdiHaress/MalliavinRegression"
-    }
-  ];
-
-  const personalProjects = [
-    {
-      title: "Board game in progress. Maze of might",
-      description: "Game development project",
-      status: "In Progress",
-      type: "Game Development",
-      url: "https://mazeofmight.com"
-    },
-    {
-      title: "Beauty salon website design and management. Hana Bella",
-      description: "Web design and management",
-      type: "Web Development",
-      url: "https://hanabellaspa.pro"
-    },
-    {
-      title: "Art and music",
-      description: "Lo-fi music + sketches",
-      type: "Creative",
-      url: "https://www.youtube.com/@sonosketchy"
+      key: 'personal' as SectionKey,
+      title: 'Personal',
+      icon: '💼',
+      gradient: 'linear-gradient(135deg, rgba(37, 99, 235, 0.75) 0%, rgba(30, 64, 175, 0.75) 100%)',
+      description: 'Creative and personal development projects'
     }
   ];
 
@@ -77,28 +127,58 @@ const Projects = () => {
     navigate('/');
   };
 
-  // Filter research projects based on search term
-  const filteredResearchProjects = researchProjects.filter(project =>
-    project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    project.institution.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    project.period.includes(searchTerm) ||
-    project.type.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // Filter projects based on selected section and search term
+  const filteredAcademic = useMemo(() => {
+    let filtered = researchProjects;
+    
+    if (searchTerm) {
+      filtered = filtered.filter(project =>
+        project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        project.institution.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        project.period.includes(searchTerm) ||
+        project.type.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+    
+    return filtered;
+  }, [searchTerm]);
 
-  // Filter git projects based on search term
-  const filteredGitProjects = gitProjects.filter(project =>
-    project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    project.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    project.type.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredResearch = useMemo(() => {
+    let filtered = gitProjects;
+    
+    if (searchTerm) {
+      filtered = filtered.filter(project =>
+        project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        project.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        project.type.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+    
+    return filtered;
+  }, [searchTerm]);
 
-  // Filter personal projects based on search term
-  const filteredPersonalProjects = personalProjects.filter(project =>
-    project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    project.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    (project.status && project.status.toLowerCase().includes(searchTerm.toLowerCase())) ||
-    project.type.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredPersonal = useMemo(() => {
+    let filtered = personalProjects;
+    
+    if (searchTerm) {
+      filtered = filtered.filter(project =>
+        project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        project.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (project.status && project.status.toLowerCase().includes(searchTerm.toLowerCase())) ||
+        project.type.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+    
+    return filtered;
+  }, [searchTerm]);
+
+  // Determine which projects to display
+  const getDisplayedProjects = () => {
+    if (selectedSection === 'academic') return filteredAcademic;
+    if (selectedSection === 'research') return filteredResearch;
+    if (selectedSection === 'personal') return filteredPersonal;
+    return [...filteredAcademic, ...filteredResearch, ...filteredPersonal];
+  };
 
   return (
     <div style={{
@@ -112,6 +192,7 @@ const Projects = () => {
     }}>
       {/* Persistent Menu Bar */}
       <MenuBar />
+      
       {/* Back to Home Button */}
       <button
         className="back-button"
@@ -132,11 +213,11 @@ const Projects = () => {
           transition: 'all 0.3s ease'
         }}
         onMouseOver={(e) => {
-          e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
+          e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
           e.currentTarget.style.transform = 'scale(1.05)';
         }}
         onMouseOut={(e) => {
-          e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+          e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
           e.currentTarget.style.transform = 'scale(1)';
         }}
       >
@@ -145,9 +226,9 @@ const Projects = () => {
 
       {/* Main Content */}
       <div 
-        className="publications-container"
+        className="projects-container"
         style={{
-          maxWidth: '900px',
+          maxWidth: '1200px',
           margin: '0 auto',
           paddingTop: '80px'
         }}
@@ -157,67 +238,117 @@ const Projects = () => {
           fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
           fontWeight: 'bold',
           textAlign: 'center',
-          marginBottom: '40px',
+          marginBottom: '20px',
           color: '#1f2937'
         }}>
           Projects
         </h1>
 
-        {/* Tab Navigation */}
-        <div style={{
-          display: 'flex',
-          justifyContent: 'center',
-          marginBottom: '40px'
+        <p style={{
+          textAlign: 'center',
+          fontSize: 'clamp(1rem, 2vw, 1.2rem)',
+          color: '#6b7280',
+          marginBottom: '50px',
+          maxWidth: '700px',
+          margin: '0 auto 50px auto'
         }}>
-          <div style={{
-            display: 'flex',
-            backgroundColor: 'rgba(0, 0, 0, 0.05)',
-            borderRadius: '12px',
-            padding: '4px',
-            border: '1px solid rgba(0, 0, 0, 0.1)'
-          }}>
-            <button
-              onClick={() => setActiveTab('work')}
-              style={{
-                padding: '12px 24px',
-                fontSize: 'clamp(14px, 2vw, 16px)',
-                fontWeight: '600',
-                borderRadius: '8px',
-                border: 'none',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-                backgroundColor: activeTab === 'work' ? '#ffffff' : 'transparent',
-                color: activeTab === 'work' ? '#1f2937' : '#6b7280',
-                boxShadow: activeTab === 'work' ? '0 2px 8px rgba(0, 0, 0, 0.1)' : 'none'
-              }}
-            >
-              Work
-            </button>
-            <button
-              onClick={() => setActiveTab('personal')}
-              style={{
-                padding: '12px 24px',
-                fontSize: 'clamp(14px, 2vw, 16px)',
-                fontWeight: '600',
-                borderRadius: '8px',
-                border: 'none',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-                backgroundColor: activeTab === 'personal' ? '#ffffff' : 'transparent',
-                color: activeTab === 'personal' ? '#1f2937' : '#6b7280',
-                boxShadow: activeTab === 'personal' ? '0 2px 8px rgba(0, 0, 0, 0.1)' : 'none'
-              }}
-            >
-              Personal
-            </button>
-          </div>
+          Explore my work across academic, research, and personal projects
+        </p>
+
+        {/* Project Sections */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+          gap: '30px',
+          marginBottom: '60px'
+        }}>
+          {sections.map((section) => {
+            const isSelected = selectedSection === section.key;
+            
+            return (
+              <div
+                key={section.key}
+                onClick={() => setSelectedSection(section.key)}
+                style={{
+                  background: section.gradient,
+                  borderRadius: '20px',
+                  padding: '35px',
+                  cursor: 'pointer',
+                  transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                  transform: isSelected ? 'translateY(-8px) scale(1.02)' : 'translateY(0)',
+                  boxShadow: isSelected 
+                    ? '0 20px 40px rgba(0, 0, 0, 0.15), 0 0 0 4px rgba(255, 255, 255, 0.3)' 
+                    : '0 10px 30px rgba(0, 0, 0, 0.1)',
+                  position: 'relative',
+                  overflow: 'hidden'
+                }}
+                onMouseOver={(e) => {
+                  if (!isSelected) {
+                    e.currentTarget.style.transform = 'translateY(-5px) scale(1.01)';
+                    e.currentTarget.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.12)';
+                  }
+                }}
+                onMouseOut={(e) => {
+                  if (!isSelected) {
+                    e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                    e.currentTarget.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1)';
+                  }
+                }}
+              >
+                {/* Decorative background pattern */}
+                <div style={{
+                  position: 'absolute',
+                  top: '-50%',
+                  right: '-50%',
+                  width: '200%',
+                  height: '200%',
+                  background: 'radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px)',
+                  backgroundSize: '30px 30px',
+                  opacity: 0.3,
+                  pointerEvents: 'none'
+                }} />
+                
+                <div style={{ position: 'relative', zIndex: 1 }}>
+                  <div style={{
+                    fontSize: '48px',
+                    marginBottom: '15px',
+                    filter: 'drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2))'
+                  }}>
+                    {section.icon}
+                  </div>
+                  
+                  <h2 style={{
+                    fontSize: 'clamp(1.2rem, 2.5vw, 1.5rem)',
+                    fontWeight: 'bold',
+                    marginBottom: '12px',
+                    color: '#ffffff',
+                    lineHeight: '1.3',
+                    textShadow: '0 2px 4px rgba(0, 0, 0, 0.2)'
+                  }}>
+                    {section.title}
+                  </h2>
+                  
+                  <p style={{
+                    fontSize: 'clamp(0.9rem, 1.8vw, 1rem)',
+                    color: 'rgba(255, 255, 255, 0.9)',
+                    lineHeight: '1.5'
+                  }}>
+                    {section.description}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
         </div>
 
-        {/* Search Bar */}
+        {/* Search Bar and Clear Selection */}
         <div style={{
           display: 'flex',
           justifyContent: 'center',
-          marginBottom: '50px'
+          marginBottom: '40px',
+          gap: '15px',
+          flexWrap: 'wrap',
+          alignItems: 'center'
         }}>
           <div style={{
             position: 'relative',
@@ -226,7 +357,7 @@ const Projects = () => {
           }}>
             <input
               type="text"
-              placeholder={`Search ${activeTab} projects...`}
+              placeholder="Search projects..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               style={{
@@ -243,15 +374,14 @@ const Projects = () => {
                 transition: 'all 0.3s ease'
               }}
               onFocus={(e) => {
-                e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.15)';
+                e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.08)';
                 e.currentTarget.style.borderColor = 'rgba(96, 165, 250, 0.5)';
               }}
               onBlur={(e) => {
-                e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
-                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+                e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.05)';
+                e.currentTarget.style.borderColor = 'rgba(0, 0, 0, 0.2)';
               }}
             />
-            {/* Search Icon */}
             <div style={{
               position: 'absolute',
               left: '18px',
@@ -263,179 +393,232 @@ const Projects = () => {
               🔍
             </div>
           </div>
+          
+          {/* Show All Button */}
+          <button
+            onClick={() => setSelectedSection('all')}
+            style={{
+              padding: '15px 25px',
+              fontSize: 'clamp(14px, 2vw, 16px)',
+              backgroundColor: selectedSection === 'all' ? '#1f2937' : 'rgba(0, 0, 0, 0.05)',
+              color: selectedSection === 'all' ? '#ffffff' : '#1f2937',
+              border: selectedSection === 'all' ? 'none' : '1px solid rgba(0, 0, 0, 0.2)',
+              borderRadius: '25px',
+              cursor: 'pointer',
+              transition: 'all 0.3s ease',
+              fontWeight: '500'
+            }}
+            onMouseOver={(e) => {
+              if (selectedSection !== 'all') {
+                e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+              }
+            }}
+            onMouseOut={(e) => {
+              if (selectedSection !== 'all') {
+                e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.05)';
+              }
+            }}
+          >
+            Show All
+          </button>
         </div>
 
-        {/* Conditional Content Based on Active Tab */}
-        {activeTab === 'work' ? (
+        {/* Section Title (when a specific section is selected) */}
+        {selectedSection !== 'all' && (
           <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: '30px',
-            alignItems: 'flex-start'
-          }} className="projects-grid">
-            
-            {/* Research Projects Column */}
-            <div style={{ flex: '1', minWidth: '0' }}>
-              <h2 style={{
-                fontSize: 'clamp(1.8rem, 3.5vw, 2.2rem)',
-                fontWeight: 'bold',
-                marginBottom: '30px',
-                color: '#1f2937',
-                textAlign: 'center'
-              }}>
-                Academic
-              </h2>
-              
-              {filteredResearchProjects.length > 0 ? (
-                filteredResearchProjects.map((project, index) => {
-                  const ProjectWrapper = project.url ? 'a' : 'div';
-                  const wrapperProps = project.url ? {
-                    href: project.url,
-                    target: "_blank",
-                    rel: "noopener noreferrer",
-                    style: { textDecoration: 'none', color: 'inherit', display: 'block' }
-                  } : {};
+            marginBottom: '40px',
+            textAlign: 'center'
+          }}>
+            <h2 style={{
+              fontSize: 'clamp(1.8rem, 3.5vw, 2.3rem)',
+              fontWeight: 'bold',
+              color: '#1f2937',
+              marginBottom: '10px'
+            }}>
+              {sections.find(s => s.key === selectedSection)?.title}
+            </h2>
+            <p style={{
+              fontSize: 'clamp(1rem, 2vw, 1.1rem)',
+              color: '#6b7280'
+            }}>
+              {getDisplayedProjects().length} {getDisplayedProjects().length === 1 ? 'project' : 'projects'}
+            </p>
+          </div>
+        )}
 
-                  return (
-                    <ProjectWrapper key={index} {...wrapperProps}>
-                      <div
-                        className="publication-item"
-                        style={{
-                          marginBottom: '25px',
-                          padding: '25px',
-                          backgroundColor: 'rgba(0, 0, 0, 0.02)',
-                          borderRadius: '12px',
-                          border: '1px solid rgba(0, 0, 0, 0.1)',
-                          transition: 'all 0.3s ease',
-                          cursor: project.url ? 'pointer' : 'default'
-                        }}
-                        onMouseOver={(e) => {
-                          e.currentTarget.style.backgroundColor = project.url ? 'rgba(0, 0, 0, 0.05)' : 'rgba(0, 0, 0, 0.03)';
-                          e.currentTarget.style.transform = 'translateY(-2px)';
-                          if (project.url) {
-                            e.currentTarget.style.borderColor = 'rgba(96, 165, 250, 0.3)';
-                          }
-                        }}
-                        onMouseOut={(e) => {
-                          e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.02)';
-                          e.currentTarget.style.transform = 'translateY(0px)';
-                          e.currentTarget.style.borderColor = 'rgba(0, 0, 0, 0.1)';
-                        }}
-                      >
-                        <h3 style={{
-                          fontSize: 'clamp(1rem, 2.2vw, 1.15rem)',
-                          fontWeight: '600',
-                          marginBottom: '12px',
-                          color: '#1f2937',
-                          lineHeight: '1.3'
-                        }}>
-                          {project.title} {project.url && '🔗'}
-                        </h3>
-                        {project.institution && (
-                          <p style={{
-                            fontSize: 'clamp(0.9rem, 1.9vw, 1rem)',
-                            color: '#60a5fa',
-                            marginBottom: '8px',
-                            fontStyle: 'italic'
-                          }}>
-                            {project.institution}
-                          </p>
-                        )}
-                        <div style={{
-                          display: 'flex',
-                          justifyContent: 'space-between',
-                          alignItems: 'center',
-                          flexWrap: 'wrap',
-                          gap: '10px'
-                        }}>
-                          <p style={{
-                            fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)',
-                            color: '#6b7280',
-                            fontWeight: '500',
-                            margin: 0
-                          }}>
-                            {project.period}
-                          </p>
-                          <span style={{
-                            fontSize: 'clamp(0.75rem, 1.4vw, 0.85rem)',
-                            color: '#34d399',
-                            backgroundColor: 'rgba(52, 211, 153, 0.1)',
-                            padding: '4px 12px',
-                            borderRadius: '20px',
-                            fontWeight: '500'
-                          }}>
-                            {project.type}
-                          </span>
-                        </div>
-                      </div>
-                    </ProjectWrapper>
-                  );
-                })
-              ) : (
-                <div style={{
-                  textAlign: 'center',
-                  padding: '30px',
-                  color: '#9ca3af',
-                  fontSize: 'clamp(13px, 1.8vw, 15px)'
-                }}>
-                  No research projects found matching "{searchTerm}"
-                </div>
-              )}
-            </div>
+        {/* Projects List */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+          gap: '30px'
+        }}>
+          {/* Academic Projects */}
+          {(selectedSection === 'academic' || selectedSection === 'all') && filteredAcademic.map((project, index) => {
+            const section = sections.find(s => s.key === 'academic');
+            const ProjectWrapper = project.url ? 'a' : 'div';
+            const wrapperProps = project.url ? {
+              href: project.url,
+              target: "_blank",
+              rel: "noopener noreferrer",
+              style: { textDecoration: 'none', color: 'inherit', display: 'block' }
+            } : { style: { display: 'block' } };
 
-            {/* Git Projects Column */}
-            <div style={{ flex: '1', minWidth: '0' }}>
-              <h2 style={{
-                fontSize: 'clamp(1.8rem, 3.5vw, 2.2rem)',
-                fontWeight: 'bold',
-                marginBottom: '30px',
-                color: '#1f2937',
-                textAlign: 'center'
-              }}>
-                Git
-              </h2>
-              
-              {filteredGitProjects.length > 0 ? (
-                filteredGitProjects.map((project, index) => (
-                <a
-                  key={index}
-                  href={project.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
+            return (
+              <ProjectWrapper key={`academic-${index}`} {...wrapperProps}>
+                <div
+                  className="project-item"
                   style={{
-                    textDecoration: 'none',
-                    color: 'inherit',
-                    display: 'block'
+                    padding: '30px',
+                    backgroundColor: 'rgba(255, 255, 255, 0.6)',
+                    borderRadius: '16px',
+                    border: '2px solid rgba(0, 0, 0, 0.08)',
+                    transition: 'all 0.3s ease',
+                    position: 'relative',
+                    overflow: 'hidden',
+                    height: '100%'
+                  }}
+                  onMouseOver={(e) => {
+                    e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+                    e.currentTarget.style.transform = 'translateY(-3px)';
+                    e.currentTarget.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.08)';
+                    if (section) {
+                      e.currentTarget.style.borderColor = section.gradient.split(' ')[0] || 'rgba(102, 126, 234, 0.3)';
+                    }
+                  }}
+                  onMouseOut={(e) => {
+                    e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.6)';
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = 'none';
+                    e.currentTarget.style.borderColor = 'rgba(0, 0, 0, 0.08)';
                   }}
                 >
-                  <div
-                    className="publication-item"
-                    style={{
-                      marginBottom: '25px',
-                      padding: '20px',
-                      backgroundColor: 'rgba(0, 0, 0, 0.02)',
-                      borderRadius: '12px',
-                      border: '1px solid rgba(0, 0, 0, 0.1)',
-                      transition: 'all 0.3s ease',
-                      cursor: 'pointer'
-                    }}
-                    onMouseOver={(e) => {
-                      e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.05)';
-                      e.currentTarget.style.transform = 'translateY(-2px)';
-                      e.currentTarget.style.borderColor = 'rgba(96, 165, 250, 0.3)';
-                    }}
-                    onMouseOut={(e) => {
-                      e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.02)';
-                      e.currentTarget.style.transform = 'translateY(0px)';
-                      e.currentTarget.style.borderColor = 'rgba(0, 0, 0, 0.1)';
-                    }}
-                  >
+                  {section && (
+                    <div style={{
+                      position: 'absolute',
+                      left: 0,
+                      top: 0,
+                      bottom: 0,
+                      width: '5px',
+                      background: section.gradient,
+                      borderRadius: '16px 0 0 16px'
+                    }} />
+                  )}
+                  
+                  <div style={{ marginLeft: '15px' }}>
                     <h3 style={{
-                      fontSize: 'clamp(1rem, 2.2vw, 1.15rem)',
+                      fontSize: 'clamp(1.1rem, 2.5vw, 1.3rem)',
                       fontWeight: '600',
-                      marginBottom: '10px',
+                      marginBottom: '12px',
                       color: '#1f2937',
-                      lineHeight: '1.3'
+                      lineHeight: '1.4'
+                    }}>
+                      {project.title} {project.url && '🔗'}
+                    </h3>
+                    {project.institution && (
+                      <p style={{
+                        fontSize: 'clamp(0.95rem, 2vw, 1.1rem)',
+                        color: '#60a5fa',
+                        marginBottom: '10px',
+                        fontStyle: 'italic',
+                        fontWeight: '500'
+                      }}>
+                        {project.institution}
+                      </p>
+                    )}
+                    <div style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                      flexWrap: 'wrap',
+                      gap: '10px'
+                    }}>
+                      <p style={{
+                        fontSize: 'clamp(0.85rem, 1.6vw, 0.95rem)',
+                        color: '#6b7280',
+                        fontWeight: '500',
+                        margin: 0
+                      }}>
+                        {project.period}
+                      </p>
+                      <span style={{
+                        fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)',
+                        color: '#34d399',
+                        backgroundColor: 'rgba(52, 211, 153, 0.1)',
+                        padding: '4px 12px',
+                        borderRadius: '20px',
+                        fontWeight: '500'
+                      }}>
+                        {project.type}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </ProjectWrapper>
+            );
+          })}
+
+          {/* Research Projects */}
+          {(selectedSection === 'research' || selectedSection === 'all') && filteredResearch.map((project, index) => {
+            const section = sections.find(s => s.key === 'research');
+            
+            return (
+              <a
+                key={`research-${index}`}
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  textDecoration: 'none',
+                  color: 'inherit',
+                  display: 'block'
+                }}
+              >
+                <div
+                  className="project-item"
+                  style={{
+                    padding: '30px',
+                    backgroundColor: 'rgba(255, 255, 255, 0.6)',
+                    borderRadius: '16px',
+                    border: '2px solid rgba(0, 0, 0, 0.08)',
+                    transition: 'all 0.3s ease',
+                    position: 'relative',
+                    overflow: 'hidden',
+                    height: '100%'
+                  }}
+                  onMouseOver={(e) => {
+                    e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+                    e.currentTarget.style.transform = 'translateY(-3px)';
+                    e.currentTarget.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.08)';
+                    if (section) {
+                      e.currentTarget.style.borderColor = section.gradient.split(' ')[0] || 'rgba(240, 147, 251, 0.3)';
+                    }
+                  }}
+                  onMouseOut={(e) => {
+                    e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.6)';
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = 'none';
+                    e.currentTarget.style.borderColor = 'rgba(0, 0, 0, 0.08)';
+                  }}
+                >
+                  {section && (
+                    <div style={{
+                      position: 'absolute',
+                      left: 0,
+                      top: 0,
+                      bottom: 0,
+                      width: '5px',
+                      background: section.gradient,
+                      borderRadius: '16px 0 0 16px'
+                    }} />
+                  )}
+                  
+                  <div style={{ marginLeft: '15px' }}>
+                    <h3 style={{
+                      fontSize: 'clamp(1.1rem, 2.5vw, 1.3rem)',
+                      fontWeight: '600',
+                      marginBottom: '12px',
+                      color: '#1f2937',
+                      lineHeight: '1.4'
                     }}>
                       {project.title} 🔗
                       {project.secondUrl && (
@@ -455,14 +638,15 @@ const Projects = () => {
                       )}
                     </h3>
                     <p style={{
-                      fontSize: 'clamp(0.9rem, 1.9vw, 1rem)',
+                      fontSize: 'clamp(0.95rem, 2vw, 1.1rem)',
                       color: '#9ca3af',
-                      marginBottom: '12px'
+                      marginBottom: '12px',
+                      lineHeight: '1.5'
                     }}>
                       {project.description}
                     </p>
                     <span style={{
-                      fontSize: 'clamp(0.75rem, 1.4vw, 0.85rem)',
+                      fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)',
                       color: '#8b5cf6',
                       backgroundColor: 'rgba(139, 92, 246, 0.1)',
                       padding: '4px 12px',
@@ -472,137 +656,132 @@ const Projects = () => {
                       {project.type}
                     </span>
                   </div>
-                </a>
-              ))
-              ) : searchTerm && (
-                <div style={{
-                  textAlign: 'center',
-                  padding: '30px',
-                  color: '#9ca3af',
-                  fontSize: 'clamp(13px, 1.8vw, 15px)'
-                }}>
-                  No git projects found matching "{searchTerm}"
                 </div>
-              )}
-            </div>
-          </div>
-        ) : (
-          /* Personal Projects Tab */
-          <div style={{
-            display: 'flex',
-            justifyContent: 'center'
-          }}>
-            <div style={{
-              maxWidth: '600px',
-              width: '100%'
-            }}>
-              <h2 style={{
-                fontSize: 'clamp(1.8rem, 3.5vw, 2.2rem)',
-                fontWeight: 'bold',
-                marginBottom: '30px',
-                color: '#1f2937',
-                textAlign: 'center'
-              }}>
-                
-              </h2>
-              
-              {filteredPersonalProjects.length > 0 ? (
-                filteredPersonalProjects.map((project, index) => {
-                  const ProjectWrapper = project.url ? 'a' : 'div';
-                  const wrapperProps = project.url ? {
-                    href: project.url,
-                    target: "_blank",
-                    rel: "noopener noreferrer",
-                    style: { textDecoration: 'none', color: 'inherit', display: 'block' }
-                  } : {};
+              </a>
+            );
+          })}
 
-                  return (
-                    <ProjectWrapper key={index} {...wrapperProps}>
-                      <div
-                        className="publication-item"
-                        style={{
-                          marginBottom: '25px',
-                          padding: '25px',
-                          backgroundColor: 'rgba(0, 0, 0, 0.02)',
-                          borderRadius: '12px',
-                          border: '1px solid rgba(0, 0, 0, 0.1)',
-                          transition: 'all 0.3s ease',
-                          cursor: project.url ? 'pointer' : 'default'
-                        }}
-                        onMouseOver={(e) => {
-                          e.currentTarget.style.backgroundColor = project.url ? 'rgba(0, 0, 0, 0.05)' : 'rgba(0, 0, 0, 0.03)';
-                          e.currentTarget.style.transform = 'translateY(-2px)';
-                          if (project.url) {
-                            e.currentTarget.style.borderColor = 'rgba(96, 165, 250, 0.3)';
-                          }
-                        }}
-                        onMouseOut={(e) => {
-                          e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.02)';
-                          e.currentTarget.style.transform = 'translateY(0px)';
-                          e.currentTarget.style.borderColor = 'rgba(0, 0, 0, 0.1)';
-                        }}
-                      >
-                        <h3 style={{
-                          fontSize: 'clamp(1rem, 2.2vw, 1.15rem)',
-                          fontWeight: '600',
-                          marginBottom: '10px',
-                          color: '#1f2937',
-                          lineHeight: '1.3'
+          {/* Personal Projects */}
+          {(selectedSection === 'personal' || selectedSection === 'all') && filteredPersonal.map((project, index) => {
+            const section = sections.find(s => s.key === 'personal');
+            
+            return (
+              <a
+                key={`personal-${index}`}
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  textDecoration: 'none',
+                  color: 'inherit',
+                  display: 'block'
+                }}
+              >
+                <div
+                  className="project-item"
+                  style={{
+                    padding: '30px',
+                    backgroundColor: 'rgba(255, 255, 255, 0.6)',
+                    borderRadius: '16px',
+                    border: '2px solid rgba(0, 0, 0, 0.08)',
+                    transition: 'all 0.3s ease',
+                    position: 'relative',
+                    overflow: 'hidden',
+                    height: '100%'
+                  }}
+                  onMouseOver={(e) => {
+                    e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+                    e.currentTarget.style.transform = 'translateY(-3px)';
+                    e.currentTarget.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.08)';
+                    if (section) {
+                      e.currentTarget.style.borderColor = section.gradient.split(' ')[0] || 'rgba(79, 172, 254, 0.3)';
+                    }
+                  }}
+                  onMouseOut={(e) => {
+                    e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.6)';
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = 'none';
+                    e.currentTarget.style.borderColor = 'rgba(0, 0, 0, 0.08)';
+                  }}
+                >
+                  {section && (
+                    <div style={{
+                      position: 'absolute',
+                      left: 0,
+                      top: 0,
+                      bottom: 0,
+                      width: '5px',
+                      background: section.gradient,
+                      borderRadius: '16px 0 0 16px'
+                    }} />
+                  )}
+                  
+                  <div style={{ marginLeft: '15px' }}>
+                    <h3 style={{
+                      fontSize: 'clamp(1.1rem, 2.5vw, 1.3rem)',
+                      fontWeight: '600',
+                      marginBottom: '12px',
+                      color: '#1f2937',
+                      lineHeight: '1.4'
+                    }}>
+                      {project.title} 🔗
+                    </h3>
+                    <p style={{
+                      fontSize: 'clamp(0.95rem, 2vw, 1.1rem)',
+                      color: '#9ca3af',
+                      marginBottom: '12px',
+                      lineHeight: '1.5'
+                    }}>
+                      {project.description}
+                    </p>
+                    <div style={{
+                      display: 'flex',
+                      justifyContent: project.status ? 'space-between' : 'flex-end',
+                      alignItems: 'center',
+                      flexWrap: 'wrap',
+                      gap: '10px'
+                    }}>
+                      {project.status && (
+                        <span style={{
+                          fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)',
+                          color: project.status === 'In Progress' ? '#f59e0b' : '#34d399',
+                          backgroundColor: project.status === 'In Progress' ? 'rgba(245, 158, 11, 0.1)' : 'rgba(52, 211, 153, 0.1)',
+                          padding: '4px 12px',
+                          borderRadius: '20px',
+                          fontWeight: '500'
                         }}>
-                          {project.title} {project.url && '🔗'}
-                        </h3>
-                        <p style={{
-                          fontSize: 'clamp(0.9rem, 1.9vw, 1rem)',
-                          color: '#9ca3af',
-                          marginBottom: '12px'
-                        }}>
-                          {project.description}
-                        </p>
-                        <div style={{
-                          display: 'flex',
-                          justifyContent: project.status ? 'space-between' : 'flex-end',
-                          alignItems: 'center',
-                          flexWrap: 'wrap',
-                          gap: '10px'
-                        }}>
-                          {project.status && (
-                            <span style={{
-                              fontSize: 'clamp(0.75rem, 1.4vw, 0.85rem)',
-                              color: project.status === 'In Progress' ? '#f59e0b' : '#34d399',
-                              backgroundColor: project.status === 'In Progress' ? 'rgba(245, 158, 11, 0.1)' : 'rgba(52, 211, 153, 0.1)',
-                              padding: '4px 12px',
-                              borderRadius: '20px',
-                              fontWeight: '500'
-                            }}>
-                              {project.status}
-                            </span>
-                          )}
-                          <span style={{
-                            fontSize: 'clamp(0.75rem, 1.4vw, 0.85rem)',
-                            color: '#60a5fa',
-                            backgroundColor: 'rgba(96, 165, 250, 0.1)',
-                            padding: '4px 12px',
-                            borderRadius: '20px',
-                            fontWeight: '500'
-                          }}>
-                            {project.type}
-                          </span>
-                        </div>
-                      </div>
-                    </ProjectWrapper>
-                  );
-                })
-              ) : searchTerm && (
-                <div style={{
-                  textAlign: 'center',
-                  padding: '30px',
-                  color: '#9ca3af',
-                  fontSize: 'clamp(13px, 1.8vw, 15px)'
-                }}>
-                  No personal projects found matching "{searchTerm}"
+                          {project.status}
+                        </span>
+                      )}
+                      <span style={{
+                        fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)',
+                        color: '#60a5fa',
+                        backgroundColor: 'rgba(96, 165, 250, 0.1)',
+                        padding: '4px 12px',
+                        borderRadius: '20px',
+                        fontWeight: '500'
+                      }}>
+                        {project.type}
+                      </span>
+                    </div>
+                  </div>
                 </div>
-              )}
-            </div>
+              </a>
+            );
+          })}
+        </div>
+
+        {/* Empty State */}
+        {getDisplayedProjects().length === 0 && (
+          <div style={{
+            textAlign: 'center',
+            padding: '60px 40px',
+            color: '#9ca3af',
+            fontSize: 'clamp(16px, 2.5vw, 18px)'
+          }}>
+            {searchTerm 
+              ? `No projects found matching "${searchTerm}"`
+              : 'No projects in this section'}
           </div>
         )}
       </div>

@@ -207,6 +207,99 @@ const Homepage = () => {
             <strong>Research interests:</strong> fractional Brownian motion, SDEs and SPDEs with distributional drift, long-time regularity of SDEs, parametric estimation for SDEs, spectral-risk gradient descents
           </p>
           
+          <p style={{ marginBottom: 'clamp(16px, 3vw, 24px)', fontSize: 'clamp(14px, 2.2vw, 16px)', color: '#1f2937' }}>
+            <strong>Collaborators:</strong>{' '}
+            <a 
+              href="https://scholar.google.com/citations?user=fGuEdkYAAAAJ&hl=en"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                color: '#60a5fa',
+                textDecoration: 'underline',
+                transition: 'color 0.3s ease'
+              }}
+              onMouseOver={(e) => (e.target as HTMLElement).style.color = '#93c5fd'}
+              onMouseOut={(e) => (e.target as HTMLElement).style.color = '#60a5fa'}
+            >
+              Konstantinos Dareiotis
+            </a>
+            {', '}
+            <a 
+              href="https://goudenege.perso.math.cnrs.fr/output/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                color: '#60a5fa',
+                textDecoration: 'underline',
+                transition: 'color 0.3s ease'
+              }}
+              onMouseOver={(e) => (e.target as HTMLElement).style.color = '#93c5fd'}
+              onMouseOut={(e) => (e.target as HTMLElement).style.color = '#60a5fa'}
+            >
+              Ludovic Goudenège
+            </a>
+            {', '}
+            <a 
+              href="https://feedbackward.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                color: '#60a5fa',
+                textDecoration: 'underline',
+                transition: 'color 0.3s ease'
+              }}
+              onMouseOver={(e) => (e.target as HTMLElement).style.color = '#93c5fd'}
+              onMouseOut={(e) => (e.target as HTMLElement).style.color = '#60a5fa'}
+            >
+              Matthew Holland
+            </a>
+            {', '}
+            <a 
+              href="https://sites.ualberta.ca/~yaozhong/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                color: '#60a5fa',
+                textDecoration: 'underline',
+                transition: 'color 0.3s ease'
+              }}
+              onMouseOver={(e) => (e.target as HTMLElement).style.color = '#93c5fd'}
+              onMouseOut={(e) => (e.target as HTMLElement).style.color = '#60a5fa'}
+            >
+              Yaozhong Hu
+            </a>
+            {', '}
+            <a 
+              href="https://scholar.google.com/citations?user=q8MQahcAAAAJ&hl=en"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                color: '#60a5fa',
+                textDecoration: 'underline',
+                transition: 'color 0.3s ease'
+              }}
+              onMouseOver={(e) => (e.target as HTMLElement).style.color = '#93c5fd'}
+              onMouseOut={(e) => (e.target as HTMLElement).style.color = '#60a5fa'}
+            >
+              Khoa Lê
+            </a>
+            {', '}
+            <a 
+              href="https://arichard.perso.math.cnrs.fr"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                color: '#60a5fa',
+                textDecoration: 'underline',
+                transition: 'color 0.3s ease'
+              }}
+              onMouseOver={(e) => (e.target as HTMLElement).style.color = '#93c5fd'}
+              onMouseOut={(e) => (e.target as HTMLElement).style.color = '#60a5fa'}
+            >
+              Alexandre Richard
+            </a>
+          </p>
+          
           <p style={{ marginBottom: '0', fontSize: 'clamp(14px, 2.2vw, 16px)' }}>
             <strong>Contact:</strong>{' '}
             <a 

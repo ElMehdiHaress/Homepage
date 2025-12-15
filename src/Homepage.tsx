@@ -70,11 +70,11 @@ const Homepage = () => {
   return (
     <div style={{
       width: '100vw',
-      height: '100vh',
+      minHeight: '100vh',
       backgroundColor: '#ffffff',
       position: 'relative',
       margin: 0,
-      padding: 0,
+      padding: '40px 20px',
       cursor: 'default'
     }}>
       {/* Persistent Menu Bar */}
@@ -82,17 +82,17 @@ const Homepage = () => {
       
       {/* Banner Section */}
       <div 
-        className="homepage-banner"
+        className="page-banner"
         style={{
           position: 'relative',
           width: '100%',
-          backgroundColor: '#1e3a8a', // Dark blue background
-          borderTop: '2px solid #3b82f6', // Lighter blue top border
-          borderBottom: '2px solid #3b82f6', // Lighter blue bottom border
+          backgroundColor: '#1e3a8a',
+          borderTop: '2px solid #3b82f6',
+          borderBottom: '2px solid #3b82f6',
           display: 'flex',
           alignItems: 'center',
           padding: 'clamp(20px, 3vw, 40px) clamp(20px, 5vw, 80px)',
-          paddingTop: 'clamp(30px, 4vw, 50px)', // More padding on top to lower content
+          paddingTop: 'clamp(30px, 4vw, 50px)',
           zIndex: 99,
           boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)'
         }}
@@ -116,7 +116,7 @@ const Homepage = () => {
         <div style={{
           position: 'absolute',
           left: '50%',
-          top: 'calc(50% + 15px)', // Lower than center
+          top: 'calc(50% + 15px)',
           transform: 'translate(-50%, -50%)',
           display: 'flex',
           alignItems: 'center',

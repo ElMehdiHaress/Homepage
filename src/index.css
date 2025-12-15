@@ -29,12 +29,12 @@ html, body {
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {
-  .homepage-banner {
+  .page-banner {
     padding: clamp(15px, 3vw, 25px) clamp(15px, 4vw, 40px) !important;
     padding-top: clamp(60px, 10vw, 70px) !important; /* Extra padding to account for menu bar */
   }
 
-  .homepage-banner img {
+  .page-banner img {
     width: clamp(60px, 12vw, 100px) !important;
     height: clamp(60px, 12vw, 100px) !important;
   }
@@ -120,12 +120,12 @@ html, body {
 
 /* Extra small mobile devices */
 @media (max-width: 480px) {
-  .homepage-banner {
+  .page-banner {
     padding: clamp(12px, 2.5vw, 20px) clamp(12px, 3vw, 30px) !important;
     padding-top: clamp(55px, 9vw, 65px) !important; /* Extra padding to account for menu bar */
   }
 
-  .homepage-banner img {
+  .page-banner img {
     width: clamp(50px, 10vw, 80px) !important;
     height: clamp(50px, 10vw, 80px) !important;
   }

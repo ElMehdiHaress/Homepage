@@ -44,6 +44,15 @@ const cityCoordinates: Record<string, { x: number; y: number }> = {
 const talks: Talk[] = [
     {
       title: "Singular and dissipative stochastic differential equations",
+      event: "Mesures de Gibbs, Turbulence d'onde et EDP stochastiques, Évry",
+      year: "2025",
+      type: "Talk",
+      hasFile: true,
+      fileUrl: "https://drive.google.com/drive/folders/163cXtYFTNoGqRiKSQYpnL68oSywI6IW4?usp=share_link",
+      city: "Paris"
+    },
+    {
+      title: "Singular and dissipative stochastic differential equations",
       event: "Séminaire d'analyse numérique (IRMAR), Rennes",
       year: "2025",
       type: "Talk",
@@ -108,6 +117,8 @@ const talks: Talk[] = [
       event: "Les probabilités de demain, Paris",
       year: "2024",
       type: "Talk",
+      hasFile: true,
+      fileUrl: "https://drive.google.com/drive/folders/163cXtYFTNoGqRiKSQYpnL68oSywI6IW4?usp=share_link",
       city: "Paris"
     },
     {
@@ -187,6 +198,7 @@ const talks: Talk[] = [
 ];
 
 const attendedConferences = [
+    { event: "Mesures de Gibbs, Turbulence d'onde et EDP stochastiques, Évry", year: "2025", url: "https://indico.math.cnrs.fr/event/15230/overview", city: "Paris" },
     { event: "Moroccan - Swedish Conference on Stochastic Analysis 2025, Marrakech", year: "2025", url: "https://moscsa2025.com", city: "Marrakech" },
     { event: "Regbynoise2025, Vienna", year: "2025", url: "https://regbynoise2025.conf.tuwien.ac.at", city: "Vienna" },
     { event: "The SPDevent, Bielefeld", year: "2024", url: "https://www.uni-bielefeld.de/fakultaeten/mathematik/ag/hofmanova/conferences-and-workshops/spdevent-2024/", city: "Bielefeld" },

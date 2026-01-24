@@ -37,6 +37,13 @@ const researchProjects: ResearchProject[] = [
     type: "Management"
   },
   {
+    title: "Member of the organising committee of the FRSSD26. Fractional, rough and singular stochastic dynamics",
+    institution: "",
+    period: "2026",
+    type: "Organization",
+    url: "https://conferences.leeds.ac.uk/frssd2026/"
+  },
+  {
     title: "Member of the organising committee of the CJC-MA. Le Congrès des Jeunes Chercheurs en Mathématiques et Applications",
     institution: "",
     period: "2023",

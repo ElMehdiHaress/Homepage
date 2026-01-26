@@ -193,6 +193,8 @@ const talks: Talk[] = [
       event: "International Conference on Artificial Intelligence and Statistics, online",
       year: "2021",
       type: "poster",
+      hasFile: true,
+      fileUrl: "https://virtual.aistats.org/virtual/2021/poster/1611",
       city: "Online"
     }
 ];

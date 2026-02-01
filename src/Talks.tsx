@@ -208,7 +208,7 @@ const attendedConferences = [
     { event: "Stochastic dynamics and stochastic equations, Lausanne", year: "2024", url: "https://bernoulli.epfl.ch/programs/workshop-on-stochastic-dynamics-and-stochastic-equations/", city: "Lausanne" },
     { event: "Colloque Jeunes Probabilistes et Statisticiens, Ile d'Oléron", year: "2023", url: "https://jps-2023.sciencesconf.org", city: "Ile d'Oléron" },
     { event: "The SPDevent, Bielefeld", year: "2023", url: "https://www.uni-bielefeld.de/fakultaeten/mathematik/ag/hofmanova/conferences-and-workshops/spdevent-2023/", city: "Bielefeld" },
-    { event: "GDR TRAjectoires ruGueuses, Paris Dauphine", year: "2023", url: "https://trag2022.sciencesconf.org", city: "Paris" },
+    { event: "GDR TRAjectoires ruGueuses, Paris Dauphine", year: "2023", url: "https://trag2023.sciencesconf.org/?lang=fr", city: "Paris" },
     { event: "International Conference on Malliavin Calculus and Related Topics, Luxembourg", year: "2023", url: "https://math.uni.lu/icmcrt/", city: "Luxembourg" },
     { event: "Numerical Analysis of Stochastic Partial Differential Equations, Eindhoven", year: "2023", url: "https://www.sciencedz.net/fr/conference/94121-naspde-2023-workshop-numerical-analysis-of-stochastic-partial-differential-equations", city: "Eindhoven" },
     { event: "Congrès Jeunes Chercheurs en Mathématiques et leurs Applications, Calais", year: "2022", url: "https://lmpa.univ-littoral.fr/conferences/jcm2022/CJC-MA-2022.html", city: "Calais" },
@@ -294,23 +294,21 @@ const Talks = () => {
     return filtered;
   }, [selectedCity, searchTerm]);
 
-  const filteredConferences = useMemo(() => {
-    let filtered = attendedConferences;
-    
-    if (selectedCity) {
-      filtered = filtered.filter(conf => conf.city === selectedCity);
-    }
-    
-    if (searchTerm) {
-      filtered = filtered.filter(conf =>
-        conf.event.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        conf.year.includes(searchTerm) ||
-        conf.city.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-    }
-    
-    return filtered;
-  }, [selectedCity, searchTerm]);
+  // Get conference URL for a talk (match by event/year/city, with flexible event matching)
+  const normalizeEvent = (s: string) =>
+    s.replace(/^The\s+/i, '').replace(/\s+\d{4}\b/g, '').trim().toLowerCase();
+  const getConferenceUrl = (talk: Talk): string | undefined => {
+    const match = attendedConferences.find(
+      (c) =>
+        c.year === talk.year &&
+        c.city === talk.city &&
+        (c.event === talk.event ||
+          normalizeEvent(c.event) === normalizeEvent(talk.event) ||
+          talk.event.toLowerCase().includes(normalizeEvent(c.event).split(',')[0]) ||
+          c.event.toLowerCase().includes(normalizeEvent(talk.event).split(',')[0]))
+    );
+    return match?.url;
+  };
 
   // Get all city positions for connecting lines with city names
   const cityPositionsWithNames = cities.map(city => ({ name: city.name, x: city.x, y: city.y }));
@@ -673,32 +671,30 @@ const Talks = () => {
               fontSize: 'clamp(1rem, 2vw, 1.1rem)',
               color: '#6b7280'
             }}>
-              {filteredTalks.length} {filteredTalks.length === 1 ? 'talk' : 'talks'} • {filteredConferences.length} {filteredConferences.length === 1 ? 'conference' : 'conferences'}
+              {filteredTalks.length} {filteredTalks.length === 1 ? 'talk or poster' : 'talks and posters'}
             </p>
           </div>
         )}
 
-        {/* Talks and Conferences List */}
+        {/* Selected Talks and Posters (single column, with conference links when applicable) */}
         <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 350px), 1fr))',
-          gap: 'clamp(20px, 4vw, 40px)',
-          alignItems: 'flex-start'
+          maxWidth: '700px',
+          margin: '0 auto'
         }}>
-          {/* Talks Column */}
-          <div>
-            <h2 style={{
-              fontSize: 'clamp(1.8rem, 3.5vw, 2.2rem)',
-              fontWeight: 'bold',
-              marginBottom: '30px',
-              color: '#1f2937',
-              textAlign: 'center'
-            }}>
-              {selectedCity ? `Talks in ${selectedCity}` : 'Selected Talks and Posters'}
-            </h2>
-            
-            {filteredTalks.length > 0 ? (
-              filteredTalks.map((talk, index) => (
+          <h2 style={{
+            fontSize: 'clamp(1.8rem, 3.5vw, 2.2rem)',
+            fontWeight: 'bold',
+            marginBottom: '30px',
+            color: '#1f2937',
+            textAlign: 'center'
+          }}>
+            {selectedCity ? `Talks and Posters in ${selectedCity}` : 'Selected Talks and Posters'}
+          </h2>
+          
+          {filteredTalks.length > 0 ? (
+            filteredTalks.map((talk, index) => {
+              const conferenceUrl = getConferenceUrl(talk);
+              return (
                 <div
                   key={index}
                   className="publication-item"
@@ -736,7 +732,27 @@ const Talks = () => {
                     marginBottom: '6px',
                     fontStyle: 'italic'
                   }}>
-                    {talk.event} {talk.type === 'poster' && '(poster)'}
+                    {conferenceUrl ? (
+                      <>
+                        <a
+                          href={conferenceUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{
+                            color: 'inherit',
+                            textDecoration: 'underline',
+                            textUnderlineOffset: '2px'
+                          }}
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          {talk.event}
+                        </a>
+                        {' 🔗'}
+                      </>
+                    ) : (
+                      talk.event
+                    )}
+                    {talk.type === 'poster' && ' (poster)'}
                     {talk.hasFile && (
                       talk.fileUrl ? (
                         <>
@@ -775,104 +791,20 @@ const Talks = () => {
                     {talk.year} • {talk.city}
                   </p>
                 </div>
-              ))
-            ) : (
-              <div style={{
-                textAlign: 'center',
-                padding: '30px',
-                color: '#9ca3af',
-                fontSize: 'clamp(13px, 1.8vw, 15px)'
-              }}>
-                {selectedCity 
-                  ? `No talks found in ${selectedCity}${searchTerm ? ` matching "${searchTerm}"` : ''}`
-                  : `No talks found${searchTerm ? ` matching "${searchTerm}"` : ''}`}
-              </div>
-            )}
-          </div>
-
-          {/* Conferences Column */}
-          <div>
-            <h2 style={{
-              fontSize: 'clamp(1.8rem, 3.5vw, 2.2rem)',
-              fontWeight: 'bold',
-              marginBottom: '30px',
-              color: '#1f2937',
-              textAlign: 'center'
+              );
+            })
+          ) : (
+            <div style={{
+              textAlign: 'center',
+              padding: '30px',
+              color: '#9ca3af',
+              fontSize: 'clamp(13px, 1.8vw, 15px)'
             }}>
-              {selectedCity ? `Conferences in ${selectedCity}` : 'Attended Conferences'}
-            </h2>
-            
-            {filteredConferences.length > 0 ? (
-              filteredConferences.map((conf, index) => (
-                <a
-                  key={index}
-                  href={conf.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    textDecoration: 'none',
-                    color: 'inherit',
-                    display: 'block'
-                  }}
-                >
-                  <div
-                    className="publication-item"
-                    style={{
-                      marginBottom: '20px',
-                      padding: '18px',
-                      backgroundColor: 'rgba(255, 255, 255, 0.6)',
-                      borderRadius: '12px',
-                      border: '2px solid rgba(0, 0, 0, 0.08)',
-                      transition: 'all 0.3s ease',
-                      cursor: 'pointer'
-                    }}
-                    onMouseOver={(e) => {
-                      e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
-                      e.currentTarget.style.transform = 'translateY(-2px)';
-                      e.currentTarget.style.boxShadow = '0 8px 20px rgba(0, 0, 0, 0.08)';
-                      e.currentTarget.style.borderColor = 'rgba(96, 165, 250, 0.3)';
-                    }}
-                    onMouseOut={(e) => {
-                      e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.6)';
-                      e.currentTarget.style.transform = 'translateY(0px)';
-                      e.currentTarget.style.boxShadow = 'none';
-                      e.currentTarget.style.borderColor = 'rgba(0, 0, 0, 0.08)';
-                    }}
-                  >
-                    <p style={{
-                      fontSize: 'clamp(0.95rem, 2vw, 1.1rem)',
-                      color: '#1f2937',
-                      marginBottom: '6px',
-                      fontWeight: '500',
-                      lineHeight: '1.3'
-                    }}>
-                      {conf.event} 🔗
-                    </p>
-                    <p style={{
-                      fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)',
-                      color: '#6b7280',
-                      fontWeight: '500'
-                    }}>
-                      {conf.year} • {conf.city}
-                    </p>
-                  </div>
-                </a>
-              ))
-            ) : (
-              <div style={{
-                textAlign: 'center',
-                padding: '30px',
-                color: '#9ca3af',
-                fontSize: 'clamp(13px, 1.8vw, 15px)'
-              }}>
-                {selectedCity 
-                  ? `No conferences found in ${selectedCity}${searchTerm ? ` matching "${searchTerm}"` : ''}`
-                  : searchTerm 
-                    ? `No conferences found matching "${searchTerm}"`
-                    : 'No conferences to display'}
-              </div>
-            )}
-          </div>
+              {selectedCity 
+                ? `No talks found in ${selectedCity}${searchTerm ? ` matching "${searchTerm}"` : ''}`
+                : `No talks found${searchTerm ? ` matching "${searchTerm}"` : ''}`}
+            </div>
+          )}
         </div>
       </div>
     </div>

@@ -74,7 +74,18 @@ html, body {
   
   .menu-bar {
     top: 8px !important;
-    padding: 4px 6px !important;
+    padding: 8px 6px !important;
+    gap: 4px !important;
+  }
+  
+  .menu-bar button {
+    width: 52px !important;
+    height: 52px !important;
+    font-size: 10px !important;
+  }
+  
+  .menu-bar button span:first-child {
+    font-size: 20px !important;
   }
   
   .dock-menu {
@@ -160,7 +171,18 @@ html, body {
   
   .menu-bar {
     top: 5px !important;
-    padding: 3px 5px !important;
+    padding: 6px 4px !important;
+    gap: 3px !important;
+  }
+  
+  .menu-bar button {
+    width: 46px !important;
+    height: 46px !important;
+    font-size: 9px !important;
+  }
+  
+  .menu-bar button span:first-child {
+    font-size: 18px !important;
   }
   
   .dock-menu {

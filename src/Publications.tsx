@@ -267,10 +267,11 @@ const Publications = () => {
           textAlign: 'center',
           fontSize: 'clamp(1rem, 2vw, 1.2rem)',
           color: '#6b7280',
-          marginBottom: '50px',
+          marginBottom: '40px',
           maxWidth: '700px',
-          margin: '0 auto 50px auto'
+          margin: '0 auto 40px auto'
         }}>
+          My research is organised around the three following topics.
         </p>
 
         {/* Research Sections */}

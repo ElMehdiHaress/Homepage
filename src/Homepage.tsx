@@ -456,6 +456,36 @@ const Homepage = () => {
           <span style={{ fontSize: '24px' }}>🎓</span>
         </a>
 
+        {/* CV Link */}
+        <a
+          href="https://drive.google.com/file/d/1lfo0vQPSHdNnTJf5lrOIEhLiBfHytdv8/view?usp=sharing"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="CV"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '50px',
+            height: '50px',
+            backgroundColor: '#f8fafc',
+            borderRadius: '12px',
+            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
+            transition: 'all 0.3s ease',
+            textDecoration: 'none'
+          }}
+          onMouseOver={(e) => {
+            e.currentTarget.style.transform = 'scale(1.1)';
+            e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.4)';
+          }}
+          onMouseOut={(e) => {
+            e.currentTarget.style.transform = 'scale(1)';
+            e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.3)';
+          }}
+        >
+          <span style={{ fontSize: '24px' }}>📄</span>
+        </a>
+
         {/* GitHub Link */}
         <a
           href="https://github.com/ElMehdiHaress"

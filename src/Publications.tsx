@@ -43,7 +43,7 @@ const Publications = () => {
     // Section 2: Numerical Approximation Techniques
     {
       title: "Numerical approximation of the stochastic heat equation with a distributional reaction term",
-      journal: "arXiv:2405.08201 (Submitted)",
+      journal: "To appear in IMA Journal of Numerical Analysis",
       authors: "joint work with Ludovic Goudenège and Alexandre Richard",
       year: "2024",
       section: 'numerical',

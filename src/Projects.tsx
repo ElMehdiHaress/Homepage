@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MenuBar from './MenuBar';
 import profileImage from './assets/recent-me.jpeg';
+import brownianSlateSeed10 from './assets/brownian-slate-seed10.png';
 
 interface ResearchProject {
   title: string;
@@ -112,21 +113,21 @@ const Projects = () => {
       key: 'academic' as SectionKey,
       title: 'Academic',
       icon: '🎓',
-      gradient: 'linear-gradient(135deg, rgba(90, 103, 216, 0.75) 0%, rgba(85, 60, 154, 0.75) 100%)',
+      gradient: 'linear-gradient(135deg, rgba(46, 92, 138, 0.88) 0%, rgba(56, 128, 185, 0.82) 100%)',
       description: 'Management and organizational roles in academia'
     },
     {
       key: 'research' as SectionKey,
       title: 'Research',
       icon: '🔬',
-      gradient: 'linear-gradient(135deg, rgba(192, 38, 211, 0.75) 0%, rgba(162, 28, 175, 0.75) 100%)',
+      gradient: 'linear-gradient(135deg, rgba(92, 99, 112, 0.9) 0%, rgba(46, 92, 138, 0.84) 100%)',
       description: 'Research code repositories and computational projects'
     },
     {
       key: 'personal' as SectionKey,
       title: 'Personal',
       icon: '💼',
-      gradient: 'linear-gradient(135deg, rgba(37, 99, 235, 0.75) 0%, rgba(30, 64, 175, 0.75) 100%)',
+      gradient: 'linear-gradient(135deg, rgba(56, 128, 185, 0.88) 0%, rgba(46, 92, 138, 0.82) 100%)',
       description: 'Creative and personal development projects'
     }
   ];
@@ -192,11 +193,15 @@ const Projects = () => {
     <div style={{
       width: '100vw',
       minHeight: '100vh',
-      backgroundColor: '#ffffff',
+      backgroundColor: '#f8f9fb',
+      backgroundImage: `linear-gradient(rgba(248, 249, 251, 0.88), rgba(248, 249, 251, 0.88)), url(${brownianSlateSeed10})`,
+      backgroundSize: '1200px auto',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'repeat',
       position: 'relative',
       margin: 0,
       padding: '40px 20px',
-      color: '#1f2937'
+      color: '#141820'
     }}>
       {/* Persistent Menu Bar */}
       <MenuBar />
@@ -207,9 +212,9 @@ const Projects = () => {
         style={{
           position: 'relative',
           width: '100%',
-          backgroundColor: '#1e3a8a',
-          borderTop: '2px solid #3b82f6',
-          borderBottom: '2px solid #3b82f6',
+          backgroundColor: '#2e5c8a',
+          borderTop: '2px solid #3880b9',
+          borderBottom: '2px solid #3880b9',
           display: 'flex',
           alignItems: 'center',
           padding: 'clamp(20px, 3vw, 40px) clamp(20px, 5vw, 80px)',

@@ -1,77 +1,18 @@
-import { useState, useEffect } from 'react';
 import profileImage from './assets/recent-me.jpeg';
 import MenuBar from './MenuBar';
-
-interface TrailPoint {
-  x: number;
-  y: number;
-  age: number;
-  wiggleX: number;
-  wiggleY: number;
-}
-
+import { FileText, GraduationCap } from 'lucide-react';
+import brownianSlateSeed1 from './assets/brownian-slate-seed1.png';
 
 const Homepage = () => {
-  const [mousePos, setMousePos] = useState({ x: 400, y: 300 });
-  const [trail, setTrail] = useState<TrailPoint[]>([]);
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
-    };
-
-    document.addEventListener('mousemove', handleMouseMove);
-    
-    return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, []);
-
-  // Continuous trail effect
-  useEffect(() => {
-    let animationId: number;
-    
-    const animateTrail = () => {
-      setTrail(prevTrail => {
-        let newTrail = [...prevTrail];
-        
-        // Always add new trail point at current mouse position
-        newTrail.push({
-          x: mousePos.x,
-          y: mousePos.y,
-          age: 0,
-          wiggleX: (Math.random() - 0.5) * 2,
-          wiggleY: (Math.random() - 0.5) * 2
-        });
-        
-        // Update existing trail points with giggly movement and aging
-        newTrail = newTrail.map(point => ({
-          ...point,
-          age: point.age + 1,
-          wiggleX: point.wiggleX + (Math.random() - 0.5) * 0.3,
-          wiggleY: point.wiggleY + (Math.random() - 0.5) * 0.3
-        })).filter(point => point.age < 30); // Shorter trail for smoother effect
-        
-        return newTrail;
-      });
-      
-      animationId = requestAnimationFrame(animateTrail);
-    };
-    
-    animateTrail();
-    
-    return () => {
-      if (animationId) {
-        cancelAnimationFrame(animationId);
-      }
-    };
-  }, [mousePos]);
-
   return (
     <div style={{
       width: '100vw',
       minHeight: '100vh',
-      backgroundColor: '#ffffff',
+      backgroundColor: '#f8f9fb',
+      backgroundImage: `linear-gradient(rgba(248, 249, 251, 0.86), rgba(248, 249, 251, 0.86)), url(${brownianSlateSeed1})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
       position: 'relative',
       margin: 0,
       padding: '40px 20px',
@@ -86,9 +27,9 @@ const Homepage = () => {
         style={{
           position: 'relative',
           width: '100%',
-          backgroundColor: '#1e3a8a',
-          borderTop: '2px solid #3b82f6',
-          borderBottom: '2px solid #3b82f6',
+          backgroundColor: '#3880b9',
+          borderTop: '2px solid #2e5c8a',
+          borderBottom: '2px solid #2e5c8a',
           display: 'flex',
           alignItems: 'center',
           padding: 'clamp(20px, 3vw, 40px) clamp(20px, 5vw, 80px)',
@@ -106,7 +47,7 @@ const Homepage = () => {
             height: 'clamp(100px, 15vw, 150px)',
             borderRadius: '50%',
             objectFit: 'cover',
-            border: '3px solid #ffffff',
+            border: '3px solid #d4d7dd',
             flexShrink: 0,
             boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)'
           }}
@@ -423,7 +364,7 @@ const Homepage = () => {
           transform: 'translateX(-50%)',
           zIndex: 100,
           display: 'flex',
-          gap: '20px'
+          gap: '12px'
         }}
       >
         {/* Google Scholar Link */}
@@ -431,29 +372,39 @@ const Homepage = () => {
           href="https://scholar.google.com/citations?user=D13FK0EAAAAJ&hl=fr&oi=ao"
           target="_blank"
           rel="noopener noreferrer"
+          title="Google Scholar"
           style={{
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            width: '50px',
-            height: '50px',
-            backgroundColor: '#f8fafc',
-            borderRadius: '12px',
-            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
-            transition: 'all 0.3s ease',
-            textDecoration: 'none'
+            gap: '8px',
+            padding: '9px 12px',
+            backgroundColor: 'rgba(248, 249, 251, 0.98)',
+            border: '1px solid #d4d7dd',
+            borderRadius: '10px',
+            boxShadow: '0 8px 20px rgba(20, 24, 32, 0.12)',
+            transition: 'all 0.2s ease',
+            textDecoration: 'none',
+            color: '#5c6370',
+            fontSize: '14px',
+            fontWeight: 600,
+            whiteSpace: 'nowrap'
           }}
           onMouseOver={(e) => {
-            e.currentTarget.style.transform = 'scale(1.1)';
-            e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.4)';
+            e.currentTarget.style.transform = 'translateY(-1px)';
+            e.currentTarget.style.boxShadow = '0 10px 24px rgba(20, 24, 32, 0.18)';
+            e.currentTarget.style.backgroundColor = '#d4d7dd';
+            e.currentTarget.style.color = '#2e5c8a';
           }}
           onMouseOut={(e) => {
             e.currentTarget.style.transform = 'scale(1)';
-            e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.3)';
+            e.currentTarget.style.boxShadow = '0 8px 20px rgba(20, 24, 32, 0.12)';
+            e.currentTarget.style.backgroundColor = 'rgba(248, 249, 251, 0.98)';
+            e.currentTarget.style.color = '#5c6370';
           }}
         >
-          {/* Google Scholar Icon (using emoji as fallback) */}
-          <span style={{ fontSize: '24px' }}>🎓</span>
+          <GraduationCap size={16} />
+          <span>Scholar</span>
         </a>
 
         {/* CV Link */}
@@ -466,24 +417,34 @@ const Homepage = () => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            width: '50px',
-            height: '50px',
-            backgroundColor: '#f8fafc',
-            borderRadius: '12px',
-            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
-            transition: 'all 0.3s ease',
-            textDecoration: 'none'
+            gap: '8px',
+            padding: '9px 12px',
+            backgroundColor: 'rgba(248, 249, 251, 0.98)',
+            border: '1px solid #d4d7dd',
+            borderRadius: '10px',
+            boxShadow: '0 8px 20px rgba(20, 24, 32, 0.12)',
+            transition: 'all 0.2s ease',
+            textDecoration: 'none',
+            color: '#5c6370',
+            fontSize: '14px',
+            fontWeight: 600,
+            whiteSpace: 'nowrap'
           }}
           onMouseOver={(e) => {
-            e.currentTarget.style.transform = 'scale(1.1)';
-            e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.4)';
+            e.currentTarget.style.transform = 'translateY(-1px)';
+            e.currentTarget.style.boxShadow = '0 10px 24px rgba(20, 24, 32, 0.18)';
+            e.currentTarget.style.backgroundColor = '#d4d7dd';
+            e.currentTarget.style.color = '#2e5c8a';
           }}
           onMouseOut={(e) => {
             e.currentTarget.style.transform = 'scale(1)';
-            e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.3)';
+            e.currentTarget.style.boxShadow = '0 8px 20px rgba(20, 24, 32, 0.12)';
+            e.currentTarget.style.backgroundColor = 'rgba(248, 249, 251, 0.98)';
+            e.currentTarget.style.color = '#5c6370';
           }}
         >
-          <span style={{ fontSize: '24px' }}>📄</span>
+          <FileText size={16} />
+          <span>CV</span>
         </a>
 
         {/* GitHub Link */}
@@ -495,66 +456,48 @@ const Homepage = () => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            width: '50px',
-            height: '50px',
-            backgroundColor: '#f8fafc',
-            borderRadius: '12px',
-            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
-            transition: 'all 0.3s ease',
-            textDecoration: 'none'
+            gap: '8px',
+            padding: '9px 12px',
+            backgroundColor: 'rgba(248, 249, 251, 0.98)',
+            border: '1px solid #d4d7dd',
+            borderRadius: '10px',
+            boxShadow: '0 8px 20px rgba(20, 24, 32, 0.12)',
+            transition: 'all 0.2s ease',
+            textDecoration: 'none',
+            color: '#5c6370',
+            fontSize: '14px',
+            fontWeight: 600,
+            whiteSpace: 'nowrap'
           }}
           onMouseOver={(e) => {
-            e.currentTarget.style.transform = 'scale(1.1)';
-            e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.4)';
+            e.currentTarget.style.transform = 'translateY(-1px)';
+            e.currentTarget.style.boxShadow = '0 10px 24px rgba(20, 24, 32, 0.18)';
+            e.currentTarget.style.backgroundColor = '#d4d7dd';
+            e.currentTarget.style.color = '#2e5c8a';
           }}
           onMouseOut={(e) => {
             e.currentTarget.style.transform = 'scale(1)';
-            e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.3)';
+            e.currentTarget.style.boxShadow = '0 8px 20px rgba(20, 24, 32, 0.12)';
+            e.currentTarget.style.backgroundColor = 'rgba(248, 249, 251, 0.98)';
+            e.currentTarget.style.color = '#5c6370';
           }}
         >
-          {/* GitHub Icon */}
           <svg 
-            width="24" 
-            height="24" 
+            width="16" 
+            height="16" 
             viewBox="0 0 24 24" 
             fill="none" 
             xmlns="http://www.w3.org/2000/svg"
           >
             <path 
               d="M12 0C5.374 0 0 5.373 0 12 0 17.302 3.438 21.8 8.207 23.387c.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" 
-              fill="#333"
+              fill="currentColor"
             />
           </svg>
+          <span>GitHub</span>
         </a>
       </div>
 
-      
-      {/* Continuous light trail */}
-      {trail.map((point, index) => {
-        const progress = point.age / 30; // 0 to 1 as it ages
-        const opacity = Math.max(0, (1 - progress) * 0.6); // Fade from 0.6 to 0
-        const size = Math.max(15, 60 - point.age * 1.5); // Shrink from 60px to 15px
-        const wiggleAmount = Math.min(point.age * 0.15, 4); // Gentle wiggle increase
-        
-        return (
-          <div
-            key={`${point.x}-${point.y}-${index}`}
-            style={{
-              position: 'absolute',
-              left: point.x - size/2 + point.wiggleX * wiggleAmount,
-              top: point.y - size/2 + point.wiggleY * wiggleAmount,
-              width: `${size}px`,
-              height: `${size}px`,
-              borderRadius: '50%',
-              background: `radial-gradient(circle, rgba(100,100,100,${opacity * 0.6}) 0%, rgba(120,120,120,${opacity * 0.4}) 40%, rgba(140,140,140,${opacity * 0.2}) 70%, transparent 100%)`,
-              pointerEvents: 'none',
-              zIndex: 10 + (30 - point.age), // Newer points on top
-              filter: `blur(${progress * 1}px)` // Slight blur as it ages
-            }}
-          />
-        );
-      })}
-      
     </div>
   );
 };

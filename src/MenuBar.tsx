@@ -1,86 +1,97 @@
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from "react-router-dom";
+import {
+  BookOpenText,
+  BriefcaseBusiness,
+  GraduationCap,
+  Home,
+  Mic2,
+  ScrollText,
+} from "lucide-react";
+
+type MenuItem = {
+  id: string;
+  label: string;
+  path: string;
+  icon: React.ComponentType<{ size?: number }>;
+};
+
+const menuItems: MenuItem[] = [
+  { id: "home", label: "Home", path: "/", icon: Home },
+  { id: "publications", label: "Publications", path: "/publications", icon: ScrollText },
+  { id: "talks", label: "Talks", path: "/talks", icon: Mic2 },
+  { id: "teaching", label: "Teaching", path: "/teaching", icon: GraduationCap },
+  { id: "projects", label: "Projects", path: "/projects", icon: BriefcaseBusiness },
+  { id: "research-intro", label: "Research", path: "/research-intro", icon: BookOpenText },
+];
 
 const MenuBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const menuItems = [
-    { id: 'home', label: 'Home', icon: '🏠', path: '/' },
-    { id: 'publications', label: 'Publications', icon: '📄', path: '/publications' },
-    { id: 'talks', label: 'Talks', icon: '🎤', path: '/talks' },
-    { id: 'teaching', label: 'Teaching', icon: '👨‍🏫', path: '/teaching' },
-    { id: 'projects', label: 'Projects', icon: '👨‍💻', path: '/projects' },
-    { id: 'research-intro', label: 'Research Intro', icon: '📚', path: '/research-intro' }
-  ];
-
-  const handleMenuClick = (path: string) => {
-    navigate(path);
-  };
-
-  const isActive = (path: string) => {
-    return location.pathname === path;
-  };
-
   return (
-    <div 
-      className="menu-bar"
+    <div
       style={{
-        position: 'fixed',
-        top: '20px',
-        left: '50%',
-        transform: 'translateX(-50%)',
+        position: "fixed",
+        top: "14px",
+        left: "50%",
+        transform: "translateX(-50%)",
         zIndex: 1000,
-        display: 'flex',
-        alignItems: 'center',
-        backgroundColor: '#4a4a4a',
-        borderRadius: '16px',
-        padding: '12px 8px',
-        border: '1px solid #666666',
-        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
-        backdropFilter: 'blur(10px)',
-        gap: '6px',
-        transition: 'all 0.3s ease'
+        width: "fit-content",
+        maxWidth: "calc(100vw - 20px)",
+        backgroundColor: "rgba(248, 249, 251, 0.98)",
+        border: "1px solid #d4d7dd",
+        borderRadius: "14px",
+        boxShadow: "0 8px 25px rgba(20, 24, 32, 0.14)",
+        padding: "8px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: "8px",
+        overflowX: "auto",
+        backdropFilter: "blur(6px)",
       }}
     >
-      {menuItems.map((item) => (
-        <button
-          key={item.id}
-          onClick={() => handleMenuClick(item.path)}
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: '72px',
-            height: '72px',
-            borderRadius: '12px',
-            border: 'none',
-            cursor: 'pointer',
-            transition: 'all 0.3s ease',
-            backgroundColor: isActive(item.path) ? '#10b981' : 'transparent',
-            color: isActive(item.path) ? '#ffffff' : '#ffffff',
-            gap: '6px',
-            fontWeight: '500'
-          }}
-          onMouseOver={(e) => {
-            if (!isActive(item.path)) {
-              e.currentTarget.style.backgroundColor = 'rgba(96, 165, 250, 0.15)';
-              e.currentTarget.style.transform = 'scale(1.05)';
-              e.currentTarget.style.color = '#60a5fa';
-            }
-          }}
-          onMouseOut={(e) => {
-            if (!isActive(item.path)) {
-              e.currentTarget.style.backgroundColor = 'transparent';
-              e.currentTarget.style.transform = 'scale(1)';
-              e.currentTarget.style.color = '#ffffff';
-            }
-          }}
-        >
-          <span style={{ fontSize: '26px', lineHeight: 1 }}>{item.icon}</span>
-          <span style={{ fontSize: '11px', fontWeight: '600', lineHeight: 1 }}>{item.label}</span>
-        </button>
-      ))}
+      {menuItems.map((item) => {
+        const Icon = item.icon;
+        const isActive = location.pathname === item.path;
+
+        return (
+          <button
+            key={item.id}
+            onClick={() => navigate(item.path)}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+              padding: "9px 12px",
+              borderRadius: "10px",
+              border: "none",
+              cursor: "pointer",
+              backgroundColor: isActive ? "#d4d7dd" : "transparent",
+              color: isActive ? "#2e5c8a" : "#5c6370",
+              fontSize: "14px",
+              fontWeight: 600,
+              whiteSpace: "nowrap",
+              transition: "all 0.2s ease",
+            }}
+            onMouseOver={(e) => {
+              if (!isActive) {
+                e.currentTarget.style.backgroundColor = "#f8f9fb";
+                e.currentTarget.style.color = "#141820";
+              }
+            }}
+            onMouseOut={(e) => {
+              if (!isActive) {
+                e.currentTarget.style.backgroundColor = "transparent";
+                e.currentTarget.style.color = "#5c6370";
+              }
+            }}
+          >
+            <Icon size={16} />
+            <span>{item.label}</span>
+          </button>
+        );
+      })}
     </div>
   );
 };

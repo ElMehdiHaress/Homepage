@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import MenuBar from './MenuBar';
 import mapImage from './assets/map.jpeg';
 import profileImage from './assets/recent-me.jpeg';
+import brownianSlateSeed15 from './assets/brownian-slate-seed15.png';
 
 interface Talk {
   title: string;
@@ -338,11 +339,15 @@ const Talks = () => {
     <div style={{
       width: '100vw',
       minHeight: '100vh',
-      backgroundColor: '#ffffff',
+      backgroundColor: '#f8f9fb',
+      backgroundImage: `linear-gradient(rgba(248, 249, 251, 0.88), rgba(248, 249, 251, 0.88)), url(${brownianSlateSeed15})`,
+      backgroundSize: '1200px auto',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'repeat',
       position: 'relative',
       margin: 0,
       padding: '40px 20px',
-      color: '#1f2937'
+      color: '#141820'
     }}>
       {/* Persistent Menu Bar */}
       <MenuBar />
@@ -353,9 +358,9 @@ const Talks = () => {
         style={{
           position: 'relative',
           width: '100%',
-          backgroundColor: '#1e3a8a',
-          borderTop: '2px solid #3b82f6',
-          borderBottom: '2px solid #3b82f6',
+          backgroundColor: '#2e5c8a',
+          borderTop: '2px solid #3880b9',
+          borderBottom: '2px solid #3880b9',
           display: 'flex',
           alignItems: 'center',
           padding: 'clamp(20px, 3vw, 40px) clamp(20px, 5vw, 80px)',

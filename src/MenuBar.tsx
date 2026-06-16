@@ -30,6 +30,7 @@ const MenuBar = () => {
 
   return (
     <div
+      className="menu-bar-pill"
       style={{
         position: "fixed",
         top: "14px",
@@ -37,7 +38,7 @@ const MenuBar = () => {
         transform: "translateX(-50%)",
         zIndex: 1000,
         width: "fit-content",
-        maxWidth: "calc(100vw - 20px)",
+        maxWidth: "calc(100vw - 16px)",
         backgroundColor: "rgba(248, 249, 251, 0.98)",
         border: "1px solid #d4d7dd",
         borderRadius: "14px",
@@ -46,7 +47,7 @@ const MenuBar = () => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        gap: "8px",
+        gap: "4px",
         overflowX: "auto",
         backdropFilter: "blur(6px)",
       }}
@@ -88,7 +89,7 @@ const MenuBar = () => {
             }}
           >
             <Icon size={16} />
-            <span>{item.label}</span>
+            <span className="menu-bar-label">{item.label}</span>
           </button>
         );
       })}

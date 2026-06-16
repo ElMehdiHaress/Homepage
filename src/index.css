@@ -65,6 +65,8 @@ a:hover {
   background-color: var(--theme-blue) !important;
   border-top-color: var(--theme-azure) !important;
   border-bottom-color: var(--theme-azure) !important;
+  /* Always leave room for the fixed menu bar above the banner */
+  margin-top: clamp(60px, 10vw, 80px);
 }
 
 .banner-name {
@@ -134,7 +136,7 @@ button {
   }
 
   .homepage-content-grid {
-    gridTemplateColumns: 1fr !important;
+    grid-template-columns: 1fr !important;
     gap: 30px !important;
   }
   
@@ -239,6 +241,7 @@ button {
   }
 
   .homepage-content-grid {
+    grid-template-columns: 1fr !important;
     gap: 25px !important;
   }
   
@@ -352,6 +355,40 @@ button {
   }
 }
 
+/* ── Mobile: menu bar icons-only ──────────────────────────────── */
+@media (max-width: 560px) {
+  /* hide text labels, keep icons */
+  .menu-bar-label {
+    display: none !important;
+  }
+  /* tighter gaps so all 6 icons fit */
+  .menu-bar-pill {
+    gap: 4px !important;
+    padding: 6px !important;
+  }
+  .menu-bar-pill button {
+    padding: 8px !important;
+    gap: 0 !important;
+  }
+}
+
+/* ── Social links: position relative on very small screens ──── */
+@media (max-width: 560px) {
+  .social-links {
+    position: relative !important;
+    bottom: auto !important;
+    left: auto !important;
+    transform: none !important;
+    justify-content: center !important;
+    margin: 40px auto 24px auto !important;
+  }
+}
+
+/* ── All pages: ensure content clears the fixed menu bar ──── */
+.page-top-padding {
+  padding-top: clamp(70px, 14vw, 90px) !important;
+}
+
 /* Menu tooltip hover effect */
 .menu-tooltip {
   opacity: 0;
@@ -410,5 +447,14 @@ button:hover .menu-tooltip {
 @media (max-width: 480px) {
   .photo-cinema {
     padding: 24px 14px !important;
+  }
+  /* On touch screens frame numbers are always visible (no hover) */
+  .cinema-frame-num {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+  /* Disable scale hover on touch — prevents tap delay */
+  .cinema-frame:hover img {
+    transform: none;
   }
 }

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MenuBar from './MenuBar';
 import profileImage from './assets/recent-me.jpeg';
@@ -14,6 +14,7 @@ const photos: string[] = Object.entries(photoModules)
 const Photography = () => {
   const navigate = useNavigate();
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const touchStartX = useRef<number | null>(null);
 
   const showNext = () =>
     setLightboxIndex((i) => (i === null ? i : (i + 1) % photos.length));
@@ -34,6 +35,16 @@ const Photography = () => {
       document.body.style.overflow = '';
     };
   }, [lightboxIndex]);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const dx = e.changedTouches[0].clientX - touchStartX.current;
+    if (Math.abs(dx) > 50) dx < 0 ? showNext() : showPrev();
+    touchStartX.current = null;
+  };
 
   return (
     <div style={{
@@ -227,6 +238,8 @@ const Photography = () => {
       {lightboxIndex !== null && (
         <div
           onClick={() => setLightboxIndex(null)}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
           style={{
             position: 'fixed',
             inset: 0,

@@ -4,6 +4,12 @@ import MenuBar from './MenuBar';
 import profileImage from './assets/recent-me.jpeg';
 import brownianSlateSeed10 from './assets/brownian-slate-seed10.png';
 
+// Count of photography frames shown on the dedicated Photography page (P11*, 0607*, IMG_*, PXL*)
+const photoModules = import.meta.glob('./assets/*.jpg', { eager: true });
+const photoCount = Object.keys(photoModules).filter((path) =>
+  /\/(P11|0607|IMG_|PXL)[^/]*\.jpg$/.test(path)
+).length;
+
 interface ResearchProject {
   title: string;
   institution: string;
@@ -107,7 +113,7 @@ const Projects = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedSection, setSelectedSection] = useState<SectionKey>('all');
-  
+
   const sections = [
     {
       key: 'academic' as SectionKey,
@@ -833,6 +839,95 @@ const Projects = () => {
               </a>
             );
           })}
+
+          {/* Photography card → opens dedicated page */}
+          {(selectedSection === 'personal' || selectedSection === 'all') && photoCount > 0 && (
+            <div
+              onClick={() => navigate('/photography')}
+              className="project-item"
+              style={{
+                padding: '30px',
+                backgroundColor: 'rgba(255, 255, 255, 0.6)',
+                borderRadius: '16px',
+                border: '2px solid rgba(0, 0, 0, 0.08)',
+                transition: 'all 0.3s ease',
+                position: 'relative',
+                overflow: 'hidden',
+                height: '100%',
+                cursor: 'pointer'
+              }}
+              onMouseOver={(e) => {
+                e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+                e.currentTarget.style.transform = 'translateY(-3px)';
+                e.currentTarget.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.08)';
+                e.currentTarget.style.borderColor = 'rgba(56, 128, 185, 0.4)';
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.6)';
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = 'none';
+                e.currentTarget.style.borderColor = 'rgba(0, 0, 0, 0.08)';
+              }}
+            >
+              <div style={{
+                position: 'absolute',
+                left: 0,
+                top: 0,
+                bottom: 0,
+                width: '5px',
+                background: 'linear-gradient(135deg, rgba(56, 128, 185, 0.88) 0%, rgba(46, 92, 138, 0.82) 100%)',
+                borderRadius: '16px 0 0 16px'
+              }} />
+
+              <div style={{ marginLeft: '15px' }}>
+                <h3 style={{
+                  fontSize: 'clamp(1.1rem, 2.5vw, 1.3rem)',
+                  fontWeight: '600',
+                  marginBottom: '12px',
+                  color: '#1f2937',
+                  lineHeight: '1.4',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '10px'
+                }}>
+                  <span style={{ fontSize: '1.4rem' }}>📷</span> Photography
+                </h3>
+                <p style={{
+                  fontSize: 'clamp(0.95rem, 2vw, 1.1rem)',
+                  color: '#9ca3af',
+                  marginBottom: '12px',
+                  lineHeight: '1.5'
+                }}>
+                  A roll of frames from the field, long exposures, light, and quiet moments.
+                </p>
+                <div style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  flexWrap: 'wrap',
+                  gap: '10px'
+                }}>
+                  <span style={{
+                    fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)',
+                    color: '#60a5fa',
+                    backgroundColor: 'rgba(96, 165, 250, 0.1)',
+                    padding: '4px 12px',
+                    borderRadius: '20px',
+                    fontWeight: '500'
+                  }}>
+                    Creative
+                  </span>
+                  <span style={{
+                    fontSize: 'clamp(0.85rem, 1.6vw, 0.95rem)',
+                    color: '#3880b9',
+                    fontWeight: '600'
+                  }}>
+                    View gallery ({photoCount}) →
+                  </span>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Empty State */}

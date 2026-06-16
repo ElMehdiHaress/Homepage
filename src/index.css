@@ -362,3 +362,53 @@ button {
 button:hover .menu-tooltip {
   opacity: 1;
 }
+
+/* Cinematic photography gallery */
+.cinema-frame img {
+  transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.6s ease;
+  filter: grayscale(28%) brightness(0.92) contrast(1.05);
+}
+
+.cinema-frame:hover img {
+  transform: scale(1.07);
+  filter: grayscale(0%) brightness(1.04) contrast(1.08);
+}
+
+.cinema-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(20, 24, 32, 0) 55%, rgba(20, 24, 32, 0.55) 100%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.cinema-frame:hover::after {
+  opacity: 1;
+}
+
+.cinema-frame-num {
+  position: absolute;
+  bottom: 10px;
+  left: 12px;
+  z-index: 2;
+  color: #f8f9fb;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.cinema-frame:hover .cinema-frame-num {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 480px) {
+  .photo-cinema {
+    padding: 24px 14px !important;
+  }
+}

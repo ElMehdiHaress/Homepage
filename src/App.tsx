@@ -6,6 +6,7 @@ import Publications from './Publications'
 import Talks from './Talks'
 import Teaching from './Teaching'
 import Projects from './Projects'
+import Photography from './Photography'
 import { initGA, trackPageView } from './lib/analytics'
 import './App.css'
 
@@ -43,6 +44,7 @@ function App() {
         <Route path="/talks" element={<Talks />} />
         <Route path="/teaching" element={<Teaching />} />
         <Route path="/projects" element={<Projects />} />
+        <Route path="/photography" element={<Photography />} />
       </Routes>
     </Router>
   )

@@ -221,7 +221,12 @@ const Photography = () => {
                   loading="lazy"
                   style={{ width: '100%', display: 'block' }}
                 />
-                <span className="cinema-frame-num">{String(i + 1).padStart(2, '0')}</span>
+                <span className="cinema-frame-num">
+                  <span className="cinema-frame-badge">{String(i + 1).padStart(2, '0')}</span>
+                  {photo.caption && (
+                    <span className="cinema-frame-caption">{photo.caption}</span>
+                  )}
+                </span>
               </div>
             ))}
           </div>
@@ -333,18 +338,37 @@ const Photography = () => {
             ›
           </button>
 
-          {/* Counter */}
+          {/* Caption + counter */}
           <div style={{
             position: 'fixed',
             bottom: '28px',
             left: '50%',
             transform: 'translateX(-50%)',
-            color: '#d4d7dd',
-            fontSize: '14px',
-            letterSpacing: '0.2em',
-            fontFamily: 'Consolas, "Courier New", monospace'
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '6px',
+            textAlign: 'center',
+            padding: '0 16px'
           }}>
-            {String(lightboxIndex + 1).padStart(2, '0')} / {String(photos.length).padStart(2, '0')}
+            {photos[lightboxIndex].caption && (
+              <span style={{
+                color: '#f8f9fb',
+                fontSize: '15px',
+                fontFamily: 'Cambria, "Times New Roman", serif',
+                letterSpacing: '0.02em'
+              }}>
+                {photos[lightboxIndex].caption}
+              </span>
+            )}
+            <span style={{
+              color: '#d4d7dd',
+              fontSize: '13px',
+              letterSpacing: '0.2em',
+              fontFamily: 'Consolas, "Courier New", monospace'
+            }}>
+              {String(lightboxIndex + 1).padStart(2, '0')} / {String(photos.length).padStart(2, '0')}
+            </span>
           </div>
         </div>
       )}

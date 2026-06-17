@@ -429,14 +429,30 @@ button:hover .menu-tooltip {
   position: absolute;
   bottom: 10px;
   left: 12px;
+  right: 12px;
   z-index: 2;
-  color: #f8f9fb;
-  font-family: Consolas, "Courier New", monospace;
-  font-size: 13px;
-  letter-spacing: 0.15em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   opacity: 0;
   transform: translateY(6px);
   transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.cinema-frame-badge {
+  color: #f8f9fb;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  flex-shrink: 0;
+}
+
+.cinema-frame-caption {
+  color: #f8f9fb;
+  font-family: Cambria, "Times New Roman", serif;
+  font-size: 13.5px;
+  line-height: 1.2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
 }
 
 .cinema-frame:hover .cinema-frame-num {

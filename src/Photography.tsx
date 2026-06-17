@@ -3,13 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import MenuBar from './MenuBar';
 import profileImage from './assets/recent-me.jpeg';
 import brownianSlateSeed5 from './assets/brownian-slate-seed5.png';
-
-// Cinematic photography gallery: pull in every new shot (P11*, 0607*, IMG_*, PXL*)
-const photoModules = import.meta.glob('./assets/*.jpg', { eager: true, import: 'default' });
-const photos: string[] = Object.entries(photoModules)
-  .filter(([path]) => /\/(P11|0607|IMG_|PXL)[^/]*\.jpg$/.test(path))
-  .sort(([a], [b]) => a.localeCompare(b))
-  .map(([, src]) => src as string);
+import { photos } from './photos';
 
 const Photography = () => {
   const navigate = useNavigate();
@@ -207,7 +201,7 @@ const Photography = () => {
           <div style={{ columnWidth: '260px', columnGap: '16px' }}>
             {photos.map((photo, i) => (
               <div
-                key={photo}
+                key={photo.thumb}
                 className="cinema-frame"
                 onClick={() => setLightboxIndex(i)}
                 style={{
@@ -222,7 +216,7 @@ const Photography = () => {
                 }}
               >
                 <img
-                  src={photo}
+                  src={photo.thumb}
                   alt={`Photograph ${i + 1}`}
                   loading="lazy"
                   style={{ width: '100%', display: 'block' }}
@@ -302,7 +296,7 @@ const Photography = () => {
           </button>
 
           <img
-            src={photos[lightboxIndex]}
+            src={photos[lightboxIndex].full}
             alt={`Photograph ${lightboxIndex + 1}`}
             onClick={(e) => e.stopPropagation()}
             style={{

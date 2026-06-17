@@ -3,12 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import MenuBar from './MenuBar';
 import profileImage from './assets/recent-me.jpeg';
 import brownianSlateSeed10 from './assets/brownian-slate-seed10.png';
-
-// Count of photography frames shown on the dedicated Photography page (P11*, 0607*, IMG_*, PXL*)
-const photoModules = import.meta.glob('./assets/*.jpg', { eager: true });
-const photoCount = Object.keys(photoModules).filter((path) =>
-  /\/(P11|0607|IMG_|PXL)[^/]*\.jpg$/.test(path)
-).length;
+import { photoCount } from './photos';
 
 interface ResearchProject {
   title: string;

@@ -1,0 +1,2 @@
+# Keep /projects (academic page). Serve the Hana Bella admin SPA under /projects-admin.
+/projects-admin/*    /projects-admin/index.html   200

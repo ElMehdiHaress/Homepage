@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/projects-admin/:path*",
+      "destination": "/projects-admin/index.html"
+    }
+  ]
+}

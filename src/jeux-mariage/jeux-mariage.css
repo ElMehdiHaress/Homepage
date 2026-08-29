@@ -1,0 +1,661 @@
+.jeux-mariage {
+  --jm-ink: #241c16;
+  --jm-muted: #6e5f52;
+  --jm-paper: #f4eadb;
+  --jm-card: #fffaf2;
+  --jm-line: rgba(36, 28, 22, 0.1);
+  --jm-gold: #b0892e;
+  --jm-gold-soft: rgba(176, 137, 46, 0.16);
+  --jm-yahya: #1e4d7a;
+  --jm-yahya-soft: rgba(30, 77, 122, 0.12);
+  --jm-floriane: #8c3048;
+  --jm-floriane-soft: rgba(140, 48, 72, 0.12);
+  --jm-header: #1a1511;
+  --jm-ok: #2f6b45;
+
+  min-height: 100vh;
+  background:
+    radial-gradient(1200px 500px at 10% -10%, rgba(176, 137, 46, 0.14), transparent 55%),
+    radial-gradient(900px 420px at 110% 0%, rgba(140, 48, 72, 0.1), transparent 50%),
+    var(--jm-paper);
+  color: var(--jm-ink);
+  padding-bottom: 48px;
+}
+
+.jeux-mariage * {
+  font-family: Outfit, "Segoe UI", sans-serif !important;
+  box-sizing: border-box;
+}
+
+.jeux-mariage .jm-serif,
+.jeux-mariage h1,
+.jeux-mariage h2,
+.jeux-mariage h3 {
+  font-family: "Cormorant Garamond", Cambria, serif !important;
+}
+
+.jeux-mariage h1,
+.jeux-mariage h2,
+.jeux-mariage h3,
+.jeux-mariage h4 {
+  color: var(--jm-ink) !important;
+  margin: 0;
+}
+
+.jeux-mariage p,
+.jeux-mariage li,
+.jeux-mariage label {
+  color: var(--jm-muted);
+}
+
+.jeux-mariage a {
+  color: var(--jm-yahya) !important;
+}
+
+.jeux-mariage button {
+  color: inherit;
+}
+
+.jm-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(26, 21, 17, 0.94);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(247, 234, 214, 0.08);
+  padding: 12px 16px 10px;
+}
+
+.jm-header-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.jm-kicker {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.jm-kicker h1 {
+  color: #f7ead6 !important;
+  font-size: clamp(22px, 4vw, 32px);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+}
+
+.jm-kicker p {
+  margin: 0;
+  color: rgba(247, 234, 214, 0.62) !important;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.jm-scores {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.jm-team {
+  border-radius: 16px;
+  padding: 10px 10px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.jm-team.is-yahya {
+  background: linear-gradient(180deg, rgba(30, 77, 122, 0.42), rgba(30, 77, 122, 0.22));
+  border: 1px solid rgba(160, 196, 230, 0.25);
+}
+
+.jm-team.is-floriane {
+  background: linear-gradient(180deg, rgba(140, 48, 72, 0.45), rgba(140, 48, 72, 0.22));
+  border: 1px solid rgba(232, 176, 188, 0.25);
+}
+
+.jm-team-name {
+  color: rgba(247, 234, 214, 0.78) !important;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.jm-team-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.jm-team-score {
+  color: #fff8ee !important;
+  font-family: "Cormorant Garamond", serif !important;
+  font-size: clamp(36px, 8vw, 52px);
+  font-weight: 600;
+  line-height: 0.9;
+  min-width: 1.4em;
+}
+
+.jm-pm {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.jm-pm button {
+  min-width: 40px;
+  height: 36px;
+  border: 1px solid rgba(255, 248, 238, 0.18);
+  background: rgba(255, 248, 238, 0.08);
+  color: #fff8ee !important;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 650;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.jm-pm button:active {
+  transform: scale(0.96);
+  background: rgba(255, 248, 238, 0.2);
+}
+
+.jm-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.jm-credit-label {
+  color: rgba(247, 234, 214, 0.5) !important;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+.jm-credit {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.jm-credit::-webkit-scrollbar {
+  display: none;
+}
+
+.jm-chip,
+.jm-nav button,
+.jm-timer-presets button {
+  border: 1px solid rgba(247, 234, 214, 0.14);
+  background: rgba(247, 234, 214, 0.06);
+  color: rgba(247, 234, 214, 0.82) !important;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.jm-chip.is-on,
+.jm-nav button.is-on,
+.jm-timer-presets button.is-on {
+  background: var(--jm-gold);
+  border-color: var(--jm-gold);
+  color: #1a1511 !important;
+}
+
+.jm-chip-light {
+  border: 1px solid var(--jm-line);
+  background: var(--jm-gold-soft);
+  color: var(--jm-ink) !important;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.jm-undo,
+.jm-ghost {
+  border: 1px solid rgba(247, 234, 214, 0.14);
+  background: transparent;
+  color: rgba(247, 234, 214, 0.7) !important;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.jm-undo:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.jm-timer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 220px;
+}
+
+.jm-timer-presets {
+  display: flex;
+  gap: 4px;
+}
+
+.jm-time {
+  font-variant-numeric: tabular-nums;
+  color: #fff8ee !important;
+  font-size: 22px;
+  font-weight: 650;
+  min-width: 58px;
+  text-align: center;
+}
+
+.jm-time.is-hot {
+  color: #ffb4c0 !important;
+}
+
+.jm-timer-go {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 0;
+  background: var(--jm-gold);
+  color: #1a1511 !important;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.jm-search {
+  position: relative;
+  flex: 1;
+  min-width: 180px;
+}
+
+.jm-search input {
+  width: 100%;
+  height: 38px;
+  border-radius: 12px;
+  border: 1px solid rgba(247, 234, 214, 0.14);
+  background: rgba(247, 234, 214, 0.07);
+  color: #fff8ee !important;
+  padding: 0 12px 0 36px;
+  font-size: 14px;
+  outline: none;
+}
+
+.jm-search input::placeholder {
+  color: rgba(247, 234, 214, 0.42);
+}
+
+.jm-search svg {
+  position: absolute;
+  left: 11px;
+  top: 11px;
+  color: rgba(247, 234, 214, 0.5);
+}
+
+.jm-search-results {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background: #fffaf2;
+  border: 1px solid var(--jm-line);
+  border-radius: 14px;
+  max-height: 360px;
+  overflow: auto;
+  box-shadow: 0 18px 40px rgba(26, 21, 17, 0.28);
+  z-index: 50;
+}
+
+.jm-search-hit {
+  width: 100%;
+  text-align: left;
+  border: 0;
+  background: transparent;
+  padding: 10px 12px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.jm-search-hit:hover {
+  background: var(--jm-gold-soft);
+}
+
+.jm-search-hit b {
+  color: var(--jm-ink);
+  font-size: 13px;
+}
+
+.jm-search-hit span {
+  color: var(--jm-muted);
+  font-size: 12px;
+}
+
+.jm-nav {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 2px;
+}
+
+.jm-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.jm-nav button {
+  padding: 8px 14px;
+  font-size: 13px;
+}
+
+.jm-page {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 20px 16px 40px;
+}
+
+.jm-lead {
+  font-size: clamp(18px, 2.4vw, 22px);
+  line-height: 1.45;
+  color: var(--jm-ink) !important;
+  margin: 0 0 16px !important;
+}
+
+.jm-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.jm-grid.cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.jm-grid.cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.jm-card {
+  background: var(--jm-card);
+  border: 1px solid var(--jm-line);
+  border-radius: 18px;
+  padding: 16px 16px 14px;
+  box-shadow: 0 8px 24px rgba(36, 28, 22, 0.05);
+}
+
+.jm-card h2 {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 8px !important;
+}
+
+.jm-card h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 10px !important;
+}
+
+.jm-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0 0 12px;
+}
+
+.jm-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 650;
+  background: var(--jm-gold-soft);
+  color: #7a5c16 !important;
+}
+
+.jm-tag.navy {
+  background: var(--jm-yahya-soft);
+  color: var(--jm-yahya) !important;
+}
+
+.jm-tag.rose {
+  background: var(--jm-floriane-soft);
+  color: var(--jm-floriane) !important;
+}
+
+.jm-steps {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.jm-steps li {
+  margin: 0 0 6px;
+  color: var(--jm-ink) !important;
+  font-size: 14.5px;
+  line-height: 1.45;
+}
+
+.jm-note {
+  margin: 10px 0 0;
+  font-size: 13.5px;
+  color: var(--jm-muted) !important;
+}
+
+.jm-split {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 12px;
+}
+
+.jm-check {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  text-align: left;
+  border: 0;
+  background: transparent;
+  padding: 8px 2px;
+  cursor: pointer;
+  border-bottom: 1px solid var(--jm-line);
+}
+
+.jm-check:last-child {
+  border-bottom: 0;
+}
+
+.jm-box {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  margin-top: 1px;
+  border-radius: 5px;
+  border: 1.5px solid rgba(36, 28, 22, 0.28);
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  color: #fff;
+  background: #fff;
+}
+
+.jm-check.is-used .jm-box {
+  background: var(--jm-ok);
+  border-color: var(--jm-ok);
+}
+
+.jm-check.is-used .jm-check-text {
+  text-decoration: line-through;
+  opacity: 0.55;
+}
+
+.jm-check-text {
+  color: var(--jm-ink) !important;
+  font-size: 14.5px;
+  line-height: 1.35;
+  flex: 1;
+  min-width: 0;
+}
+
+body:has(.jeux-mariage) {
+  padding: 0 !important;
+}
+
+.jm-group-title {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--jm-gold) !important;
+  margin: 0 0 4px;
+}
+
+.jm-phrase {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  gap: 6px;
+  align-items: center;
+  width: 100%;
+}
+
+.jm-phrase b {
+  background: var(--jm-gold-soft);
+  color: var(--jm-ink);
+  border-radius: 8px;
+  padding: 6px 8px;
+  text-align: center;
+  font-size: 13.5px;
+  font-weight: 650;
+}
+
+.jm-phrase i {
+  color: var(--jm-muted);
+  font-style: normal;
+  font-size: 12px;
+}
+
+.jm-pts {
+  margin-left: auto;
+  flex-shrink: 0;
+  font-size: 12px;
+  font-weight: 750;
+  color: #7a5c16 !important;
+  background: var(--jm-gold-soft);
+  border-radius: 999px;
+  padding: 2px 8px;
+}
+
+.jm-pts.p2 { color: var(--jm-yahya) !important; background: var(--jm-yahya-soft); }
+.jm-pts.p3 { color: var(--jm-floriane) !important; background: var(--jm-floriane-soft); }
+
+.jm-score-table {
+  display: grid;
+  gap: 8px;
+}
+
+.jm-score-table > div {
+  display: grid;
+  grid-template-columns: 1fr 72px 72px;
+  align-items: center;
+  gap: 8px;
+  color: var(--jm-ink) !important;
+  font-size: 15px;
+}
+
+.jm-score-table > div span:not(:first-child) {
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  font-weight: 650;
+}
+
+.jm-score-head {
+  font-size: 12px !important;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--jm-muted) !important;
+}
+
+.jm-score-table .is-total {
+  margin-top: 6px;
+  padding-top: 10px;
+  border-top: 1px solid var(--jm-line);
+  font-weight: 750;
+  font-size: 17px;
+}
+
+.jm-flash {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  background: rgba(176, 137, 46, 0.18);
+  animation: jmflash 0.7s ease;
+}
+
+@keyframes jmflash {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.jm-section-label {
+  margin: 18px 0 8px;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--jm-muted) !important;
+}
+
+@media (max-width: 760px) {
+  .jm-kicker > p {
+    display: none;
+  }
+
+  .jm-grid.cols-2,
+  .jm-grid.cols-3,
+  .jm-split,
+  .jm-phrase {
+    grid-template-columns: 1fr;
+  }
+
+  .jm-phrase i {
+    display: none;
+  }
+
+  .jm-header {
+    padding: 10px 12px 8px;
+  }
+
+  .jm-pm button {
+    min-width: 36px;
+    height: 34px;
+  }
+
+  .jm-page {
+    padding-top: 14px;
+  }
+}

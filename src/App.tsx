@@ -7,6 +7,7 @@ import Talks from './Talks'
 import Teaching from './Teaching'
 import Projects from './Projects'
 import Photography from './Photography'
+import JeuxMariageYahya from './jeux-mariage/JeuxMariageYahya'
 import { initGA, trackPageView } from './lib/analytics'
 import './App.css'
 
@@ -45,6 +46,7 @@ function App() {
         <Route path="/teaching" element={<Teaching />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/photography" element={<Photography />} />
+        <Route path="/jeux-mariage-yahya" element={<JeuxMariageYahya />} />
       </Routes>
     </Router>
   )

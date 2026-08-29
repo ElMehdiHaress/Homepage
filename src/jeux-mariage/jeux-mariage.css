@@ -74,6 +74,22 @@
   gap: 10px;
 }
 
+.jm-foldable {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.jm-dock {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.jm-fold-toggle {
+  display: none;
+}
+
 .jm-kicker {
   display: flex;
   align-items: baseline;
@@ -649,6 +665,60 @@ body:has(.jeux-mariage) {
 }
 
 @media (max-width: 760px) {
+  .jm-kicker {
+    display: none;
+  }
+
+  .jm-header.is-folded .jm-foldable {
+    display: none;
+  }
+
+  .jm-fold-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    min-height: 40px;
+    padding: 6px 10px;
+    border: 1px solid rgba(247, 234, 214, 0.14);
+    background: rgba(247, 234, 214, 0.06);
+    border-radius: 12px;
+    color: #fff8ee !important;
+    font-size: 14px;
+    font-weight: 650;
+    cursor: pointer;
+  }
+
+  .jm-mini-yahya {
+    color: #9ec5ea !important;
+  }
+
+  .jm-mini-floriane {
+    color: #f0b4c0 !important;
+  }
+
+  .jm-mini-sep {
+    color: rgba(247, 234, 214, 0.35) !important;
+  }
+
+  .jm-mini-time {
+    margin-left: 4px;
+    font-variant-numeric: tabular-nums;
+    color: #fff8ee !important;
+  }
+
+  .jm-mini-time.is-hot {
+    color: #ffb4c0 !important;
+  }
+
+  .jm-fold-cta {
+    margin-left: auto;
+    color: rgba(247, 234, 214, 0.55) !important;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
   .jm-kicker > p {
     display: none;
   }

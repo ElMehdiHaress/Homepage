@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
-import { RotateCcw, Search } from 'lucide-react'
+import { ChevronDown, ChevronUp, RotateCcw, Search } from 'lucide-react'
 import {
   CLASSEZ_CRITERES,
   ENCHERES_DUELS,
@@ -19,6 +19,7 @@ import './jeux-mariage.css'
 const FONT_HREF =
   'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Outfit:wght@400;500;600;700&display=swap'
 const STORAGE_KEY = 'jeux-mariage-yahya-v1'
+const PANEL_KEY = 'jeux-mariage-yahya-panel'
 const SCORE_GAMES: ScoreGameId[] = ['mimes', 'classez', 'qui', 'encheres', 'killer']
 const TIMER_PRESETS = [15, 30, 60, 90]
 
@@ -213,6 +214,12 @@ export default function JeuxMariageYahya() {
   const [timerLeft, setTimerLeft] = useState(30)
   const [running, setRunning] = useState(false)
   const [flash, setFlash] = useState(false)
+  const [panelOpen, setPanelOpen] = useState(() => {
+    if (typeof window === 'undefined') return true
+    if (window.innerWidth > 760) return true
+    const saved = localStorage.getItem(PANEL_KEY)
+    return saved === 'open'
+  })
   const endAt = useRef<number | null>(null)
   const lastTickSec = useRef<number | null>(null)
 
@@ -244,6 +251,12 @@ export default function JeuxMariageYahya() {
     }
     localStorage.setItem(STORAGE_KEY, JSON.stringify(payload))
   }, [scores, used, history])
+
+  useEffect(() => {
+    if (window.innerWidth <= 760) {
+      localStorage.setItem(PANEL_KEY, panelOpen ? 'open' : 'folded')
+    }
+  }, [panelOpen])
 
   useEffect(() => {
     if (!running) return
@@ -372,121 +385,142 @@ export default function JeuxMariageYahya() {
     <div className="jeux-mariage">
       {flash ? <div className="jm-flash" /> : null}
 
-      <header className="jm-header">
+      <header className={`jm-header ${panelOpen ? 'is-open' : 'is-folded'}`}>
         <div className="jm-header-inner">
-          <div className="jm-kicker">
-            <div>
-              <p>Maître du jeu</p>
-              <h1>Yahya &amp; Floriane</h1>
+          <div className="jm-foldable">
+            <div className="jm-kicker">
+              <div>
+                <p>Maître du jeu</p>
+                <h1>Yahya &amp; Floriane</h1>
+              </div>
+              <p>Team Yahya vs Team Floriane</p>
             </div>
-            <p>Team Yahya vs Team Floriane</p>
-          </div>
 
-          <div className="jm-scores">
-            {(['yahya', 'floriane'] as TeamId[]).map((team) => (
-              <div key={team} className={`jm-team is-${team}`}>
-                <div className="jm-team-name">Team {team === 'yahya' ? 'Yahya' : 'Floriane'}</div>
-                <div className="jm-team-row">
-                  <div className="jm-team-score">{total(scores, team)}</div>
-                  <div className="jm-pm">
-                    {[-3, -1, 1, 3].map((n) => (
-                      <button key={n} type="button" onClick={() => addPoints(team, n)}>
-                        {n > 0 ? `+${n}` : n}
-                      </button>
-                    ))}
+            <div className="jm-scores">
+              {(['yahya', 'floriane'] as TeamId[]).map((team) => (
+                <div key={team} className={`jm-team is-${team}`}>
+                  <div className="jm-team-name">Team {team === 'yahya' ? 'Yahya' : 'Floriane'}</div>
+                  <div className="jm-team-row">
+                    <div className="jm-team-score">{total(scores, team)}</div>
+                    <div className="jm-pm">
+                      {[-3, -1, 1, 3].map((n) => (
+                        <button key={n} type="button" onClick={() => addPoints(team, n)}>
+                          {n > 0 ? `+${n}` : n}
+                        </button>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="jm-tools">
-            <span className="jm-credit-label">Points →</span>
-            <div className="jm-credit" aria-label="Jeu crédité">
-              {SCORE_GAMES.map((id) => (
-                <button
-                  key={id}
-                  type="button"
-                  className={`jm-chip ${creditTo === id ? 'is-on' : ''}`}
-                  onClick={() => setCreditTo(id)}
-                >
-                  {GAMES.find((g) => g.id === id)?.short}
-                </button>
               ))}
             </div>
-            <button type="button" className="jm-undo" onClick={undo} disabled={history.length === 0}>
-              Annuler
-            </button>
-            <button type="button" className="jm-ghost" onClick={resetScores}>
-              Reset
-            </button>
-          </div>
 
-          <div className="jm-tools">
-            <div className="jm-timer">
-              <div className="jm-timer-presets">
-                {TIMER_PRESETS.map((s) => (
+            <div className="jm-tools">
+              <span className="jm-credit-label">Points →</span>
+              <div className="jm-credit" aria-label="Jeu crédité">
+                {SCORE_GAMES.map((id) => (
                   <button
-                    key={s}
+                    key={id}
                     type="button"
-                    className={timer === s ? 'is-on' : ''}
-                    onClick={() => startTimer(s)}
+                    className={`jm-chip ${creditTo === id ? 'is-on' : ''}`}
+                    onClick={() => setCreditTo(id)}
                   >
-                    {s}s
+                    {GAMES.find((g) => g.id === id)?.short}
                   </button>
                 ))}
               </div>
-              <div className={`jm-time ${running && timerLeft <= 5 ? 'is-hot' : ''}`}>
-                {formatTime(timerLeft)}
-              </div>
-              <button type="button" className="jm-timer-go" onClick={toggleTimer} aria-label={running ? 'Pause' : 'Lancer'}>
-                {running ? '❚❚' : '▶'}
+              <button type="button" className="jm-undo" onClick={undo} disabled={history.length === 0}>
+                Annuler
               </button>
-              <button type="button" className="jm-timer-reset" onClick={resetTimer} aria-label="Reset chrono">
-                <RotateCcw size={15} />
+              <button type="button" className="jm-ghost" onClick={resetScores}>
+                Reset
               </button>
             </div>
 
-            <div className="jm-search">
-              <Search size={16} />
-              <input
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Escape') setQuery('')
-                }}
-                placeholder="Chercher un mot, une question, une mission…"
-              />
-              {hits.length > 0 && game !== 'killer' ? (
-                <div className="jm-search-results">
-                  {hits.map((hit, i) => (
+            <div className="jm-tools">
+              <div className="jm-timer">
+                <div className="jm-timer-presets">
+                  {TIMER_PRESETS.map((s) => (
                     <button
-                      key={`${hit.game}-${i}`}
+                      key={s}
                       type="button"
-                      className="jm-search-hit"
-                      onClick={() => setTab(hit.game)}
+                      className={timer === s ? 'is-on' : ''}
+                      onClick={() => startTimer(s)}
                     >
-                      <b>{hit.title}</b>
-                      <span>{hit.detail}</span>
+                      {s}s
                     </button>
                   ))}
                 </div>
-              ) : null}
+                <div className={`jm-time ${running && timerLeft <= 5 ? 'is-hot' : ''}`}>
+                  {formatTime(timerLeft)}
+                </div>
+                <button type="button" className="jm-timer-go" onClick={toggleTimer} aria-label={running ? 'Pause' : 'Lancer'}>
+                  {running ? '❚❚' : '▶'}
+                </button>
+                <button type="button" className="jm-timer-reset" onClick={resetTimer} aria-label="Reset chrono">
+                  <RotateCcw size={15} />
+                </button>
+              </div>
+
+              <div className="jm-search">
+                <Search size={16} />
+                <input
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Escape') setQuery('')
+                  }}
+                  placeholder="Chercher un mot, une question, une mission…"
+                />
+                {hits.length > 0 && game !== 'killer' ? (
+                  <div className="jm-search-results">
+                    {hits.map((hit, i) => (
+                      <button
+                        key={`${hit.game}-${i}`}
+                        type="button"
+                        className="jm-search-hit"
+                        onClick={() => setTab(hit.game)}
+                      >
+                        <b>{hit.title}</b>
+                        <span>{hit.detail}</span>
+                      </button>
+                    ))}
+                  </div>
+                ) : null}
+              </div>
             </div>
           </div>
 
-          <nav className="jm-nav">
-            {GAMES.map((g) => (
-              <button
-                key={g.id}
-                type="button"
-                className={game === g.id ? 'is-on' : ''}
-                onClick={() => setTab(g.id)}
-              >
-                {g.label}
-              </button>
-            ))}
-          </nav>
+          <div className="jm-dock">
+            <button
+              type="button"
+              className="jm-fold-toggle"
+              onClick={() => setPanelOpen((open) => !open)}
+              aria-expanded={panelOpen}
+              aria-label={panelOpen ? 'Masquer les scores' : 'Afficher les scores'}
+            >
+              <span className="jm-mini-yahya">Y {total(scores, 'yahya')}</span>
+              <span className="jm-mini-sep">·</span>
+              <span className="jm-mini-floriane">F {total(scores, 'floriane')}</span>
+              {running ? (
+                <span className={`jm-mini-time ${timerLeft <= 5 ? 'is-hot' : ''}`}>{formatTime(timerLeft)}</span>
+              ) : null}
+              <span className="jm-fold-cta">{panelOpen ? 'Masquer' : 'Points'}</span>
+              {panelOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+            </button>
+
+            <nav className="jm-nav">
+              {GAMES.map((g) => (
+                <button
+                  key={g.id}
+                  type="button"
+                  className={game === g.id ? 'is-on' : ''}
+                  onClick={() => setTab(g.id)}
+                >
+                  {g.label}
+                </button>
+              ))}
+            </nav>
+          </div>
         </div>
       </header>
 

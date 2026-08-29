@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
-import { Search } from 'lucide-react'
+import { RotateCcw, Search } from 'lucide-react'
 import {
   CLASSEZ_CRITERES,
   ENCHERES_DUELS,
@@ -345,6 +345,13 @@ export default function JeuxMariageYahya() {
     startTimer(timerLeft > 0 ? timerLeft : timer)
   }
 
+  const resetTimer = () => {
+    setRunning(false)
+    endAt.current = null
+    lastTickSec.current = null
+    setTimerLeft(timer)
+  }
+
   const hits = useMemo(() => {
     const q = query.trim().toLowerCase()
     if (q.length < 2) return []
@@ -432,8 +439,11 @@ export default function JeuxMariageYahya() {
               <div className={`jm-time ${running && timerLeft <= 5 ? 'is-hot' : ''}`}>
                 {formatTime(timerLeft)}
               </div>
-              <button type="button" className="jm-timer-go" onClick={toggleTimer}>
+              <button type="button" className="jm-timer-go" onClick={toggleTimer} aria-label={running ? 'Pause' : 'Lancer'}>
                 {running ? '❚❚' : '▶'}
+              </button>
+              <button type="button" className="jm-timer-reset" onClick={resetTimer} aria-label="Reset chrono">
+                <RotateCcw size={15} />
               </button>
             </div>
 

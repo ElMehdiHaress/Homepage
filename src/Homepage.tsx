@@ -265,6 +265,23 @@ const Homepage = () => {
             <div style={{ fontSize: 'clamp(14px, 2.2vw, 16px)', color: '#1f2937' }}>
               <p style={{ marginBottom: 'clamp(8px, 1.5vw, 12px)' }}>
                 <a 
+                  href="https://www-sop.inria.fr/members/Mireille.Bossy/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    color: '#60a5fa',
+                    textDecoration: 'underline',
+                    transition: 'color 0.3s ease'
+                  }}
+                  onMouseOver={(e) => (e.target as HTMLElement).style.color = '#93c5fd'}
+                  onMouseOut={(e) => (e.target as HTMLElement).style.color = '#60a5fa'}
+                >
+                  Mireille Bossy
+                </a>
+                {' '}(INRIA Sophia Antipolis)
+              </p>
+              <p style={{ marginBottom: 'clamp(8px, 1.5vw, 12px)' }}>
+                <a 
                   href="https://scholar.google.com/citations?user=fGuEdkYAAAAJ&hl=en"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -347,6 +364,23 @@ const Homepage = () => {
                   Khoa Lê
                 </a>
                 {' '}(University of Leeds)
+              </p>
+              <p style={{ marginBottom: 'clamp(8px, 1.5vw, 12px)' }}>
+                <a 
+                  href="https://theses.fr/s403238"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    color: '#60a5fa',
+                    textDecoration: 'underline',
+                    transition: 'color 0.3s ease'
+                  }}
+                  onMouseOver={(e) => (e.target as HTMLElement).style.color = '#93c5fd'}
+                  onMouseOut={(e) => (e.target as HTMLElement).style.color = '#60a5fa'}
+                >
+                  Jonathan Naffrichoux
+                </a>
+                {' '}(Université de Pau)
               </p>
               <p style={{ marginBottom: '0' }}>
                 <a 

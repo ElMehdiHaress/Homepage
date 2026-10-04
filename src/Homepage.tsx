@@ -126,7 +126,24 @@ const Homepage = () => {
               Positions
             </h2>
             <p style={{ marginBottom: 'clamp(12px, 2vw, 16px)', fontSize: 'clamp(14px, 2.2vw, 16px)' }}>
-              2025+: Research fellow in Stochastic Analysis at University of Leeds supervised by{' '}
+              September 2026+: Research fellow at CALISTO, INRIA Sophia Antipolis, supervised by{' '}
+              <a 
+                href="https://www-sop.inria.fr/members/Mireille.Bossy/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: '#60a5fa',
+                  textDecoration: 'underline',
+                  transition: 'color 0.3s ease'
+                }}
+                onMouseOver={(e) => (e.target as HTMLElement).style.color = '#93c5fd'}
+                onMouseOut={(e) => (e.target as HTMLElement).style.color = '#60a5fa'}
+              >
+                Mireille Bossy
+              </a>
+            </p>
+            <p style={{ marginBottom: 'clamp(12px, 2vw, 16px)', fontSize: 'clamp(14px, 2.2vw, 16px)' }}>
+              December 2024 – August 2026: Research fellow in Stochastic Analysis at University of Leeds supervised by{' '}
               <a 
                 href="https://eps.leeds.ac.uk/maths/staff/6172/dr-konstantinos-dareiotis"
                 target="_blank"
@@ -203,7 +220,7 @@ const Homepage = () => {
               </h2>
               <p style={{ marginBottom: '0', fontSize: 'clamp(14px, 2.2vw, 16px)' }}>
                 <a 
-                  href="mailto:e.haress@leeds.ac.uk"
+                  href="mailto:el-mehdi.haress@inria.fr"
                   style={{
                     color: '#60a5fa',
                     textDecoration: 'underline',
@@ -212,7 +229,7 @@ const Homepage = () => {
                   onMouseOver={(e) => (e.target as HTMLElement).style.color = '#93c5fd'}
                   onMouseOut={(e) => (e.target as HTMLElement).style.color = '#60a5fa'}
                 >
-                  e.haress@leeds.ac.uk
+                  el-mehdi.haress@inria.fr
                 </a>
               </p>
             </div>

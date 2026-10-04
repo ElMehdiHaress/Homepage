@@ -25,12 +25,12 @@ const Publications = () => {
     // Section 1: Singular and Dissipative Stochastic Dynamics
     {
       title: "Uniform pathwise stability of singular additive SDEs driven by fractional Brownian motion",
-      journal: "arXiv:2511.05262",
+      journal: "Stochastic Processes and Applications",
       authors: "joint work with Konstantinos Dareiotis and Khoa Lê",
-      year: "2025",
+      year: "2026",
       section: 'singular',
-      isPreprint: true,
-      url: "https://arxiv.org/pdf/2511.05262"
+      isPreprint: false,
+      url: "https://www.sciencedirect.com/science/article/pii/S0304414926001924"
     },
     {
       title: "Numerical approximation and long-time behaviour of some singular stochastic (partial) differential equations (Chapter 6)",
@@ -44,12 +44,12 @@ const Publications = () => {
     // Section 2: Numerical Approximation Techniques
     {
       title: "Numerical approximation of the stochastic heat equation with a distributional reaction term",
-      journal: "To appear in IMA Journal of Numerical Analysis",
+      journal: "IMA Journal of Numerical Analysis",
       authors: "joint work with Ludovic Goudenège and Alexandre Richard",
-      year: "2024",
+      year: "2026",
       section: 'numerical',
-      isPreprint: true,
-      url: "https://arxiv.org/pdf/2405.08201"
+      isPreprint: false,
+      url: "https://academic.oup.com/imajna/advance-article-abstract/doi/10.1093/imanum/drag007/8660381"
     },
     {
       title: "Numerical approximation of stochastic differential equations with distributional drift",

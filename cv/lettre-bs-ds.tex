@@ -1,0 +1,100 @@
+% Cover letter (EN) — El Mehdi Haress
+% Target: Data scientist — Bending Spoons
+% Compile: xelatex lettre-bs-ds.tex
+\documentclass[10pt,a4paper]{article}
+
+\usepackage{fontspec}
+\usepackage[english]{babel}
+\usepackage[
+  top=1.5cm, bottom=1.3cm, left=2.0cm, right=2.0cm
+]{geometry}
+\usepackage{xcolor}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fontawesome5}
+
+\setmainfont{texgyrepagella}[
+  Extension      = .otf,
+  Scale          = 1.05,
+  UprightFont    = *-regular,
+  BoldFont       = *-bold,
+  ItalicFont     = *-italic,
+  BoldItalicFont = *-bolditalic,
+]
+\newfontfamily\headingfont{texgyreheros}[
+  Extension      = .otf,
+  UprightFont    = *-regular,
+  BoldFont       = *-bold,
+  ItalicFont     = *-italic,
+  BoldItalicFont = *-bolditalic,
+]
+
+\definecolor{accent}{RGB}{28,58,94}
+\definecolor{ink}{RGB}{26,26,26}
+\definecolor{muted}{RGB}{95,105,120}
+\definecolor{rulegray}{RGB}{200,206,214}
+\color{ink}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1.20ex plus 0.5ex minus 0.15ex}
+\linespread{1.09}
+
+\begin{document}
+
+{\headingfont\bfseries\fontsize{20}{23}\selectfont EL MEHDI HARESS}\\[0.7ex]
+{\headingfont\fontsize{10.5}{13}\selectfont\color{accent}%
+PhD in Applied Mathematics \textbar{} CentraleSupélec engineer}\\[1.0ex]
+{\small
+\faEnvelope[regular]~\href{mailto:el-mehdi.haress@inria.fr}{el-mehdi.haress@inria.fr}\quad
+\faPhone*~+33 7 58 23 41 50\quad
+\faLinkedin~\href{https://www.linkedin.com/in/el-mehdi-haress-67750b3aa/}{el-mehdi-haress}\quad
+\faGlobe~\href{https://elmehdiharess.org}{elmehdiharess.org}
+}
+
+\vspace{0.4ex}
+{\color{rulegray}\rule{\linewidth}{0.7pt}}
+
+\vspace{1.2ex}
+
+\begin{minipage}[t]{0.52\textwidth}
+\vspace{0pt}\raggedright\small
+\textbf{Bending Spoons}\\
+Data Science hiring\\
+Milan \textemdash{} London \textemdash{} Madrid \textemdash{} Warsaw
+\end{minipage}\hfill
+\begin{minipage}[t]{0.42\textwidth}
+\vspace{0pt}\raggedleft\small
+Sophia Antipolis, 19 September 2026
+\end{minipage}
+
+\vspace{2.0ex}
+
+{\small\textbf{Subject:} application for the Data scientist role}
+
+\vspace{1.8ex}
+
+Dear Hiring Team,
+
+Your posting does not open with a stack. It opens with \textbf{reasoning, drive, and team spirit}. That is why I am writing. I have spent five years on problems where the usual assumptions fail, and the work was to decide what still holds, what is noise, and what would break a conclusion. That is the same muscle as asking whether a metric is trustworthy before anyone builds a dashboard on it.
+
+I am a PhD in applied mathematics (Paris-Saclay / CentraleSupélec) and a research engineer at Inria. My papers are about \textbf{numerical schemes with proven convergence}, joint estimation of several parameters from discrete observations, and the \textbf{sensitivity of a model to a change in its specification}. Two of them, at \emph{AISTATS}, bring spectral risk measures into statistical learning under heavy tails. I write \textbf{Python} every day and I publish the code. I do not arrive as a product-analytics specialist with a year of Looker behind me. I arrive as someone who can sit with a messy pipeline, name the assumption, and test it.
+
+I also ship. On my own time I have built and run \textbf{Nerduncover}, a multiplayer web game; a production site and back-office for a real client, \href{https://hanabellaspa.pro}{hanabellaspa.pro}; and my own site, \href{https://elmehdiharess.org}{elmehdiharess.org}. That work taught me data models, authentication, and putting a tool in someone else's hands. It is the closest thing I have to ``internal data products'': not a research notebook, a thing other people use.
+
+What I want now is a small, talent-dense team where the output is a decision, not a theorem. I am based in France, and I work in English as a daily language after two years in the United Kingdom.
+
+I would welcome the tests. If a problem is unfamiliar, that is usually the interesting part.
+
+Yours sincerely,
+
+\vspace{2.4ex}
+
+\hfill
+\begin{minipage}{0.42\textwidth}
+\raggedleft
+{\headingfont\bfseries\small El Mehdi Haress}\\[0.2ex]
+{\small\color{muted}PhD in Applied Mathematics}
+\end{minipage}
+
+\end{document}

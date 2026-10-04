@@ -1,0 +1,208 @@
+% One-page CV (EN) — El Mehdi Haress
+% Target: Data scientist — Bending Spoons
+% Compile: xelatex cv-en-bs.tex
+\documentclass[10pt,a4paper]{article}
+
+\usepackage{fontspec}
+\usepackage[english]{babel}
+\usepackage[
+  top=0.85cm, bottom=0.85cm, left=1.4cm, right=1.4cm
+]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fontawesome5}
+
+\setmainfont{texgyrepagella}[
+  Extension      = .otf,
+  UprightFont    = *-regular,
+  BoldFont       = *-bold,
+  ItalicFont     = *-italic,
+  BoldItalicFont = *-bolditalic,
+]
+\newfontfamily\headingfont{texgyreheros}[
+  Extension      = .otf,
+  UprightFont    = *-regular,
+  BoldFont       = *-bold,
+  ItalicFont     = *-italic,
+  BoldItalicFont = *-bolditalic,
+]
+
+\definecolor{accent}{RGB}{28,58,94}
+\definecolor{ink}{RGB}{26,26,26}
+\definecolor{muted}{RGB}{95,105,120}
+\definecolor{rulegray}{RGB}{200,206,214}
+\color{ink}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\linespread{1.00}
+
+\titleformat{\section}
+  {\headingfont\bfseries\fontsize{9.5}{11}\selectfont\color{accent}}
+  {}{0em}{\MakeUppercase}[\vspace{-0.85ex}{\color{rulegray}\rule{\linewidth}{0.7pt}}]
+\titlespacing*{\section}{0pt}{1.55ex plus .2ex}{0.85ex}
+
+\newlength{\datecol}\setlength{\datecol}{0.155\textwidth}
+\newlength{\gutter}\setlength{\gutter}{0.85em}
+\newlength{\bodycol}
+\setlength{\bodycol}{\textwidth}
+\addtolength{\bodycol}{-\datecol}
+\addtolength{\bodycol}{-\gutter}
+
+\newcommand{\entry}[3]{%
+  \par\vspace{0.50ex}\noindent
+  \begin{minipage}[t]{\datecol}
+    \vspace{0pt}\raggedright\footnotesize\color{muted}#1
+  \end{minipage}%
+  \hspace{\gutter}%
+  \begin{minipage}[t]{\bodycol}
+    \vspace{0pt}\raggedright
+    {\headingfont\bfseries\footnotesize #2}\\[0.08ex]
+    {\footnotesize\color{accent}#3}
+  \end{minipage}%
+  \par\vspace{0.10ex}
+}
+
+\newenvironment{bullets}
+  {\begin{list}{\textcolor{accent}{\scriptsize$\blacktriangleright$}}{%
+      \setlength{\leftmargin}{\datecol}
+      \addtolength{\leftmargin}{\gutter}
+      \addtolength{\leftmargin}{1.15em}
+      \setlength{\rightmargin}{0pt}
+      \setlength{\labelwidth}{0.85em}
+      \setlength{\labelsep}{0.3em}
+      \setlength{\itemsep}{0.08ex}
+      \setlength{\parsep}{0pt}
+      \setlength{\topsep}{0.18ex}
+      \setlength{\partopsep}{0pt}
+      \footnotesize}}
+  {\end{list}}
+
+\newcommand{\skillrow}[2]{%
+  \par\noindent
+  \begin{minipage}[t]{\datecol}
+    \vspace{0pt}\raggedright{\headingfont\bfseries\footnotesize #1}
+  \end{minipage}%
+  \hspace{\gutter}%
+  \begin{minipage}[t]{\bodycol}
+    \vspace{0pt}\raggedright\footnotesize #2
+  \end{minipage}%
+  \par\vspace{0.35ex}
+}
+
+\newcommand{\cpp}{\mbox{C++}}
+
+\newcommand{\photo}[1]{%
+  \begin{tikzpicture}
+    \clip[rounded corners=4pt] (0,0) rectangle (2.35,3.008);
+    \node[anchor=south west, inner sep=0] at (0,0)
+      {\includegraphics[width=2.35cm]{#1}};
+  \end{tikzpicture}%
+}
+
+\begin{document}
+
+\begin{minipage}[t]{0.78\textwidth}
+\vspace{0pt}
+{\headingfont\bfseries\fontsize{20}{23}\selectfont EL MEHDI HARESS}\\[0.55ex]
+{\headingfont\fontsize{10}{12}\selectfont\color{accent}%
+PhD in Applied Mathematics \textbar{} CentraleSupélec engineer}\\[0.22ex]
+{\small\color{muted}Statistical modelling \textbar{} Python \textbar{} Machine learning \textbar{} Shipping products}\\[0.95ex]
+{\footnotesize
+\faEnvelope[regular]~\href{mailto:el-mehdi.haress@inria.fr}{el-mehdi.haress@inria.fr}\quad
+\faPhone*~+33 7 58 23 41 50\\[0.22ex]
+\faLinkedin~\href{https://www.linkedin.com/in/el-mehdi-haress-67750b3aa/}{el-mehdi-haress}\quad
+\faGlobe~\href{https://elmehdiharess.org}{elmehdiharess.org}\quad
+\faGithub~\href{https://github.com/ElMehdiHaress}{ElMehdiHaress}\\[0.22ex]
+\faMapMarker*~France}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.18\textwidth}
+\vspace{0pt}\raggedleft
+\photo{assets/photo.jpg}
+\end{minipage}
+
+\vspace{0.65ex}
+
+\section{Profile}
+\footnotesize
+Quantitative researcher with \textbf{5 years} of work on models that break under the usual assumptions:
+discretisation schemes with proven convergence, multi-parameter estimation from discrete data, sensitivity
+analysis, and \textbf{risk-aware learning} (AISTATS). Eight peer-reviewed papers. I write \textbf{Python}
+daily and ship tools other people use. I want that same rigour applied to \textbf{product data}: pipelines
+you can trust, metrics you can defend, and decisions rather than theorems.
+\normalsize
+
+\section{Skills}
+\skillrow{Modelling}{Stochastic models, Monte Carlo, parameter estimation, sensitivity and robustness,
+uncertainty quantification, first-principles problem solving.}
+\skillrow{Data \& ML}{Statistical inference on observed processes; spectral risk measures (VaR, CVaR);
+heavy tails; risk-constrained learning. Everyday scientific Python.}
+\skillrow{Engineering}{\textbf{Python} (NumPy, SciPy, pandas) \textemdash{} 8 years; Git; MATLAB, R;
+JavaScript/TypeScript, React, Firebase. C++ basics. Open-source research code.}
+\skillrow{Working style}{Clear writing and talks; teaching; pairing with non-specialists; owning a problem
+end to end. Comfortable with English as a working language.}
+\skillrow{Languages}{French \textemdash{} native. English \textemdash{} fluent (2 years teaching and research
+in the UK). Japanese \textemdash{} beginner.}
+
+\section{Experience}
+
+\entry{09/2026 \textemdash{} now}{Research engineer \textemdash{} probabilistic numerical methods}{Inria Sophia Antipolis \textemdash{} CALISTO (Mireille Bossy)}
+\begin{bullets}
+  \item Design and analyse numerical schemes for industrial multi-scale stochastic systems; implement in
+  Python and check the claimed convergence rates.
+\end{bullets}
+
+\entry{12/2024 \textemdash{} 08/2026}{Research fellow in stochastic analysis}{University of Leeds \textemdash{} K. Dareiotis and K. Lê}
+\begin{bullets}
+  \item Proved uniform pathwise stability for singular SDEs driven by fractional Brownian motion
+  (\emph{SPA}, 2026); quantified how solutions react to changes in model and parameters.
+  \item Co-organised FRSSD 2026 (18 speakers). Taught stochastic processes (undergrad, 50 students).
+\end{bullets}
+
+\entry{10/2021 \textemdash{} 11/2024}{PhD \textemdash{} numerical approximation of singular SDEs and SPDEs}{Université Paris-Saclay / CentraleSupélec \textemdash{} L. Goudenège and A. Richard}
+\begin{bullets}
+  \item Built a rigorous approximation framework where standard Euler assumptions fail
+  (\emph{IMA J. Numerical Analysis}, \emph{SPA}).
+  \item Joint estimators (drift, volatility, Hurst) from discrete observations; 5 public repositories.
+  \item Taught PDEs, probability, and stochastic finance (M2) at CentraleSupélec.
+\end{bullets}
+
+\entry{02/2020 \textemdash{} 08/2020}{Research intern \textemdash{} learning under risk constraints}{Osaka University \textemdash{} M. Holland}
+\begin{bullets}
+  \item Spectral risk objectives under unbounded losses and heavy tails; 2 \emph{AISTATS} papers with
+  implementations and experiments.
+\end{bullets}
+
+\section{Selected products}
+\skillrow{Nerduncover}{Multiplayer web game (Undercover-style, pop culture). Designed, built and shipped
+end to end.}
+\skillrow{Hana Bella}{\href{https://hanabellaspa.pro}{hanabellaspa.pro} \textemdash{} live client site and
+admin back-office (accounts, roles, period reports, CSV export). React, TypeScript, Firebase.}
+\skillrow{Personal site}{\href{https://elmehdiharess.org}{elmehdiharess.org} \textemdash{} designed and
+maintained; React / TypeScript / Vite.}
+
+\section{Education}
+\skillrow{2021--2024}{PhD in Applied Mathematics \textemdash{} Université Paris-Saclay.}
+\skillrow{2017--2021}{Engineering degree, Applied Mathematics \textemdash{} CentraleSupélec. M2 Mathematics of Randomness (2020--2021).}
+\skillrow{2015--2017}{CPGE (MP) \textemdash{} Lycée Pierre de Fermat, Toulouse.}
+
+\section{Selected publications}
+{\scriptsize\color{muted}8 papers in total; full list at \href{https://elmehdiharess.org}{elmehdiharess.org}. Author order is alphabetical in probability.\par}
+\vspace{0.22ex}
+\begin{itemize}[leftmargin=1.15em, itemsep=0.10ex, topsep=0pt, parsep=0pt, label={\textcolor{accent}{\scriptsize$\blacktriangleright$}}]
+  \scriptsize
+  \item M. Holland, \textbf{E.M. Haress}. \emph{Spectral risk-based learning using unbounded losses}. AISTATS, 2022.
+  \item M. Holland, \textbf{E.M. Haress}. \emph{Learning with risk-averse feedback under potentially heavy tails}. AISTATS, 2021.
+  \item L. Goudenège, \textbf{E.M. Haress}, A. Richard. \emph{Numerical approximation of SDEs with
+  distributional drift}. SPA, 2024.
+  \item K. Dareiotis, \textbf{E.M. Haress}, K. Lê. \emph{Uniform pathwise stability of additive singular SDEs
+  driven by fractional Brownian motion}. SPA, 2026.
+\end{itemize}
+
+\end{document}

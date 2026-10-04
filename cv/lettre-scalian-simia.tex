@@ -1,0 +1,129 @@
+% Lettre de motivation (FR) — El Mehdi Haress
+% Cible : Docteur en Simulation numérique & IA — Scalian Insights, Rennes (RedLUM / SIGMA)
+% Compilation : xelatex lettre-scalian-simia.tex
+\documentclass[10pt,a4paper]{article}
+
+\usepackage{fontspec}
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[
+  top=1.5cm, bottom=1.3cm, left=2.0cm, right=2.0cm
+]{geometry}
+\usepackage{xcolor}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fontawesome5}
+
+% ---------- Polices (identiques au CV) ----------
+\setmainfont{texgyrepagella}[
+  Extension      = .otf,
+  Scale          = 1.05,
+  UprightFont    = *-regular,
+  BoldFont       = *-bold,
+  ItalicFont     = *-italic,
+  BoldItalicFont = *-bolditalic,
+]
+\newfontfamily\headingfont{texgyreheros}[
+  Extension      = .otf,
+  UprightFont    = *-regular,
+  BoldFont       = *-bold,
+  ItalicFont     = *-italic,
+  BoldItalicFont = *-bolditalic,
+]
+
+% ---------- Couleurs (identiques au CV) ----------
+\definecolor{accent}{RGB}{28,58,94}
+\definecolor{ink}{RGB}{26,26,26}
+\definecolor{muted}{RGB}{95,105,120}
+\definecolor{rulegray}{RGB}{200,206,214}
+\color{ink}
+
+\newcommand{\cpp}{\mbox{C++}}
+
+% ---------- Mise en page ----------
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1.15ex plus 0.5ex minus 0.15ex}
+\linespread{1.08}
+\frenchspacing
+
+\begin{document}
+
+{\headingfont\bfseries\fontsize{20}{23}\selectfont EL MEHDI HARESS}\\[0.7ex]
+{\headingfont\fontsize{10.5}{13}\selectfont\color{accent}%
+Docteur en mathématiques appliquées \textbar{} Ingénieur CentraleSupélec}\\[1.0ex]
+{\small
+\faEnvelope[regular]~\href{mailto:el-mehdi.haress@inria.fr}{el-mehdi.haress@inria.fr}\quad
+\faPhone*~+33 7 58 23 41 50\quad
+\faLinkedin~\href{https://www.linkedin.com/in/el-mehdi-haress-67750b3aa/}{el-mehdi-haress}\quad
+\faGlobe~\href{https://elmehdiharess.org}{elmehdiharess.org}
+}
+
+\vspace{0.4ex}
+{\color{rulegray}\rule{\linewidth}{0.7pt}}
+
+\vspace{1.1ex}
+
+\begin{minipage}[t]{0.52\textwidth}
+\vspace{0pt}\raggedright\small
+Madame \textbf{Aurélie Collet}\\
+Responsable Recrutement \& Relations Écoles\\
+\textbf{Scalian} \textemdash{} Insights / Simulation \& IA\\
+2 rue Antoine Becquerel, 35000 Rennes
+\end{minipage}\hfill
+\begin{minipage}[t]{0.42\textwidth}
+\vspace{0pt}\raggedleft\small
+Sophia Antipolis, le 16 septembre 2026
+\end{minipage}
+
+\vspace{1.8ex}
+
+{\small\textbf{Objet :} candidature au poste de Docteur en Simulation numérique \& IA (H/F) \textemdash{} Rennes,
+projets RedLUM et SIGMA}
+
+\vspace{1.6ex}
+
+Madame,
+
+Ce qui m'a arrêté dans votre annonce n'est pas le titre, c'est le projet \textbf{RedLUM} : des
+\textbf{modèles d'ordre réduit sous incertitude de localisation}, un couplage simulation--mesure, et une
+paramétrisation stochastique des erreurs de réduction. J'ai passé cinq ans à démontrer des garanties
+numériques pour des dynamiques stochastiques irrégulières. RedLUM est le terrain où ces garanties servent à
+contrôler un système réel, avec des capteurs et une contrainte de temps réel.
+
+Ma thèse construit des \textbf{schémas d'approximation pour des équations aux dérivées partielles
+stochastiques à dérive singulière}, là où les hypothèses habituelles des schémas d'Euler tombent, avec
+vitesses de convergence prouvées. À Leeds, j'ai ensuite quantifié la \textbf{sensibilité d'une solution aux
+perturbations de sa spécification et de ses paramètres} : c'est, dans le langage de RedLUM, mesurer ce que
+coûte une réduction, et sous quelles hypothèses elle se dégrade. Je suis aujourd'hui ingénieur de recherche à
+l'\textbf{Inria}, équipe CALISTO, sur des méthodes numériques probabilistes pour des systèmes stochastiques
+multi-échelles issus d'applications industrielles. Collaborer avec Inria et l'INRAE sur un ANR, tout en
+portant le volet logiciel chez Scalian, est exactement le format de travail que je cherche.
+
+Le second projet, \textbf{SIGMA}, m'intéresse par l'autre bout : apprendre une loi de commande dans un
+environnement simulé, puis la déployer. Je ne prétends pas arriver avec Isaac Sim ou de l'apprentissage par
+renforcement déjà en production. En revanche, j'ai publié à \emph{AISTATS} sur l'apprentissage sous
+\textbf{contrainte de risque} (mesures spectrales, queues lourdes), je code en \textbf{Python} au quotidien
+depuis huit ans, et j'ai les bases du \cpp{} et de MATLAB de ma formation d'ingénieur. Monter en compétence
+sur ITHACA-FV, OpenFOAM, le MLOps et le déploiement embarqué est un travail que je veux faire, pas une
+ligne que j'écris pour plaire.
+
+Enfin, votre offre demande de \textbf{publier, présenter, et former}. J'ai huit publications internationales,
+plus de quinze exposés, enseigné la finance stochastique et les EDP à CentraleSupélec, et co-organisé deux
+rencontres scientifiques. Je suis mobile sur Rennes à compter de novembre.
+
+Je serais très heureux d'en parler avec Valentin et Florian : ce que la stochastique des modèles réduits
+peut apporter à RedLUM, et ce qu'il me reste à apprendre pour SIGMA.
+
+Veuillez agréer, Madame, l'expression de mes salutations distinguées.
+
+\vspace{2.2ex}
+
+\hfill
+\begin{minipage}{0.42\textwidth}
+\raggedleft
+{\headingfont\bfseries\small El Mehdi Haress}\\[0.2ex]
+{\small\color{muted}Docteur en mathématiques appliquées}
+\end{minipage}
+
+\end{document}

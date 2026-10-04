@@ -1,0 +1,133 @@
+% Lettre de motivation (FR) — El Mehdi Haress
+% Cible : Analyste Quantitatif Front Office (H/F) — Canopee, Paris
+% Compilation : xelatex lettre-canopee-quant.tex
+\documentclass[10pt,a4paper]{article}
+
+\usepackage{fontspec}
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[
+  top=1.5cm, bottom=1.3cm, left=2.0cm, right=2.0cm
+]{geometry}
+\usepackage{xcolor}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fontawesome5}
+
+% ---------- Polices (identiques au CV) ----------
+\setmainfont{texgyrepagella}[
+  Extension      = .otf,
+  Scale          = 1.05,
+  UprightFont    = *-regular,
+  BoldFont       = *-bold,
+  ItalicFont     = *-italic,
+  BoldItalicFont = *-bolditalic,
+]
+\newfontfamily\headingfont{texgyreheros}[
+  Extension      = .otf,
+  UprightFont    = *-regular,
+  BoldFont       = *-bold,
+  ItalicFont     = *-italic,
+  BoldItalicFont = *-bolditalic,
+]
+
+% ---------- Couleurs (identiques au CV) ----------
+\definecolor{accent}{RGB}{28,58,94}
+\definecolor{ink}{RGB}{26,26,26}
+\definecolor{muted}{RGB}{95,105,120}
+\definecolor{rulegray}{RGB}{200,206,214}
+\color{ink}
+
+% Caractères laissés tels quels : un kern négatif casse l'extraction du mot-clé « C++ » par les ATS.
+\newcommand{\cpp}{\mbox{C++}}
+
+% ---------- Mise en page ----------
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1.25ex plus 0.6ex minus 0.15ex}
+\linespread{1.10}
+\frenchspacing
+
+\begin{document}
+
+% =====================  EN-TÊTE  =====================
+{\headingfont\bfseries\fontsize{20}{23}\selectfont EL MEHDI HARESS}\\[0.7ex]
+{\headingfont\fontsize{10.5}{13}\selectfont\color{accent}%
+Docteur en mathématiques appliquées \textbar{} Ingénieur CentraleSupélec}\\[1.0ex]
+{\small
+\faEnvelope[regular]~\href{mailto:el-mehdi.haress@inria.fr}{el-mehdi.haress@inria.fr}\quad
+\faPhone*~+33 7 58 23 41 50\quad
+\faLinkedin~\href{https://www.linkedin.com/in/el-mehdi-haress-67750b3aa/}{el-mehdi-haress}\quad
+\faGlobe~\href{https://elmehdiharess.org}{elmehdiharess.org}
+}
+
+\vspace{0.4ex}
+{\color{rulegray}\rule{\linewidth}{0.7pt}}
+
+\vspace{1.2ex}
+
+% =====================  DESTINATAIRE  =====================
+\begin{minipage}[t]{0.5\textwidth}
+\vspace{0pt}\raggedright\small
+\textbf{Canopee}\\
+Practice Quant \textemdash{} Finance quantitative\\
+77 boulevard Berthier, 75017 Paris
+\end{minipage}\hfill
+\begin{minipage}[t]{0.42\textwidth}
+\vspace{0pt}\raggedleft\small
+Sophia Antipolis, le 16 septembre 2026
+\end{minipage}
+
+\vspace{2.2ex}
+
+{\small\textbf{Objet :} candidature au poste d'Analyste Quantitatif Front Office (H/F) \textemdash{} Paris}
+
+\vspace{2.2ex}
+
+Madame, Monsieur,
+
+La plupart des offres de conseil vendent une mission. La vôtre vend aussi une \textbf{Practice Quant} : des
+travaux de recherche \og~innovants et alternatifs~\fg{} en \textbf{modélisation stochastique} et en
+\textbf{valorisation d'instruments exotiques}. C'est cette phrase, plus que le titre, qui m'a fait
+candidate. Je viens de cinq ans de recherche sur ces objets ; je cherche maintenant le book, le produit et
+l'échéance qui les rendent concrets.
+
+Mes travaux portent sur les \textbf{équations différentielles stochastiques dirigées par un mouvement brownien
+fractionnaire} : dynamiques à mémoire longue, trajectoires irrégulières, calibration délicate. Ce sont les
+objets sous-jacents de la \textbf{volatilité rough} \textemdash{} rough Heston, rough Bergomi \textemdash{} et,
+plus généralement, de la famille de modèles que vous citez : \textbf{volatilité stochastique, locale, à
+sauts}. L'un de mes articles construit des estimateurs conjoints de la dérive, de la volatilité et de
+\textbf{l'indice de Hurst} sur observations discrètes, avec vitesses de convergence prouvées. C'est, formulé
+en chercheur, exactement la question d'une calibration de front office :
+\emph{cet estimateur converge-t-il, à quelle vitesse, et sous quelles hypothèses se dégrade-t-il ?}
+
+Ma thèse prolonge ce réflexe côté \textbf{schémas numériques}. Elle établit un cadre d'approximation pour des
+dynamiques \textbf{à dérive singulière}, là où les hypothèses habituelles des schémas d'Euler tombent. À
+Leeds, j'ai ensuite quantifié la \textbf{sensibilité d'une solution aux perturbations de sa spécification et
+de ses paramètres} : dans un langage de trading, ce sont les \textbf{Grecs} et la robustesse du pricer. J'ai
+enseigné la \textbf{finance stochastique et la modélisation du risque en M2 à CentraleSupélec} : expliquer un
+modèle, en assumer les limites, et former ceux qui devront s'en servir \textemdash{} y compris, demain, les
+utilisateurs d'une librairie de pricing.
+
+Ce qui m'attire chez Canopee est le double terrain. Côté client, développer des méthodes, les calibrer, les
+intégrer dans une librairie et les mettre entre les mains des traders. Côté Practice, continuer à chercher,
+sur des modèles moins sages que Heston, sans attendre que la littérature soit devenue un standard de marché.
+Je code en \textbf{Python} au quotidien depuis huit ans, j'ai les bases du \cpp{} de ma formation d'ingénieur,
+et j'ai livré seul plusieurs applications jusqu'à la production, pour un client réel : monter en compétence
+sur le C\# et contribuer à une librairie de pricing ne me fait pas peur. Je suis mobile sur l'Île-de-France.
+
+Je serais très heureux de vous montrer, de vive voix, ce que cinq ans de stochastique rough et singulière
+peuvent apporter à un book de front office.
+
+Veuillez agréer, Madame, Monsieur, l'expression de mes salutations distinguées.
+
+\vspace{2.6ex}
+
+\hfill
+\begin{minipage}{0.42\textwidth}
+\raggedleft
+{\headingfont\bfseries\small El Mehdi Haress}\\[0.2ex]
+{\small\color{muted}Docteur en mathématiques appliquées}
+\end{minipage}
+
+\end{document}

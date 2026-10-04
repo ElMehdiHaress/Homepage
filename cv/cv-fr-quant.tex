@@ -1,0 +1,274 @@
+% CV professionnel (FR) — El Mehdi Haress
+% Cible : Analyste Quantitatif Risques de marché (validation de modèles) — Société Générale
+% Compilation : xelatex cv-fr-quant.tex
+\documentclass[10pt,a4paper]{article}
+
+\usepackage{fontspec}
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[
+  top=1.0cm, bottom=1.0cm, left=1.5cm, right=1.5cm
+]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{array}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fontawesome5}
+
+% ---------- Polices ----------
+\setmainfont{texgyrepagella}[
+  Extension      = .otf,
+  UprightFont    = *-regular,
+  BoldFont       = *-bold,
+  ItalicFont     = *-italic,
+  BoldItalicFont = *-bolditalic,
+]
+\newfontfamily\headingfont{texgyreheros}[
+  Extension      = .otf,
+  UprightFont    = *-regular,
+  BoldFont       = *-bold,
+  ItalicFont     = *-italic,
+  BoldItalicFont = *-bolditalic,
+]
+
+% ---------- Couleurs ----------
+\definecolor{accent}{RGB}{28,58,94}
+\definecolor{ink}{RGB}{26,26,26}
+\definecolor{muted}{RGB}{95,105,120}
+\definecolor{rulegray}{RGB}{200,206,214}
+\color{ink}
+
+% ---------- Mise en page ----------
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\linespread{1.02}
+\frenchspacing
+
+\titleformat{\section}
+  {\headingfont\bfseries\fontsize{10}{12}\selectfont\color{accent}}
+  {}{0em}{\MakeUppercase}[\vspace{-0.9ex}{\color{rulegray}\rule{\linewidth}{0.7pt}}]
+\titlespacing*{\section}{0pt}{2.4ex plus 1.4ex minus .2ex}{1.3ex}
+
+% ---------- Gouttière et colonnes ----------
+\newlength{\datecol}\setlength{\datecol}{0.165\textwidth}
+\newlength{\gutter}\setlength{\gutter}{1em}
+\newlength{\bodycol}
+\setlength{\bodycol}{\textwidth}
+\addtolength{\bodycol}{-\datecol}
+\addtolength{\bodycol}{-\gutter}
+
+% ---------- Commandes ----------
+% \entry{dates}{intitulé}{organisme — lieu}
+\newcommand{\entry}[3]{%
+  \par\vspace{1.0ex plus 0.9ex minus 0.1ex}\noindent
+  \begin{minipage}[t]{\datecol}
+    \vspace{0pt}\raggedright\small\color{muted}#1
+  \end{minipage}%
+  \hspace{\gutter}%
+  \begin{minipage}[t]{\bodycol}
+    \vspace{0pt}\raggedright
+    {\headingfont\bfseries\small #2}\\[0.15ex]
+    {\small\color{accent}#3}
+  \end{minipage}%
+  \par\vspace{0.3ex}
+}
+
+% Puces alignées sur la colonne de droite
+\newenvironment{bullets}
+  {\begin{list}{\textcolor{accent}{\scriptsize$\blacktriangleright$}}{%
+      \setlength{\leftmargin}{\datecol}
+      \addtolength{\leftmargin}{\gutter}
+      \addtolength{\leftmargin}{1.25em}
+      \setlength{\rightmargin}{0pt}
+      \setlength{\labelwidth}{0.9em}
+      \setlength{\labelsep}{0.35em}
+      \setlength{\itemsep}{0.2ex}
+      \setlength{\parsep}{0pt}
+      \setlength{\topsep}{0.4ex}
+      \setlength{\partopsep}{0pt}
+      \small}}
+  {\end{list}}
+
+% \skillrow{catégorie}{contenu}
+\newcommand{\skillrow}[2]{%
+  \par\noindent
+  \begin{minipage}[t]{\datecol}
+    \vspace{0pt}\raggedright{\headingfont\bfseries\footnotesize #1}
+  \end{minipage}%
+  \hspace{\gutter}%
+  \begin{minipage}[t]{\bodycol}
+    \vspace{0pt}\raggedright\small #2
+  \end{minipage}%
+  \par\vspace{0.7ex}
+}
+
+% Caractères laissés tels quels : un kern négatif casse l'extraction du mot-clé « C++ » par les ATS.
+\newcommand{\cpp}{\mbox{C++}}
+
+\newcommand{\photo}[1]{%
+  \begin{tikzpicture}
+    \clip[rounded corners=5pt] (0,0) rectangle (2.55,3.264);
+    \node[anchor=south west, inner sep=0] at (0,0)
+      {\includegraphics[width=2.55cm]{#1}};
+  \end{tikzpicture}%
+}
+
+\begin{document}
+
+% =====================  EN-TÊTE  =====================
+\begin{minipage}[t]{0.76\textwidth}
+\vspace{0pt}
+{\headingfont\bfseries\fontsize{22}{25}\selectfont EL MEHDI HARESS}\\[0.9ex]
+{\headingfont\fontsize{11}{13}\selectfont\color{accent}%
+Docteur en mathématiques appliquées \textbar{} Ingénieur CentraleSupélec}\\[0.4ex]
+{\small\color{muted}Modélisation stochastique \textbar{} Méthodes numériques probabilistes \textbar{} Mesures de risque}\\[1.4ex]
+{\small
+\faEnvelope[regular]~\href{mailto:el-mehdi.haress@inria.fr}{el-mehdi.haress@inria.fr}\quad
+\faPhone*~+33 7 58 23 41 50\\[0.35ex]
+\faLinkedin~\href{https://www.linkedin.com/in/el-mehdi-haress-67750b3aa/}{el-mehdi-haress}\quad
+\faGlobe~\href{https://elmehdiharess.org}{elmehdiharess.org}\quad
+\faGithub~\href{https://github.com/ElMehdiHaress}{ElMehdiHaress}\\[0.35ex]
+\faMapMarker*~Sophia Antipolis \textemdash{} mobilité Île-de-France}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.20\textwidth}
+\vspace{0pt}\raggedleft
+\photo{assets/photo.jpg}
+\end{minipage}
+
+\vspace{1.2ex}
+
+% =====================  PROFIL  =====================
+\section{Profil}
+\small
+Chercheur quantitatif, \textbf{5 ans d'expérience} en modélisation stochastique : équations différentielles
+stochastiques, schémas de discrétisation avec garanties de convergence, calibration sur observations discrètes
+et mesures de risque (VaR, CVaR, mesures spectrales). \textbf{Publications} internationales à comité de
+lecture, dont plusieurs consacrées à la \textbf{robustesse des modèles} en régime singulier ou à mémoire longue.
+Habitué à faire dialoguer preuve mathématique, implémentation et restitution écrite et orale. Objectif :
+la \textbf{validation des modèles} et la minimisation du risque.
+\normalsize
+
+% =====================  COMPÉTENCES  =====================
+\section{Compétences}
+\skillrow{Quantitatif}{EDS et EDPS, calcul stochastique et calcul de Malliavin, processus à mémoire
+(mouvement brownien fractionnaire), Monte-Carlo, schémas d'Euler et analyse de convergence, inférence
+statistique sur processus discrétisés, probabilités en grande dimension.}
+\skillrow{Risque \& finance}{Mesures de risque (VaR, CVaR, mesures de risque spectrales), optimisation
+sous contrainte de risque, événements rares et queues lourdes, analyse de sensibilité et de stabilité des
+modèles, finance stochastique et modélisation du risque (enseigné en M2 à CentraleSupélec).}
+\skillrow{Programmation}{\textbf{Python} (NumPy, SciPy, pandas) \textemdash{} usage quotidien depuis 8 ans ;
+MATLAB, R, JavaScript/TypeScript, Git, \LaTeX{} ; bases en \cpp{} (formation d'ingénieur).}
+\skillrow{Transverse}{Rédaction de rapports techniques et de notes de synthèse, revue critique par les pairs,
+présentation devant des publics experts et non experts, encadrement, organisation de conférences
+internationales.}
+\skillrow{Langues}{Français \textemdash{} langue maternelle. Anglais \textemdash{} courant. Japonais \textemdash{} notions.}
+
+% =====================  EXPÉRIENCE  =====================
+\section{Expérience professionnelle}
+
+\entry{09/2026 \textemdash{} auj.}{Ingénieur de recherche \textemdash{} Modélisation stochastique appliquée}{INRIA Sophia Antipolis \textemdash{} équipe CALISTO}
+\begin{bullets}
+  \item Conception et analyse de méthodes numériques probabilistes pour des systèmes stochastiques
+  multi-échelles issus d'applications industrielles.
+  \item Implémentation en Python des schémas étudiés et validation numérique des vitesses de convergence
+  démontrées théoriquement.
+  \item Restitution des résultats sous forme de notes techniques et de présentations auprès d'interlocuteurs
+  pluridisciplinaires (mathématiciens, ingénieurs, partenaires industriels).
+\end{bullets}
+
+\entry{12/2024 \textemdash{} 08/2026}{Chercheur post-doctorant en analyse stochastique}{University of Leeds (Royaume-Uni) \textemdash{} équipe de K. Dareiotis et K. Lê}
+\begin{bullets}
+  \item Démonstration de résultats de \textbf{stabilité trajectorielle uniforme} pour des EDS singulières
+  dirigées par un mouvement brownien fractionnaire, publiés dans \emph{Stochastic Processes and their
+  Applications} (2026).
+  \item \textbf{Quantification de la sensibilité} de la dynamique aux perturbations de la spécification et
+  des paramètres : cadre directement transposable à l'analyse de robustesse et au risque de modèle.
+  \item Co-organisation du workshop international \textbf{FRSSD 2026} (18 intervenants) : sélection et
+  coordination des intervenants, conception du site, budget et logistique en lien avec les RH de l'université.
+  \item Chargé de travaux dirigés en processus stochastiques (niveau L3, 50 étudiants).
+\end{bullets}
+
+\pagebreak
+
+\entry{10/2021 \textemdash{} 11/2024}{Doctorat \textemdash{} Approximation numérique d'EDS et d'EDPS à dérive singulière}{Université Paris-Saclay / CentraleSupélec \textemdash{} dir. L. Goudenège et A. Richard}
+\begin{bullets}
+  \item Construction de l'un des \textbf{premiers cadres rigoureux d'approximation numérique pour des
+  dynamiques stochastiques à dérive distributionnelle} avec garanties de convergence.
+  \item Développement d'\textbf{estimateurs conjoints de plusieurs paramètres} (dérive, volatilité, indice de
+  Hurst) sur observations discrètes, avec vitesses de convergence prouvées.
+  \item Implémentation, validation et publication en \emph{open source} des schémas et estimateurs
+  (Python, MATLAB) ; 5 dépôts publics.
+  \item \textbf{Enseignement à CentraleSupélec} ($\sim$60 étudiants par an) : intégration et probabilités,
+  équations aux dérivées partielles, et \textbf{finance stochastique et modélisation du risque} (M2).
+\end{bullets}
+
+\entry{02/2020 \textemdash{} 08/2020}{Stage de recherche \textemdash{} Apprentissage sous contrainte de risque}{Université d'Osaka (Japon) \textemdash{} équipe de M. Holland}
+\begin{bullets}
+  \item Transposition des \textbf{mesures de risque spectrales} du cadre financier vers l'optimisation
+  statistique, avec garanties théoriques sous pertes non bornées et distributions à queues lourdes.
+  \item Deux articles acceptés à \emph{AISTATS}, avec implémentation et campagnes numériques associées.
+\end{bullets}
+
+\entry{02/2019 \textemdash{} 08/2019}{Stage de recherche \textemdash{} Estimation pour le modèle d'Ornstein--Uhlenbeck fractionnaire}{University of Alberta (Canada) \textemdash{} équipe de Y. Hu}
+\begin{bullets}
+  \item Estimation \textbf{simultanée de l'ensemble des paramètres} d'un modèle de taux à mémoire longue sous
+  observations discrètes.
+\end{bullets}
+
+% =====================  FORMATION  =====================
+\section{Formation}
+
+\entry{2021 \textemdash{} 2024}{Doctorat en mathématiques appliquées}{Université Paris-Saclay \textemdash{} Gif-sur-Yvette}
+
+\entry{2020 \textemdash{} 2021}{Master 2 «~Mathématiques de l'aléatoire~» \textemdash{} probabilités et statistiques}{Université Paris-Saclay \textemdash{} Orsay}
+
+\entry{2017 \textemdash{} 2021}{Diplôme d'ingénieur \textemdash{} majeure Mathématiques appliquées}{CentraleSupélec \textemdash{} Gif-sur-Yvette}
+
+\entry{2015 \textemdash{} 2017}{Classes préparatoires aux grandes écoles (MP)}{Lycée Pierre de Fermat \textemdash{} Toulouse}
+
+% =====================  PUBLICATIONS  =====================
+\section{Publications sélectionnées}
+{\footnotesize\color{muted}8 publications au total ; liste complète sur \href{https://elmehdiharess.org}{elmehdiharess.org}.
+En probabilités, l'ordre des auteurs est alphabétique.\par}
+\vspace{0.6ex}
+\begin{itemize}[leftmargin=1.3em, itemsep=0.35ex, topsep=0pt, label={\textcolor{accent}{\scriptsize$\blacktriangleright$}}]
+  \footnotesize
+  \item K. Dareiotis, \textbf{E.M. Haress}, K. Lê. \emph{Uniform pathwise stability of additive singular SDEs
+  driven by fractional Brownian motion}. Stochastic Processes and their Applications, 2026.
+  \item L. Goudenège, \textbf{E.M. Haress}, A. Richard. \emph{Numerical approximation of the stochastic heat
+  equation with a distributional reaction term}. IMA Journal of Numerical Analysis, 2025.
+  \item L. Goudenège, \textbf{E.M. Haress}, A. Richard. \emph{Numerical approximation of SDEs with
+  distributional drift}. Stochastic Processes and their Applications, 2024.
+  \item \textbf{E.M. Haress}, A. Richard. \emph{Estimation of several parameters in discretely-observed SDEs
+  with additive fractional noise}. Statistical Inference for Stochastic Processes, 2024.
+  \item M. Holland, \textbf{E.M. Haress}. \emph{Spectral risk-based learning using unbounded losses}.
+  International Conference on Artificial Intelligence and Statistics (AISTATS), 2022.
+\end{itemize}
+
+% =====================  COMPLÉMENTS  =====================
+\section{Informations complémentaires}
+\skillrow{Expertise}{Reviewer pour plusieurs journaux scientifiques et Membre de la COST Action CA24104
+«~\textsc{Stochastica}~».}
+\skillrow{Communication}{Plus de 15 exposés et posters internationaux, dont séminaires invités à
+\textbf{Warwick}, \textbf{Rennes (IRMAR)}, \textbf{Évry} et à l'\textbf{Institut Henri-Poincaré}.
+Co-organisateur du colloque CJC-MA 2023 (143 participants).}
+\skillrow{Encadrement}{Co-encadrement à distance de la thèse de J. Naffrichoux (depuis 2025) sur les méthodes
+numériques pour EDPS. Responsable du suivi des tuteurs du dispositif de soutien en mathématiques de
+Paris-Saclay (2023).}
+\skillrow{Distinctions}{Programme Vivaldi, Fondation Mathématique Jacques Hadamard (2023) ; bourse de
+mobilité internationale IDEX, Paris-Saclay (2019).}
+
+\skillrow{Projets personnels}{Conception et développement d'applications web de bout en bout, en autodidacte :
+\textbf{Nerduncover}, application de jeu multijoueur, site web pour un salon de beauté \href{https://hanabellaspa.pro}{hanabellaspa.pro}, site web personnel
+\href{https://elmehdiharess.org}{elmehdiharess.org}. Compétences acquises : \textbf{React}/TypeScript,
+Tailwind CSS, Vite, \textbf{Firebase} (authentification, Firestore), conception de schémas de données.}
+\skillrow{Centres d'intérêt}{\textbf{Dessin}, \textbf{photographie}
+(\href{https://elmehdiharess.org/photography}{portfolio en ligne}), \textbf{production de musique lo-fi}
+(\href{https://www.youtube.com/@sonosketchy}{sonosketchy}), \textbf{volley-ball}.}
+
+\end{document}

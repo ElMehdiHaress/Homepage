@@ -1,0 +1,144 @@
+% Lettre de motivation (FR) — El Mehdi Haress
+% Cible : Analyste Quantitatif Risques de marché — périmètre Equity (réf. 26000I6J) — Société Générale
+% Compilation : xelatex lettre-sg-quant.tex
+\documentclass[10pt,a4paper]{article}
+
+\usepackage{fontspec}
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[
+  top=1.5cm, bottom=1.3cm, left=2.0cm, right=2.0cm
+]{geometry}
+\usepackage{xcolor}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fontawesome5}
+
+% ---------- Polices (identiques au CV) ----------
+\setmainfont{texgyrepagella}[
+  Extension      = .otf,
+  Scale          = 1.05,
+  UprightFont    = *-regular,
+  BoldFont       = *-bold,
+  ItalicFont     = *-italic,
+  BoldItalicFont = *-bolditalic,
+]
+\newfontfamily\headingfont{texgyreheros}[
+  Extension      = .otf,
+  UprightFont    = *-regular,
+  BoldFont       = *-bold,
+  ItalicFont     = *-italic,
+  BoldItalicFont = *-bolditalic,
+]
+
+% ---------- Couleurs (identiques au CV) ----------
+\definecolor{accent}{RGB}{28,58,94}
+\definecolor{ink}{RGB}{26,26,26}
+\definecolor{muted}{RGB}{95,105,120}
+\definecolor{rulegray}{RGB}{200,206,214}
+\color{ink}
+
+% Caractères laissés tels quels : un kern négatif casse l'extraction du mot-clé « C++ » par les ATS.
+\newcommand{\cpp}{\mbox{C++}}
+
+% ---------- Mise en page ----------
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1.25ex plus 0.6ex minus 0.15ex}
+\linespread{1.10}
+\frenchspacing
+
+\begin{document}
+
+% =====================  EN-TÊTE  =====================
+{\headingfont\bfseries\fontsize{20}{23}\selectfont EL MEHDI HARESS}\\[0.7ex]
+{\headingfont\fontsize{10.5}{13}\selectfont\color{accent}%
+Docteur en mathématiques appliquées \textbar{} Ingénieur CentraleSupélec}\\[1.0ex]
+{\small
+\faEnvelope[regular]~\href{mailto:el-mehdi.haress@inria.fr}{el-mehdi.haress@inria.fr}\quad
+\faPhone*~+33 7 58 23 41 50\quad
+\faLinkedin~\href{https://www.linkedin.com/in/el-mehdi-haress-67750b3aa/}{el-mehdi-haress}\quad
+\faGlobe~\href{https://elmehdiharess.org}{elmehdiharess.org}
+}
+
+\vspace{0.4ex}
+{\color{rulegray}\rule{\linewidth}{0.7pt}}
+
+\vspace{1.2ex}
+
+% =====================  DESTINATAIRE  =====================
+\begin{minipage}[t]{0.5\textwidth}
+\vspace{0pt}\raggedright\small
+\textbf{Société Générale}\\
+Validation des modèles \textemdash{} Opérations de marché\\
+La Défense, Île-de-France
+\end{minipage}\hfill
+\begin{minipage}[t]{0.42\textwidth}
+\vspace{0pt}\raggedleft\small
+Sophia Antipolis, le 15 septembre 2026
+\end{minipage}
+
+\vspace{2.2ex}
+
+{\small\textbf{Objet :} candidature au poste d'Analyste Quantitatif Risques de marché \textemdash{} périmètre
+Equity (référence 26000I6J)}
+
+\vspace{2.2ex}
+
+Madame, Monsieur,
+
+\og~Vous aimez vous plonger dans les équations mathématiques […] mais vous n'aimez pas l'atmosphère studieuse
+des bibliothèques ?~\fg{} J'ai passé cinq ans dans ces bibliothèques, et j'y ai démontré des théorèmes dont je
+suis fier. C'est précisément parce que j'aime ces objets que je souhaite aujourd'hui les voir confrontés à des
+books, à des positions et à des décisions qui engagent \textemdash{} plutôt qu'à un referee anonyme.
+
+Cette bascule est moins un changement de métier qu'un changement de terrain. Mes recherches portent sur les
+\textbf{équations différentielles stochastiques dirigées par un mouvement brownien fractionnaire}, c'est-à-dire
+sur des dynamiques à mémoire longue et à trajectoires irrégulières. Ce sont exactement les objets sur lesquels
+repose la \textbf{volatilité rough} \textemdash{} rough Heston, rough Bergomi \textemdash{} dont la littérature
+est née de l'observation des surfaces de volatilité actions. Mieux : l'un de mes articles construit des
+estimateurs conjoints de la dérive, de la volatilité et de \textbf{l'indice de Hurst} sur observations
+discrètes, avec vitesses de convergence prouvées. Autrement dit, j'ai travaillé sur la question que pose un
+validateur devant une calibration de volatilité : \emph{cet estimateur converge-t-il, à quelle vitesse, et sous
+quelles hypothèses se dégrade-t-il ?}
+
+Ma thèse prolonge ce réflexe. Elle établit l'un des premiers cadres rigoureux d'approximation numérique pour
+des dynamiques \textbf{à dérive singulière}, là où les hypothèses habituelles des schémas d'Euler tombent, et
+mes travaux à Leeds quantifient la \textbf{sensibilité d'une solution aux perturbations de sa spécification et
+de ses paramètres}. C'est, dans un langage académique, le cœur du risque de modèle : identifier où un modèle
+cesse d'être fiable et le démontrer. J'ai par ailleurs abordé le risque par l'autre bout lors de mon séjour à
+l'Université d'Osaka, en transposant les \textbf{mesures de risque spectrales} (VaR, CVaR) hors de leur cadre
+financier d'origine, avec des garanties sous queues lourdes et événements rares.
+
+Enfin, votre annonce insiste sur l'oral et l'écrit, et c'est un terrain que je connais. J'ai enseigné la
+\textbf{finance stochastique et la modélisation du risque en M2 à CentraleSupélec}, après avoir donné plus de
+quinze exposés internationaux et co-organisé deux rencontres scientifiques internationales. Expliquer un
+modèle, expliciter ses hypothèses et
+assumer ses limites devant un auditoire qui va vous contredire : c'est l'exercice de l'enseignement, et c'est
+aussi, si je comprends bien, celui d'un rapport de validation défendu devant des traders et des quants.
+
+Ce qui m'attire dans votre offre est précisément le \textbf{quatuor d'analyses} que vous décrivez. Valider un
+modèle de valorisation, donner un go sur un nouveau produit, challenger une méthode d'estimation de paramètres
+et concevoir des détecteurs de risque de modèle : ce sont les quatre questions qui structurent mon travail
+depuis ma thèse, mais posées sur des positions réelles, avec une contradiction immédiate et une échéance sur
+laquelle on ne négocie pas. Côté outils, je
+développe en Python quotidiennement depuis huit ans, j'ai les bases du \cpp{} de ma formation d'ingénieur, et
+j'ai construit seul plusieurs applications web de bout en bout, jusqu'à leur mise en production pour un client
+réel : monter en compétence sur le C\# et contribuer à votre librairie de calcul interne ne me fait pas peur,
+au contraire.
+
+Je serais très heureux de vous exposer de vive voix ce que la rigueur du singulier et du fractionnaire peut
+apporter à la détection du risque de modèle sur un périmètre Equity.
+
+Veuillez agréer, Madame, Monsieur, l'expression de mes salutations distinguées.
+
+\vspace{2.6ex}
+
+\hfill
+\begin{minipage}{0.42\textwidth}
+\raggedleft
+{\headingfont\bfseries\small El Mehdi Haress}\\[0.2ex]
+{\small\color{muted}Docteur en mathématiques appliquées}
+\end{minipage}
+
+\end{document}

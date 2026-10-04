@@ -1,0 +1,207 @@
+% CV scientifique 1 page (FR) — El Mehdi Haress
+% Cible : Docteur en Simulation numérique & IA — Scalian Insights, Rennes (RedLUM / SIGMA)
+% Compilation : xelatex cv-fr-scalian.tex
+\documentclass[10pt,a4paper]{article}
+
+\usepackage{fontspec}
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[
+  top=0.85cm, bottom=0.85cm, left=1.4cm, right=1.4cm
+]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fontawesome5}
+
+\setmainfont{texgyrepagella}[
+  Extension      = .otf,
+  UprightFont    = *-regular,
+  BoldFont       = *-bold,
+  ItalicFont     = *-italic,
+  BoldItalicFont = *-bolditalic,
+]
+\newfontfamily\headingfont{texgyreheros}[
+  Extension      = .otf,
+  UprightFont    = *-regular,
+  BoldFont       = *-bold,
+  ItalicFont     = *-italic,
+  BoldItalicFont = *-bolditalic,
+]
+
+\definecolor{accent}{RGB}{28,58,94}
+\definecolor{ink}{RGB}{26,26,26}
+\definecolor{muted}{RGB}{95,105,120}
+\definecolor{rulegray}{RGB}{200,206,214}
+\color{ink}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\linespread{1.00}
+\frenchspacing
+
+\titleformat{\section}
+  {\headingfont\bfseries\fontsize{9.5}{11}\selectfont\color{accent}}
+  {}{0em}{\MakeUppercase}[\vspace{-0.85ex}{\color{rulegray}\rule{\linewidth}{0.7pt}}]
+\titlespacing*{\section}{0pt}{1.6ex plus .2ex}{0.9ex}
+
+\newlength{\datecol}\setlength{\datecol}{0.155\textwidth}
+\newlength{\gutter}\setlength{\gutter}{0.85em}
+\newlength{\bodycol}
+\setlength{\bodycol}{\textwidth}
+\addtolength{\bodycol}{-\datecol}
+\addtolength{\bodycol}{-\gutter}
+
+\newcommand{\entry}[3]{%
+  \par\vspace{0.55ex}\noindent
+  \begin{minipage}[t]{\datecol}
+    \vspace{0pt}\raggedright\footnotesize\color{muted}#1
+  \end{minipage}%
+  \hspace{\gutter}%
+  \begin{minipage}[t]{\bodycol}
+    \vspace{0pt}\raggedright
+    {\headingfont\bfseries\footnotesize #2}\\[0.08ex]
+    {\footnotesize\color{accent}#3}
+  \end{minipage}%
+  \par\vspace{0.12ex}
+}
+
+\newenvironment{bullets}
+  {\begin{list}{\textcolor{accent}{\scriptsize$\blacktriangleright$}}{%
+      \setlength{\leftmargin}{\datecol}
+      \addtolength{\leftmargin}{\gutter}
+      \addtolength{\leftmargin}{1.15em}
+      \setlength{\rightmargin}{0pt}
+      \setlength{\labelwidth}{0.85em}
+      \setlength{\labelsep}{0.3em}
+      \setlength{\itemsep}{0.08ex}
+      \setlength{\parsep}{0pt}
+      \setlength{\topsep}{0.2ex}
+      \setlength{\partopsep}{0pt}
+      \footnotesize}}
+  {\end{list}}
+
+\newcommand{\skillrow}[2]{%
+  \par\noindent
+  \begin{minipage}[t]{\datecol}
+    \vspace{0pt}\raggedright{\headingfont\bfseries\footnotesize #1}
+  \end{minipage}%
+  \hspace{\gutter}%
+  \begin{minipage}[t]{\bodycol}
+    \vspace{0pt}\raggedright\footnotesize #2
+  \end{minipage}%
+  \par\vspace{0.38ex}
+}
+
+\newcommand{\cpp}{\mbox{C++}}
+
+\newcommand{\photo}[1]{%
+  \begin{tikzpicture}
+    \clip[rounded corners=4pt] (0,0) rectangle (2.35,3.008);
+    \node[anchor=south west, inner sep=0] at (0,0)
+      {\includegraphics[width=2.35cm]{#1}};
+  \end{tikzpicture}%
+}
+
+\begin{document}
+
+\begin{minipage}[t]{0.78\textwidth}
+\vspace{0pt}
+{\headingfont\bfseries\fontsize{20}{23}\selectfont EL MEHDI HARESS}\\[0.6ex]
+{\headingfont\fontsize{10}{12}\selectfont\color{accent}%
+Docteur en mathématiques appliquées \textbar{} Ingénieur CentraleSupélec}\\[0.25ex]
+{\small\color{muted}Simulation numérique \textbar{} EDPS \textbar{} Quantification d'incertitude \textbar{} Apprentissage}\\[1.0ex]
+{\footnotesize
+\faEnvelope[regular]~\href{mailto:el-mehdi.haress@inria.fr}{el-mehdi.haress@inria.fr}\quad
+\faPhone*~+33 7 58 23 41 50\\[0.25ex]
+\faLinkedin~\href{https://www.linkedin.com/in/el-mehdi-haress-67750b3aa/}{el-mehdi-haress}\quad
+\faGlobe~\href{https://elmehdiharess.org}{elmehdiharess.org}\quad
+\faGithub~\href{https://github.com/ElMehdiHaress}{ElMehdiHaress}\\[0.25ex]
+\faMapMarker*~Sophia Antipolis \textemdash{} mobilité Rennes \textemdash{} disponible novembre~2026}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.18\textwidth}
+\vspace{0pt}\raggedleft
+\photo{assets/photo.jpg}
+\end{minipage}
+
+\vspace{0.7ex}
+
+\section{Profil}
+\footnotesize
+Chercheur en \textbf{analyse numérique stochastique}, 5 ans : schémas de discrétisation pour
+\textbf{EDP et EDS} avec garanties de convergence, estimation de paramètres sur observations discrètes,
+quantification de sensibilité et apprentissage sous contrainte de risque. Huit publications internationales.
+Objectif : coupler \textbf{modèles réduits, données et incertitude} sur des systèmes physiques, et en faire
+des outils de simulation et de contrôle.
+\normalsize
+
+\section{Compétences}
+\skillrow{Analyse num.}{EDP et EDS, schémas d'Euler, analyse de convergence, Monte-Carlo, inférence sur
+processus discrétisés, systèmes linéaires.}
+\skillrow{Stochastique}{Calcul stochastique, EDPS à coefficients irréguliers, mouvement brownien
+fractionnaire, quantification d'incertitude, analyse de sensibilité.}
+\skillrow{IA \& stats}{Apprentissage sous contrainte de risque (AISTATS), mesures spectrales, queues
+lourdes ; bases en réseaux de neurones. Python scientifique au quotidien.}
+\skillrow{Programmation}{\textbf{Python} (NumPy, SciPy) \textemdash{} 8 ans ; \textbf{MATLAB}, Git, \LaTeX{} ;
+bases en \cpp{} (formation d'ingénieur). Code de recherche publié en \emph{open source}.}
+\skillrow{Langues}{Français \textemdash{} langue maternelle. Anglais \textemdash{} courant. Japonais \textemdash{} notions.}
+
+\section{Expérience}
+
+\entry{09/2026 \textemdash{} auj.}{Ingénieur de recherche \textemdash{} méthodes numériques probabilistes}{Inria Sophia Antipolis \textemdash{} équipe CALISTO (Mireille Bossy)}
+\begin{bullets}
+  \item Conception et analyse de schémas pour des systèmes stochastiques multi-échelles issus d'applications
+  industrielles ; implémentation Python et validation des vitesses de convergence.
+\end{bullets}
+
+\entry{12/2024 \textemdash{} 08/2026}{Chercheur post-doctorant en analyse stochastique}{University of Leeds \textemdash{} K. Dareiotis et K. Lê}
+\begin{bullets}
+  \item Stabilité trajectorielle uniforme d'EDS singulières dirigées par un brownien fractionnaire
+  (\emph{SPA}, 2026) ; quantification de la sensibilité aux perturbations de modèle et de paramètres.
+  \item Co-organisation du workshop FRSSD 2026 (18 intervenants). TD de processus stochastiques (L3, 50 étudiants).
+\end{bullets}
+
+\entry{10/2021 \textemdash{} 11/2024}{Doctorat \textemdash{} approximation numérique d'EDS et d'EDPS singulières}{Université Paris-Saclay / CentraleSupélec \textemdash{} L. Goudenège et A. Richard}
+\begin{bullets}
+  \item Cadre rigoureux d'approximation pour dynamiques à dérive distributionnelle, avec garanties de
+  convergence (\emph{IMA J. Numerical Analysis}, \emph{SPA}).
+  \item Estimateurs conjoints (dérive, volatilité, Hurst) sur observations discrètes ; 5 dépôts publics
+  (Python, MATLAB).
+  \item Enseignement à CentraleSupélec : EDP, probabilités, finance stochastique (M2).
+\end{bullets}
+
+\entry{02/2020 \textemdash{} 08/2020}{Stage de recherche \textemdash{} apprentissage sous contrainte de risque}{Université d'Osaka \textemdash{} M. Holland}
+\begin{bullets}
+  \item Mesures de risque spectrales hors cadre financier, garanties sous queues lourdes ; 2 articles
+  \emph{AISTATS}.
+\end{bullets}
+
+\section{Formation}
+\skillrow{2021--2024}{Doctorat en mathématiques appliquées \textemdash{} Université Paris-Saclay.}
+\skillrow{2017--2021}{Ingénieur, majeure mathématiques appliquées \textemdash{} CentraleSupélec. M2 Mathématiques de l'aléatoire (2020--2021).}
+\skillrow{2015--2017}{CPGE MP \textemdash{} Lycée Pierre de Fermat, Toulouse.}
+
+\section{Publications sélectionnées}
+{\scriptsize\color{muted}8 publications ; liste complète sur \href{https://elmehdiharess.org}{elmehdiharess.org}. Ordre alphabétique en probabilités.\par}
+\vspace{0.25ex}
+\begin{itemize}[leftmargin=1.15em, itemsep=0.12ex, topsep=0pt, parsep=0pt, label={\textcolor{accent}{\scriptsize$\blacktriangleright$}}]
+  \scriptsize
+  \item K. Dareiotis, \textbf{E.M. Haress}, K. Lê. \emph{Uniform pathwise stability of additive singular SDEs
+  driven by fractional Brownian motion}. SPA, 2026.
+  \item L. Goudenège, \textbf{E.M. Haress}, A. Richard. \emph{Numerical approximation of the stochastic heat
+  equation with a distributional reaction term}. IMA J. Numerical Analysis, 2025.
+  \item L. Goudenège, \textbf{E.M. Haress}, A. Richard. \emph{Numerical approximation of SDEs with
+  distributional drift}. SPA, 2024.
+  \item M. Holland, \textbf{E.M. Haress}. \emph{Spectral risk-based learning using unbounded losses}. AISTATS, 2022.
+\end{itemize}
+
+\section{Compléments}
+\skillrow{Communication}{15+ exposés internationaux (Warwick, IRMAR, IHP). Reviewer. COST Action STOCHASTICA.}
+\skillrow{Encadrement}{Co-encadrement de thèse (EDPS numériques, depuis 2025). Organisateur CJC-MA 2023 (143 pers.).}
+
+\end{document}

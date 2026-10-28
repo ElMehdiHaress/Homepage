@@ -460,7 +460,7 @@ const Homepage = () => {
 
         {/* CV Link */}
         <a
-          href="https://drive.google.com/file/d/1lfo0vQPSHdNnTJf5lrOIEhLiBfHytdv8/view?usp=sharing"
+          href="https://drive.google.com/file/d/17VeuohlT3NaQKZRl-HSdac_uAYxe3QFs/view?usp=sharing"
           target="_blank"
           rel="noopener noreferrer"
           title="CV"

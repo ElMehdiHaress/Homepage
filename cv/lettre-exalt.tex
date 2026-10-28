@@ -1,0 +1,87 @@
+% Lettre de motivation — Analyste Quantitatif, eXalt-Fi, Paris
+% Compilation : xelatex lettre-exalt.tex
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\usepackage[french]{babel}
+\usepackage[top=1.6cm, bottom=1.6cm, left=2.0cm, right=2.0cm]{geometry}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fontawesome5}
+\setmainfont{texgyrepagella}[Extension=.otf, UprightFont=*-regular, BoldFont=*-bold, ItalicFont=*-italic, BoldItalicFont=*-bolditalic]
+\newfontfamily\headingfont{texgyreheros}[Extension=.otf, UprightFont=*-regular, BoldFont=*-bold, ItalicFont=*-italic, BoldItalicFont=*-bolditalic]
+\definecolor{accent}{RGB}{28,58,94}
+\definecolor{ink}{RGB}{26,26,26}
+\definecolor{muted}{RGB}{95,105,120}
+\definecolor{rulegray}{RGB}{200,206,214}
+\color{ink}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.6ex}
+\linespread{1.03}
+\titleformat{\section}{\headingfont\bfseries\fontsize{10}{12}\selectfont\color{accent}}{}{0em}{\MakeUppercase}[\vspace{-0.9ex}{\color{rulegray}\rule{\linewidth}{0.7pt}}]
+\titlespacing*{\section}{0pt}{2.0ex plus .3ex}{1.0ex}
+\titleformat{\paragraph}[runin]{\headingfont\bfseries\small\color{accent}}{}{0em}{}
+\titlespacing*{\paragraph}{0pt}{1.0ex}{0.6em}
+\setlist{itemsep=0.25ex, topsep=0.4ex, leftmargin=1.3em, label={\textcolor{accent}{\scriptsize$\blacktriangleright$}}}
+\newcommand{\letterhead}{%
+{\headingfont\bfseries\fontsize{16}{19}\selectfont EL MEHDI HARESS}\\[0.4ex]
+{\footnotesize\color{muted}Inria Sophia Antipolis \textemdash{} CALISTO team\quad
+\faEnvelope[regular]~\href{mailto:el-mehdi.haress@inria.fr}{el-mehdi.haress@inria.fr}\quad
+\faPhone*~+33 7 58 23 41 50\quad
+\faGlobe~\href{https://elmehdiharess.org}{elmehdiharess.org}}\\[-0.6ex]
+{\color{rulegray}\rule{\linewidth}{0.7pt}}\par\vspace{1.2ex}}
+
+\frenchspacing
+\begin{document}
+\letterhead
+
+\begin{flushright}\small Sophia Antipolis, le \today\end{flushright}
+
+\textbf{À l'attention de :} eXalt-Fi \textemdash{} équipe de recrutement Finance de Marché\\
+\textbf{Objet :} Candidature au poste d'Analyste Quantitatif \textemdash{} Finance de Marché (CDI, Paris)
+
+Madame, Monsieur,
+
+Docteur en mathématiques appliquées de l'Université Paris-Saclay et ingénieur CentraleSupélec, je vous
+adresse ma candidature au poste d'Analyste Quantitatif en Finance de Marché. Après un post-doctorat à
+l'Université de Leeds, je suis aujourd'hui ingénieur de recherche à Inria Sophia Antipolis, et je souhaite
+mettre mon expertise en modélisation stochastique au service des acteurs de la finance de marché.
+
+Les missions que vous décrivez reposent sur les outils avec lesquels je travaille depuis cinq ans.
+\begin{itemize}
+\item \textbf{Modèles et pricing.} Équations différentielles stochastiques, schémas de discrétisation et
+méthodes de Monte-Carlo avec garanties de convergence, y compris pour des dynamiques irrégulières où les
+méthodes standard échouent (\emph{Stochastic Processes and their Applications}, \emph{IMA Journal of
+Numerical Analysis}). J'ai également enseigné la finance stochastique et la modélisation du risque en M2
+à CentraleSupélec.
+\item \textbf{Risques et validation de modèles.} Mes travaux à Leeds quantifient la sensibilité d'une
+dynamique aux perturbations de sa spécification et de ses paramètres, ce qui est au cœur de l'analyse du
+risque de modèle. À l'Université d'Osaka, j'ai travaillé sur l'optimisation de mesures de risque
+(VaR, CVaR, mesures spectrales) sous queues lourdes, avec deux articles à la conférence \emph{AISTATS}.
+\item \textbf{Calibration et analyse statistique.} J'ai développé des estimateurs conjoints de plusieurs
+paramètres (dérive, volatilité, mémoire) à partir d'observations discrètes, notamment pour un modèle de
+taux d'Ornstein--Uhlenbeck fractionnaire, avec vitesses de convergence prouvées.
+\item \textbf{Implémentation et documentation.} Je code en Python au quotidien depuis huit ans et je publie
+mon code de recherche en \emph{open source}. La rédaction de notes techniques et la présentation de résultats
+à des interlocuteurs non spécialistes font partie de mon travail, aujourd'hui auprès d'ingénieurs et de
+partenaires industriels à Inria.
+\end{itemize}
+
+Je n'ai pas encore d'expérience en salle de marché, et c'est précisément ce qui m'attire dans le conseil :
+intervenir auprès de banques, de gestionnaires d'actifs et de fintechs, sur des problématiques variées,
+pour appliquer cette rigueur au pricing, à la mesure des risques de marché et de contrepartie et à la
+validation de modèles. Mes bases en \mbox{C++} sont celles d'une formation d'ingénieur, et je suis prêt à
+les renforcer rapidement selon les besoins de vos missions.
+
+Mobile sur Paris, je serais heureux d'échanger avec vous sur la manière dont mon profil peut répondre aux
+besoins de vos clients.
+
+Je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées.
+
+\vspace{0.6ex}
+El Mehdi Haress
+
+\end{document}

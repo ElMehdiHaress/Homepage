@@ -1,0 +1,208 @@
+% CV scientifique 1 page (FR) — El Mehdi Haress
+% Cible : ILS Data Scientist (jumeau numérique, maintenance prévisionnelle) — KNDS France, Versailles
+% Compilation : xelatex cv-fr-knds.tex
+\documentclass[10pt,a4paper]{article}
+
+\usepackage{fontspec}
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[
+  top=0.85cm, bottom=0.85cm, left=1.4cm, right=1.4cm
+]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fontawesome5}
+
+\setmainfont{texgyrepagella}[
+  Extension      = .otf,
+  UprightFont    = *-regular,
+  BoldFont       = *-bold,
+  ItalicFont     = *-italic,
+  BoldItalicFont = *-bolditalic,
+]
+\newfontfamily\headingfont{texgyreheros}[
+  Extension      = .otf,
+  UprightFont    = *-regular,
+  BoldFont       = *-bold,
+  ItalicFont     = *-italic,
+  BoldItalicFont = *-bolditalic,
+]
+
+\definecolor{accent}{RGB}{28,58,94}
+\definecolor{ink}{RGB}{26,26,26}
+\definecolor{muted}{RGB}{95,105,120}
+\definecolor{rulegray}{RGB}{200,206,214}
+\color{ink}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\linespread{1.00}
+\frenchspacing
+
+\titleformat{\section}
+  {\headingfont\bfseries\fontsize{9.5}{11}\selectfont\color{accent}}
+  {}{0em}{\MakeUppercase}[\vspace{-0.85ex}{\color{rulegray}\rule{\linewidth}{0.7pt}}]
+\titlespacing*{\section}{0pt}{1.6ex plus .2ex}{0.9ex}
+
+\newlength{\datecol}\setlength{\datecol}{0.155\textwidth}
+\newlength{\gutter}\setlength{\gutter}{0.85em}
+\newlength{\bodycol}
+\setlength{\bodycol}{\textwidth}
+\addtolength{\bodycol}{-\datecol}
+\addtolength{\bodycol}{-\gutter}
+
+\newcommand{\entry}[3]{%
+  \par\vspace{0.55ex}\noindent
+  \begin{minipage}[t]{\datecol}
+    \vspace{0pt}\raggedright\footnotesize\color{muted}#1
+  \end{minipage}%
+  \hspace{\gutter}%
+  \begin{minipage}[t]{\bodycol}
+    \vspace{0pt}\raggedright
+    {\headingfont\bfseries\footnotesize #2}\\[0.08ex]
+    {\footnotesize\color{accent}#3}
+  \end{minipage}%
+  \par\vspace{0.12ex}
+}
+
+\newenvironment{bullets}
+  {\begin{list}{\textcolor{accent}{\scriptsize$\blacktriangleright$}}{%
+      \setlength{\leftmargin}{\datecol}
+      \addtolength{\leftmargin}{\gutter}
+      \addtolength{\leftmargin}{1.15em}
+      \setlength{\rightmargin}{0pt}
+      \setlength{\labelwidth}{0.85em}
+      \setlength{\labelsep}{0.3em}
+      \setlength{\itemsep}{0.08ex}
+      \setlength{\parsep}{0pt}
+      \setlength{\topsep}{0.2ex}
+      \setlength{\partopsep}{0pt}
+      \footnotesize}}
+  {\end{list}}
+
+\newcommand{\skillrow}[2]{%
+  \par\noindent
+  \begin{minipage}[t]{\datecol}
+    \vspace{0pt}\raggedright{\headingfont\bfseries\footnotesize #1}
+  \end{minipage}%
+  \hspace{\gutter}%
+  \begin{minipage}[t]{\bodycol}
+    \vspace{0pt}\raggedright\footnotesize #2
+  \end{minipage}%
+  \par\vspace{0.38ex}
+}
+
+\newcommand{\cpp}{\mbox{C++}}
+
+\newcommand{\photo}[1]{%
+  \begin{tikzpicture}
+    \clip[rounded corners=4pt] (0,0) rectangle (2.35,3.008);
+    \node[anchor=south west, inner sep=0] at (0,0)
+      {\includegraphics[width=2.35cm]{#1}};
+  \end{tikzpicture}%
+}
+
+\begin{document}
+
+\begin{minipage}[t]{0.78\textwidth}
+\vspace{0pt}
+{\headingfont\bfseries\fontsize{20}{23}\selectfont EL MEHDI HARESS}\\[0.6ex]
+{\headingfont\fontsize{10}{12}\selectfont\color{accent}%
+Docteur en mathématiques appliquées \textbar{} Ingénieur CentraleSupélec}\\[0.25ex]
+{\small\color{muted}Modélisation \& simulation \textbar{} Data science \textbar{} Quantification d'incertitude \textbar{} Python}\\[1.0ex]
+{\footnotesize
+\faEnvelope[regular]~\href{mailto:el-mehdi.haress@inria.fr}{el-mehdi.haress@inria.fr}\quad
+\faPhone*~+33 7 58 23 41 50\\[0.25ex]
+\faLinkedin~\href{https://www.linkedin.com/in/el-mehdi-haress-67750b3aa/}{el-mehdi-haress}\quad
+\faGlobe~\href{https://elmehdiharess.org}{elmehdiharess.org}\quad
+\faGithub~\href{https://github.com/ElMehdiHaress}{ElMehdiHaress}\\[0.25ex]
+\faMapMarker*~Sophia Antipolis \textemdash{} mobilité Île-de-France (Versailles)}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.18\textwidth}
+\vspace{0pt}\raggedleft
+\photo{assets/photo.jpg}
+\end{minipage}
+
+\vspace{0.7ex}
+
+\section{Profil}
+\footnotesize
+\textbf{5 ans} de modélisation de
+\textbf{systèmes dynamiques complexes} : simulation numérique avec garanties de convergence,
+\textbf{calibration de modèles sur données observées}, analyse de sensibilité et apprentissage robuste aux
+événements rares (AISTATS). Huit publications, code \emph{open source}, applications web livrées de
+bout en bout. Objectif : mettre cette rigueur au service d'un
+\textbf{jumeau numérique} qui \textbf{couple modèles physiques, données d'essais et d'exploitation, et IA}
+pour anticiper le comportement des systèmes et éclairer les décisions de maintenance.
+\normalsize
+
+\section{Compétences}
+\skillrow{Modélisation}{Modèles dynamiques stochastiques (EDS, EDPS), modèles lagrangiens, systèmes
+multi-échelles, schémas de simulation et analyse de convergence, Monte-Carlo.}
+\skillrow{Données \& IA}{Estimation de paramètres sur observations discrètes, inférence statistique,
+quantification d'incertitude, sensibilité ; apprentissage robuste aux événements rares ; bases en
+réseaux de neurones.}
+\skillrow{Programmation}{\textbf{Python} (NumPy, SciPy, pandas) \textemdash{} 8 ans ; MATLAB, R, Git,
+\LaTeX{} ; JavaScript/TypeScript, React, Firebase ; bases en \cpp{}.}
+\skillrow{Savoir-être}{Traduire une question métier en problème algorithmique ; travail avec
+mathématiciens, ingénieurs et partenaires industriels ; rédaction et restitution orale (15+ exposés).}
+\skillrow{Langues}{Français \textemdash{} langue maternelle. Anglais \textemdash{} courant. Japonais \textemdash{} notions.}
+
+\section{Expérience}
+
+\entry{09/2026 \textemdash{} auj.}{Ingénieur de recherche \textemdash{} modélisation stochastique appliquée}{Inria Sophia Antipolis \textemdash{} équipe CALISTO (Mireille Bossy)}
+\begin{bullets}
+  \item Modèles stochastiques lagrangiens (turbulence) et systèmes multi-échelles industriels : schémas de
+  simulation, implémentation Python, validation numérique.
+\end{bullets}
+
+\entry{12/2024 \textemdash{} 08/2026}{Chercheur post-doctorant en analyse stochastique}{University of Leeds (Royaume-Uni) \textemdash{} K. Dareiotis et K. Lê}
+\begin{bullets}
+  \item \textbf{Sensibilité} de dynamiques singulières aux perturbations du modèle et des paramètres (\emph{SPA}, 2026).
+  \item Co-organisation du workshop FRSSD 2026 (18 intervenants). TD de processus stochastiques (licence, 50 étudiants).
+\end{bullets}
+
+\entry{10/2021 \textemdash{} 11/2024}{Doctorat \textemdash{} simulation numérique de dynamiques stochastiques singulières}{Université Paris-Saclay / CentraleSupélec \textemdash{} L. Goudenège et A. Richard}
+\begin{bullets}
+  \item Schémas de simulation avec garanties de convergence là où les méthodes standard échouent
+  (\emph{IMA J. Numerical Analysis}, \emph{SPA}).
+  \item \textbf{Calibration conjointe de plusieurs paramètres} (dérive, volatilité, mémoire) à partir de
+  données discrètes ; implémentation et validation numérique, 5 dépôts publics (Python, MATLAB).
+  \item Enseignement à CentraleSupélec ($\sim$60 étudiants/an) : probabilités, EDP, finance stochastique (M2).
+\end{bullets}
+
+\entry{03/2020 \textemdash{} 09/2021}{Stage de recherche \textemdash{} apprentissage automatique robuste}{Université d'Osaka (Japon) \textemdash{} M. Holland}
+\begin{bullets}
+  \item Algorithmes d'apprentissage sensibles au risque, robustes aux pertes extrêmes et aux queues lourdes ;
+  2 articles \emph{AISTATS} avec implémentation et campagnes numériques.
+\end{bullets}
+
+\section{Formation}
+\skillrow{2021--2024}{Doctorat en mathématiques appliquées \textemdash{} Université Paris-Saclay.}
+\skillrow{2017--2021}{Ingénieur, majeure mathématiques appliquées \textemdash{} CentraleSupélec. M2 Mathématiques de l'aléatoire (2020--2021).}
+\skillrow{2015--2017}{CPGE MP \textemdash{} Lycée Pierre de Fermat, Toulouse.}
+
+\section{Publications sélectionnées}
+{\scriptsize\color{muted}8 publications ; liste complète sur \href{https://elmehdiharess.org}{elmehdiharess.org}. Ordre alphabétique en probabilités.\par}
+\vspace{0.25ex}
+\begin{itemize}[leftmargin=1.15em, itemsep=0.12ex, topsep=0pt, parsep=0pt, label={\textcolor{accent}{\scriptsize$\blacktriangleright$}}]
+  \scriptsize
+  \item M. Holland, \textbf{E.M. Haress}. \emph{Spectral risk-based learning using unbounded losses}. AISTATS, 2022.
+  \item \textbf{E.M. Haress}, A. Richard. \emph{Estimation of several parameters in discretely-observed SDEs
+  with additive fractional noise}. Statistical Inference for Stochastic Processes, 2024.
+  \item K. Dareiotis, \textbf{E.M. Haress}, K. Lê. \emph{Uniform pathwise stability of additive singular SDEs
+  driven by fractional Brownian motion}. SPA, 2026.
+\end{itemize}
+
+\section{Compléments}
+\skillrow{Projets}{Applications web conçues et mises en production en autodidacte : \textbf{Nerduncover}
+(jeu multijoueur), \href{https://hanabellaspa.pro}{hanabellaspa.pro} (site client et back-office : comptes,
+rôles, rapports, export CSV). React, TypeScript, Firebase.}
+
+\end{document}

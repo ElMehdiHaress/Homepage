@@ -1,0 +1,249 @@
+% Two-page academic CV (EN) — El Mehdi Haress
+% Target: Faculty position in Applied Mathematics and Statistics (teaching track) — emlyon business school, Lyon
+% Compile: xelatex cv-en-emlyon.tex
+\documentclass[10pt,a4paper]{article}
+
+\usepackage{fontspec}
+\usepackage[english]{babel}
+\usepackage[
+  top=0.85cm, bottom=0.85cm, left=1.4cm, right=1.4cm
+]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fontawesome5}
+
+\setmainfont{texgyrepagella}[
+  Extension      = .otf,
+  UprightFont    = *-regular,
+  BoldFont       = *-bold,
+  ItalicFont     = *-italic,
+  BoldItalicFont = *-bolditalic,
+]
+\newfontfamily\headingfont{texgyreheros}[
+  Extension      = .otf,
+  UprightFont    = *-regular,
+  BoldFont       = *-bold,
+  ItalicFont     = *-italic,
+  BoldItalicFont = *-bolditalic,
+]
+
+\definecolor{accent}{RGB}{28,58,94}
+\definecolor{ink}{RGB}{26,26,26}
+\definecolor{muted}{RGB}{95,105,120}
+\definecolor{rulegray}{RGB}{200,206,214}
+\color{ink}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\linespread{1.00}
+
+\titleformat{\section}
+  {\headingfont\bfseries\fontsize{9.5}{11}\selectfont\color{accent}}
+  {}{0em}{\MakeUppercase}[\vspace{-0.85ex}{\color{rulegray}\rule{\linewidth}{0.7pt}}]
+\titlespacing*{\section}{0pt}{1.55ex plus .2ex}{0.85ex}
+
+\newlength{\datecol}\setlength{\datecol}{0.155\textwidth}
+\newlength{\gutter}\setlength{\gutter}{0.85em}
+\newlength{\bodycol}
+\setlength{\bodycol}{\textwidth}
+\addtolength{\bodycol}{-\datecol}
+\addtolength{\bodycol}{-\gutter}
+
+\newcommand{\entry}[3]{%
+  \par\vspace{0.50ex}\noindent
+  \begin{minipage}[t]{\datecol}
+    \vspace{0pt}\raggedright\footnotesize\color{muted}#1
+  \end{minipage}%
+  \hspace{\gutter}%
+  \begin{minipage}[t]{\bodycol}
+    \vspace{0pt}\raggedright
+    {\headingfont\bfseries\footnotesize #2}\\[0.08ex]
+    {\footnotesize\color{accent}#3}
+  \end{minipage}%
+  \par\vspace{0.10ex}
+}
+
+\newenvironment{bullets}
+  {\begin{list}{\textcolor{accent}{\scriptsize$\blacktriangleright$}}{%
+      \setlength{\leftmargin}{\datecol}
+      \addtolength{\leftmargin}{\gutter}
+      \addtolength{\leftmargin}{1.15em}
+      \setlength{\rightmargin}{0pt}
+      \setlength{\labelwidth}{0.85em}
+      \setlength{\labelsep}{0.3em}
+      \setlength{\itemsep}{0.08ex}
+      \setlength{\parsep}{0pt}
+      \setlength{\topsep}{0.18ex}
+      \setlength{\partopsep}{0pt}
+      \footnotesize}}
+  {\end{list}}
+
+\newcommand{\skillrow}[2]{%
+  \par\noindent
+  \begin{minipage}[t]{\datecol}
+    \vspace{0pt}\raggedright{\headingfont\bfseries\footnotesize #1}
+  \end{minipage}%
+  \hspace{\gutter}%
+  \begin{minipage}[t]{\bodycol}
+    \vspace{0pt}\raggedright\footnotesize #2
+  \end{minipage}%
+  \par\vspace{0.35ex}
+}
+
+\newcommand{\cpp}{\mbox{C++}}
+
+\newcommand{\photo}[1]{%
+  \begin{tikzpicture}
+    \clip[rounded corners=4pt] (0,0) rectangle (2.35,3.008);
+    \node[anchor=south west, inner sep=0] at (0,0)
+      {\includegraphics[width=2.35cm]{#1}};
+  \end{tikzpicture}%
+}
+
+\begin{document}
+
+\begin{minipage}[t]{0.78\textwidth}
+\vspace{0pt}
+{\headingfont\bfseries\fontsize{20}{23}\selectfont EL MEHDI HARESS}\\[0.55ex]
+{\headingfont\fontsize{10}{12}\selectfont\color{accent}%
+PhD in Applied Mathematics \textbar{} Teacher and researcher in probability and statistics}\\[0.22ex]
+{\small\color{muted}Probability \textbar{} Statistics \textbar{} Stochastic modelling \textbar{} Quantitative finance \textbar{} Data-driven decisions}\\[0.95ex]
+{\footnotesize
+\faEnvelope[regular]~\href{mailto:el-mehdi.haress@inria.fr}{el-mehdi.haress@inria.fr}\quad
+\faPhone*~+33 7 58 23 41 50\\[0.22ex]
+\faLinkedin~\href{https://www.linkedin.com/in/el-mehdi-haress-67750b3aa/}{el-mehdi-haress}\quad
+\faGlobe~\href{https://elmehdiharess.org}{elmehdiharess.org}\quad
+\faGithub~\href{https://github.com/ElMehdiHaress}{ElMehdiHaress}\\[0.22ex]
+\faMapMarker*~Sophia Antipolis, France \textemdash{} willing to relocate to Lyon}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.18\textwidth}
+\vspace{0pt}\raggedleft
+\photo{assets/photo.jpg}
+\end{minipage}
+
+\vspace{0.65ex}
+
+\section{Profile}
+\footnotesize
+Applied mathematician (PhD, Université Paris-Saclay; engineer, CentraleSupélec) with \textbf{five years of
+university teaching} in probability, statistics, PDEs and stochastic finance, from first-year undergraduates
+to M2, in \textbf{French and English}, including students outside mathematics (economics, engineering).
+I teach mathematics through the questions it answers: real data sets, simulation in Python, and
+student projects on real-world problems. Research in stochastic modelling, statistical inference and
+risk-aware learning (8 peer-reviewed papers, including 2 at \emph{AISTATS}), with ongoing work alongside
+industrial partners at Inria.
+\normalsize
+
+\section{Teaching experience}
+
+\entry{09/2026 \textemdash{} now}{Lecturer \textemdash{} Statistics for non-specialists (L2)}{Université Côte d'Azur, Nice}
+\begin{bullets}
+  \item Statistics (L2) for economics undergraduates, with course notes written for the module.
+  \item Supervision of a project for second-year engineering students (Polytech Nice): analysis of real wind
+  and temperature time series from an atmospheric observatory (SIRTA).
+\end{bullets}
+
+\entry{Fall 2025}{Teaching assistant \textemdash{} Stochastic Processes (undergraduate)}{University of Leeds (UK) \textemdash{} in English}
+\begin{bullets}
+  \item Weekly problem-solving workshops, 50 students.
+\end{bullets}
+
+\entry{2021 \textemdash{} 2024}{Teaching assistant (about 60 students per year)}{CentraleSupélec, Paris-Saclay}
+\begin{bullets}
+  \item Convergence, Integration and Probability (2022--2024); Partial Differential Equations (2021--2024).
+  \item \textbf{Stochastic Finance and Risk Modelling} (postgraduate, 25 students, 2022--2023).
+\end{bullets}
+
+\entry{2017 \textemdash{} 2024}{Tutoring, examining and coordination}{CentraleSupélec, Université Paris-Saclay, Lycée Chaptal (Paris)}
+\begin{bullets}
+  \item Oral examiner in mathematics for preparatory classes (Lycée Chaptal, 2022--2024).
+  \item Tutor for first-year mathematics students (CentraleSupélec, 2017--2023); coordinator of the tutors of
+  the Paris-Saclay mathematics support programme (2023).
+\end{bullets}
+
+\section{Research and academic positions}
+
+\entry{09/2026 \textemdash{} now}{Research engineer \textemdash{} probabilistic numerical methods}{Inria Sophia Antipolis \textemdash{} CALISTO team (Mireille Bossy)}
+\begin{bullets}
+  \item Lagrangian stochastic models for turbulence and multi-scale systems from industrial applications;
+  work with engineers and industrial partners.
+\end{bullets}
+
+\entry{12/2024 \textemdash{} 08/2026}{Research fellow in stochastic analysis}{University of Leeds (UK) \textemdash{} K. Dareiotis and K. Lê}
+\begin{bullets}
+  \item Stability and long-time behaviour of singular stochastic dynamics (\emph{SPA}, 2026).
+\end{bullets}
+
+\entry{10/2021 \textemdash{} 11/2024}{PhD \textemdash{} numerical approximation and long-time behaviour of singular SDEs and SPDEs}{Université Paris-Saclay / CentraleSupélec \textemdash{} L. Goudenège and A. Richard}
+\begin{bullets}
+  \item Simulation schemes with proven convergence; estimation of several parameters from discrete data.
+\end{bullets}
+
+\entry{09/2019 \textemdash{} 09/2021}{Research internships}{Osaka University (Japan) \textemdash{} M. Holland; University of Alberta (Canada) \textemdash{} Y. Hu}
+\begin{bullets}
+  \item Learning under risk constraints with heavy-tailed data (2 \emph{AISTATS} papers); parameter estimation
+  in a fractional Ornstein--Uhlenbeck model.
+\end{bullets}
+
+\section{Education}
+\skillrow{2021--2024}{PhD in Applied Mathematics \textemdash{} Université Paris-Saclay.}
+\skillrow{2020--2021}{M2 Mathematics of Randomness (probability and statistics) \textemdash{} Université Paris-Saclay.}
+\skillrow{2017--2021}{Engineering degree, Applied Mathematics \textemdash{} CentraleSupélec.}
+\skillrow{2015--2017}{CPGE (MP, MP*) \textemdash{} Lycée Pierre de Fermat, Toulouse.}
+
+\section{Publications}
+{\scriptsize\color{muted}Author order is alphabetical in probability.\par}
+\vspace{0.22ex}
+\begin{itemize}[leftmargin=1.15em, itemsep=0.10ex, topsep=0pt, parsep=0pt, label={\textcolor{accent}{\scriptsize$\blacktriangleright$}}]
+  \scriptsize
+  \item K. Dareiotis, \textbf{E.M. Haress}, K. Lê. \emph{Uniform pathwise stability of singular additive SDEs
+  driven by fractional Brownian motion}. Stochastic Processes and their Applications, 2026.
+  \item L. Goudenège, \textbf{E.M. Haress}, A. Richard. \emph{Numerical approximation of the stochastic heat
+  equation with a distributional reaction term}. IMA Journal of Numerical Analysis, 2026.
+  \item L. Goudenège, \textbf{E.M. Haress}, A. Richard. \emph{Numerical approximation of stochastic differential
+  equations with distributional drift}. Stochastic Processes and their Applications, 2025.
+  \item \textbf{E.M. Haress}, A. Richard. \emph{Estimation of several parameters in discretely-observed stochastic
+  differential equations with additive fractional noise}. Statistical Inference for Stochastic Processes, 2024.
+  \item \textbf{E.M. Haress}, A. Richard. \emph{Long time Hurst regularity of fractional SDEs and their ergodic
+  means}. Journal of Theoretical Probability, 2025.
+  \item M. Holland, \textbf{E.M. Haress}. \emph{Spectral risk-based learning using unbounded losses}. AISTATS, 2022.
+  \item M. Holland, \textbf{E.M. Haress}. \emph{Learning with risk-averse feedback under potentially heavy tails}. AISTATS, 2021.
+  \item \textbf{E.M. Haress}, Y. Hu. \emph{Estimation of all parameters in the fractional Ornstein--Uhlenbeck model
+  under discrete observations}. Statistical Inference for Stochastic Processes, 2021.
+\end{itemize}
+\vspace{0.3ex}
+{\scriptsize\textbf{Submitted and in progress:} K. Dareiotis, \textbf{E.M. Haress}, K. Lê. \emph{Regularising flows and
+singular fractional SDEs with superlinear dissipation}, preprint (2026). \textbullet{} L. Goudenège, \textbf{E.M. Haress},
+J. Naffrichoux. \emph{Singular perturbation of dissipative SDEs}. \textbullet{} \textbf{E.M. Haress}, A. Mayorcas, D. O'Kane.
+\emph{Replicating Gibbs measures by invariant measures of fBm-driven SDEs}. \textbullet{} Lagrangian stochastic models for
+turbulent flows (with M. Bossy, Inria).\par}
+
+\section{Service and engagement}
+\skillrow{Organisation}{Co-organiser of FRSSD 2026, international workshop, Leeds (18 speakers: programme,
+website, budget). Co-organiser of CJC-MA 2023, national conference (143 participants).}
+\skillrow{Collaboration}{Weekly research collaboration with a PhD student (numerical methods for SPDEs, since
+2025). Member of the French team of the ECOS-Sud project C25E10 with Universidad de Concepción (Chile).}
+\skillrow{Community}{Reviewer for \emph{SPA}, \emph{J.\ Theoretical Probability} and \emph{J.\ Computational and Applied Mathematics}; editorial coordination of the CJC-MA 2023 proceedings (\emph{ESAIM: Proceedings and Surveys}). Member of COST Action CA24104 \textsc{Stochastica}. 15+
+talks, including invited seminars and talks at Warwick, Rennes (IRMAR), Évry and \emph{Les Probabilités de Demain}.}
+\skillrow{Distinctions}{Vivaldi programme, Fondation Mathématique Jacques Hadamard (2023); IDEX international
+mobility grant, Paris-Saclay (2019).}
+
+\section{Skills}
+\skillrow{Teaching tools}{\textbf{Python} (NumPy, SciPy, pandas) \textemdash{} 8 years, 5 public research repositories; R, MATLAB; \LaTeX{}
+course notes; web apps built end to end (React, TypeScript, Firebase), usable for interactive teaching material.}
+\skillrow{Languages}{French \textemdash{} native. English \textemdash{} fluent (2 years teaching and research in
+the UK). Japanese \textemdash{} beginner.}
+
+\section{References}
+\skillrow{L. Goudenège}{Research Director (DR), CNRS, Laboratoire de Mathématiques et Modélisation d'Évry (LaMME) \textemdash{} PhD supervisor.
+\href{mailto:ludovic.goudenege@univ-evry.fr}{ludovic.goudenege@univ-evry.fr}}
+\skillrow{M. Bossy}{Inria, Centre d'Université Côte d'Azur, CALISTO team \textemdash{} current supervisor.
+\href{mailto:mireille.bossy@inria.fr}{mireille.bossy@inria.fr}}
+
+\end{document}

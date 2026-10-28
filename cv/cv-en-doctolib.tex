@@ -1,0 +1,201 @@
+% One-page CV (EN) — El Mehdi Haress
+% Target: Research Scientist — Doctolab (Doctolib Clinical AI Research Lab), Paris
+% No photo: the posting asks applicants to leave out pictures.
+% Compile: xelatex cv-en-doctolib.tex
+\documentclass[10pt,a4paper]{article}
+
+\usepackage{fontspec}
+\usepackage[english]{babel}
+\usepackage[
+  top=0.85cm, bottom=0.85cm, left=1.4cm, right=1.4cm
+]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fontawesome5}
+
+\setmainfont{texgyrepagella}[
+  Extension      = .otf,
+  UprightFont    = *-regular,
+  BoldFont       = *-bold,
+  ItalicFont     = *-italic,
+  BoldItalicFont = *-bolditalic,
+]
+\newfontfamily\headingfont{texgyreheros}[
+  Extension      = .otf,
+  UprightFont    = *-regular,
+  BoldFont       = *-bold,
+  ItalicFont     = *-italic,
+  BoldItalicFont = *-bolditalic,
+]
+
+\definecolor{accent}{RGB}{28,58,94}
+\definecolor{ink}{RGB}{26,26,26}
+\definecolor{muted}{RGB}{95,105,120}
+\definecolor{rulegray}{RGB}{200,206,214}
+\color{ink}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\linespread{1.00}
+
+\titleformat{\section}
+  {\headingfont\bfseries\fontsize{9.5}{11}\selectfont\color{accent}}
+  {}{0em}{\MakeUppercase}[\vspace{-0.85ex}{\color{rulegray}\rule{\linewidth}{0.7pt}}]
+\titlespacing*{\section}{0pt}{1.55ex plus .2ex}{0.85ex}
+
+\newlength{\datecol}\setlength{\datecol}{0.155\textwidth}
+\newlength{\gutter}\setlength{\gutter}{0.85em}
+\newlength{\bodycol}
+\setlength{\bodycol}{\textwidth}
+\addtolength{\bodycol}{-\datecol}
+\addtolength{\bodycol}{-\gutter}
+
+\newcommand{\entry}[3]{%
+  \par\vspace{0.50ex}\noindent
+  \begin{minipage}[t]{\datecol}
+    \vspace{0pt}\raggedright\footnotesize\color{muted}#1
+  \end{minipage}%
+  \hspace{\gutter}%
+  \begin{minipage}[t]{\bodycol}
+    \vspace{0pt}\raggedright
+    {\headingfont\bfseries\footnotesize #2}\\[0.08ex]
+    {\footnotesize\color{accent}#3}
+  \end{minipage}%
+  \par\vspace{0.10ex}
+}
+
+\newenvironment{bullets}
+  {\begin{list}{\textcolor{accent}{\scriptsize$\blacktriangleright$}}{%
+      \setlength{\leftmargin}{\datecol}
+      \addtolength{\leftmargin}{\gutter}
+      \addtolength{\leftmargin}{1.15em}
+      \setlength{\rightmargin}{0pt}
+      \setlength{\labelwidth}{0.85em}
+      \setlength{\labelsep}{0.3em}
+      \setlength{\itemsep}{0.08ex}
+      \setlength{\parsep}{0pt}
+      \setlength{\topsep}{0.18ex}
+      \setlength{\partopsep}{0pt}
+      \footnotesize}}
+  {\end{list}}
+
+\newcommand{\skillrow}[2]{%
+  \par\noindent
+  \begin{minipage}[t]{\datecol}
+    \vspace{0pt}\raggedright{\headingfont\bfseries\footnotesize #1}
+  \end{minipage}%
+  \hspace{\gutter}%
+  \begin{minipage}[t]{\bodycol}
+    \vspace{0pt}\raggedright\footnotesize #2
+  \end{minipage}%
+  \par\vspace{0.35ex}
+}
+
+\newcommand{\cpp}{\mbox{C++}}
+
+\newcommand{\photo}[1]{%
+  \begin{tikzpicture}
+    \clip[rounded corners=4pt] (0,0) rectangle (2.35,3.008);
+    \node[anchor=south west, inner sep=0] at (0,0)
+      {\includegraphics[width=2.35cm]{#1}};
+  \end{tikzpicture}%
+}
+
+\begin{document}
+
+{\headingfont\bfseries\fontsize{20}{23}\selectfont EL MEHDI HARESS}\\[0.55ex]
+{\headingfont\fontsize{10}{12}\selectfont\color{accent}%
+Researcher in stochastic modelling \textbar{} PhD in Applied Mathematics \textbar{} CentraleSupélec engineer}\\[0.22ex]
+{\small\color{muted}Dynamic models \textbar{} Estimation from imperfect data \textbar{} Uncertainty and robustness \textbar{} Python}\\[0.95ex]
+{\footnotesize
+\faEnvelope[regular]~\href{mailto:el-mehdi.haress@inria.fr}{el-mehdi.haress@inria.fr}\quad
+\faPhone*~+33 7 58 23 41 50\quad
+\faLinkedin~\href{https://www.linkedin.com/in/el-mehdi-haress-67750b3aa/}{el-mehdi-haress}\quad
+\faGlobe~\href{https://elmehdiharess.org}{elmehdiharess.org}\quad
+\faGithub~\href{https://github.com/ElMehdiHaress}{ElMehdiHaress}\\[0.22ex]
+\faMapMarker*~Sophia Antipolis, France \textemdash{} open to relocating to Paris}
+
+\vspace{0.65ex}
+
+\section{Profile}
+\footnotesize
+Researcher with \textbf{5 years} of work on \textbf{how a state evolves over time} and how to learn it from
+data: stochastic dynamical models, \textbf{estimation of several parameters from discrete, noisy
+observations}, convergence and \textbf{stability guarantees}, and \textbf{risk-aware learning} robust to
+heavy tails (2 \emph{AISTATS} papers). Eight peer-reviewed papers; I have driven my own research from the
+question to the published result, and released the code. I want to bring this to world models of patient
+health, where calibration and robustness decide whether a model can be trusted in the clinic.
+\normalsize
+
+\section{Research strengths}
+\skillrow{Temporal \& dynamic}{Stochastic differential equations, long-memory processes (fractional Brownian
+motion), long-time behaviour and stability, multi-scale systems, simulation with proven error bounds.}
+\skillrow{Uncertainty}{Parameter inference with convergence rates, sensitivity of a model to
+misspecification, Monte Carlo, spectral risk measures (CVaR), heavy-tailed and unbounded losses.}
+\skillrow{Engineering}{\textbf{Python} (NumPy, SciPy, pandas) \textemdash{} 8 years; Git; MATLAB, R;
+TypeScript, React, Firebase. Open-source research code (5 public repositories). Neural network basics.}
+\skillrow{Communication}{15+ international talks (invited: Warwick, IHP, Rennes); reviewer for journals;
+teaching from undergraduate to M2. English \textemdash{} fluent (2 years in the UK); French \textemdash{} native.}
+
+\section{Experience}
+
+\entry{09/2026 \textemdash{} now}{Research engineer \textemdash{} probabilistic numerical methods}{Inria Sophia Antipolis \textemdash{} CALISTO team (Mireille Bossy)}
+\begin{bullets}
+  \item Lagrangian stochastic models for turbulence and multi-scale industrial systems; work with engineers
+  and industrial partners. Python implementation and numerical validation.
+\end{bullets}
+
+\entry{12/2024 \textemdash{} 08/2026}{Research fellow in stochastic analysis}{University of Leeds (UK) \textemdash{} K. Dareiotis and K. Lê}
+\begin{bullets}
+  \item Uniform pathwise stability of singular dynamics with memory (\emph{SPA}, 2026): how solutions
+  react to changes in the model and its parameters.
+  \item Co-organised FRSSD 2026 (18 speakers). Weekly research collaboration with a PhD student.
+\end{bullets}
+
+\entry{10/2021 \textemdash{} 11/2024}{PhD \textemdash{} numerical approximation of singular SDEs and SPDEs}{Université Paris-Saclay / CentraleSupélec \textemdash{} L. Goudenège and A. Richard}
+\begin{bullets}
+  \item Simulation schemes with proven convergence where the standard assumptions fail
+  (\emph{IMA J. Numerical Analysis}, \emph{SPA}).
+  \item \textbf{Joint estimators of drift, noise level and memory} from discretely observed trajectories, with
+  convergence rates (\emph{Statistical Inference for Stochastic Processes}); implemented and released.
+  \item Taught probability, PDEs and stochastic finance (M2) at CentraleSupélec.
+\end{bullets}
+
+\entry{03/2020 \textemdash{} 09/2021}{Research intern \textemdash{} learning under risk constraints}{Osaka University (Japan) \textemdash{} M. Holland}
+\begin{bullets}
+  \item Learning algorithms that optimise spectral risk instead of the mean, with guarantees under unbounded
+  losses and heavy tails; 2 \emph{AISTATS} papers with implementations and experiments.
+\end{bullets}
+
+\entry{09/2019 \textemdash{} 02/2020}{Research intern \textemdash{} inference for long-memory processes}{University of Alberta (Canada) \textemdash{} Y. Hu}
+\begin{bullets}
+  \item Simultaneous estimation of all parameters of a fractional Ornstein--Uhlenbeck model from discrete data.
+\end{bullets}
+
+\section{Education}
+\skillrow{2021--2024}{PhD in Applied Mathematics \textemdash{} Université Paris-Saclay.}
+\skillrow{2017--2021}{Engineering degree, Applied Mathematics \textemdash{} CentraleSupélec. M2 Mathematics of Randomness (2020--2021).}
+\skillrow{2015--2017}{CPGE (MP) \textemdash{} Lycée Pierre de Fermat, Toulouse.}
+
+\section{Selected publications}
+{\scriptsize\color{muted}8 papers in total; full list at \href{https://elmehdiharess.org}{elmehdiharess.org}. Author order is alphabetical in probability.\par}
+\vspace{0.22ex}
+\begin{itemize}[leftmargin=1.15em, itemsep=0.10ex, topsep=0pt, parsep=0pt, label={\textcolor{accent}{\scriptsize$\blacktriangleright$}}]
+  \scriptsize
+  \item M. Holland, \textbf{E.M. Haress}. \emph{Spectral risk-based learning using unbounded losses}. AISTATS, 2022.
+  \item M. Holland, \textbf{E.M. Haress}. \emph{Learning with risk-averse feedback under potentially heavy tails}. AISTATS, 2021.
+  \item \textbf{E.M. Haress}, A. Richard. \emph{Estimation of several parameters in discretely-observed SDEs
+  with additive fractional noise}. Statistical Inference for Stochastic Processes, 2024.
+  \item K. Dareiotis, \textbf{E.M. Haress}, K. Lê. \emph{Uniform pathwise stability of additive singular SDEs
+  driven by fractional Brownian motion}. Stochastic Processes and their Applications, 2026.
+  \item L. Goudenège, \textbf{E.M. Haress}, A. Richard. \emph{Numerical approximation of SDEs with
+  distributional drift}. Stochastic Processes and their Applications, 2025.
+\end{itemize}
+
+\end{document}

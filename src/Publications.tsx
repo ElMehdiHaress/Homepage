@@ -24,6 +24,15 @@ const Publications = () => {
   const allPublications: Publication[] = [
     // Section 1: Singular and Dissipative Stochastic Dynamics
     {
+      title: "Regularising Flows and Singular Fractional SDEs with Superlinear Dissipation",
+      journal: "arXiv:2610.23113",
+      authors: "joint work with Konstantinos Dareiotis and Khoa Lê",
+      year: "2026",
+      section: 'singular',
+      isPreprint: true,
+      url: "https://arxiv.org/pdf/2610.23113"
+    },
+    {
       title: "Uniform pathwise stability of singular additive SDEs driven by fractional Brownian motion",
       journal: "Stochastic Processes and Applications",
       authors: "joint work with Konstantinos Dareiotis and Khoa Lê",

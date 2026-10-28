@@ -1,0 +1,89 @@
+% Cover letter — Research Scientist, Doctolab (Doctolib), Paris
+% Compile: xelatex coverletter-doctolib.tex
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\usepackage[english]{babel}
+\usepackage[top=1.6cm, bottom=1.6cm, left=2.0cm, right=2.0cm]{geometry}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fontawesome5}
+\setmainfont{texgyrepagella}[Extension=.otf, UprightFont=*-regular, BoldFont=*-bold, ItalicFont=*-italic, BoldItalicFont=*-bolditalic]
+\newfontfamily\headingfont{texgyreheros}[Extension=.otf, UprightFont=*-regular, BoldFont=*-bold, ItalicFont=*-italic, BoldItalicFont=*-bolditalic]
+\definecolor{accent}{RGB}{28,58,94}
+\definecolor{ink}{RGB}{26,26,26}
+\definecolor{muted}{RGB}{95,105,120}
+\definecolor{rulegray}{RGB}{200,206,214}
+\color{ink}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.6ex}
+\linespread{1.03}
+\titleformat{\section}{\headingfont\bfseries\fontsize{10}{12}\selectfont\color{accent}}{}{0em}{\MakeUppercase}[\vspace{-0.9ex}{\color{rulegray}\rule{\linewidth}{0.7pt}}]
+\titlespacing*{\section}{0pt}{2.0ex plus .3ex}{1.0ex}
+\titleformat{\paragraph}[runin]{\headingfont\bfseries\small\color{accent}}{}{0em}{}
+\titlespacing*{\paragraph}{0pt}{1.0ex}{0.6em}
+\setlist{itemsep=0.25ex, topsep=0.4ex, leftmargin=1.3em, label={\textcolor{accent}{\scriptsize$\blacktriangleright$}}}
+\newcommand{\letterhead}{%
+{\headingfont\bfseries\fontsize{16}{19}\selectfont EL MEHDI HARESS}\\[0.4ex]
+{\footnotesize\color{muted}Inria Sophia Antipolis \textemdash{} CALISTO team\quad
+\faEnvelope[regular]~\href{mailto:el-mehdi.haress@inria.fr}{el-mehdi.haress@inria.fr}\quad
+\faPhone*~+33 7 58 23 41 50\quad
+\faGlobe~\href{https://elmehdiharess.org}{elmehdiharess.org}}\\[-0.6ex]
+{\color{rulegray}\rule{\linewidth}{0.7pt}}\par\vspace{1.2ex}}
+
+\begin{document}
+\letterhead
+
+\begin{flushright}\small Sophia Antipolis, \today\end{flushright}
+
+\textbf{To:} Doctolab, Doctolib Clinical AI Research Lab\\
+\textbf{Subject:} Application for the Research Scientist position (Paris)
+
+Dear Hiring Team,
+
+I am applying for the Research Scientist position at Doctolab. I am an applied mathematician (PhD,
+Université Paris-Saclay; engineer, CentraleSupélec), currently a research engineer at Inria Sophia
+Antipolis after a two-year research fellowship at the University of Leeds. My research is about one
+question that sits at the heart of your lab's agenda: \textbf{how a state evolves over time under
+uncertainty, and how to learn that evolution reliably from imperfect observations.}
+
+Your description of a world model of patient health, a health state that evolves over time and responds
+to care, learned from observational data, is close to the objects I work with every day. Concretely, I
+would bring three things.
+
+\begin{itemize}
+\item \textbf{Temporal and dynamic modelling.} I study stochastic dynamical systems, including systems
+with long memory, and I have proved stability results that quantify how a trajectory reacts when the
+model or its parameters are perturbed (\emph{Stochastic Processes and their Applications}, 2026). For a
+world model, this is the question of when a prediction can still be trusted far from the training data.
+\item \textbf{Calibration and inference from discrete, noisy data.} I have designed estimators that
+recover several parameters jointly (drift, noise level, memory) from discretely sampled trajectories,
+with convergence guarantees, and released the code. Irregular, partial observation of a continuous
+process is exactly the situation of longitudinal patient records.
+\item \textbf{Robustness and risk-aware learning.} At Osaka University I worked on learning algorithms
+that optimise risk measures rather than averages, with guarantees under heavy-tailed losses (two
+\emph{AISTATS} papers). In a clinical setting, rare outcomes are often the ones that matter most.
+\end{itemize}
+
+I have driven my own research from the choice of question to publication, and I am used to explaining
+why a result matters to people outside my field: I taught probability, statistics and stochastic finance
+at CentraleSupélec and in Leeds, and I now work with engineers and industrial partners at Inria.
+
+I want to be transparent about where my profile is thinner. My experience with deep learning frameworks
+and with large, messy real-world data sets is more limited than my background in modelling and theory,
+and I have not yet worked with health data. These are the skills I most want to build, and I learn
+fast in hands-on settings: I taught myself to design and ship full web applications in TypeScript and
+React. What I can offer in return is a rigorous view of dynamics, calibration and uncertainty, which is
+the part of a clinical world model that is hardest to get right.
+
+The fact that Doctolab is in its founding phase, and that results reach practitioners and patients at
+scale, is what makes this position particularly attractive to me. I would be glad to discuss how my work
+could contribute to your research agenda.
+
+Yours sincerely,\\[0.8ex]
+El Mehdi Haress
+
+\end{document}
